@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_22_044747) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_22_103851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,58 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_044747) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "activities", force: :cascade do |t|
+    t.text "description"
+    t.bigint "place_id", null: false
+    t.bigint "itinerary_id", null: false
+    t.date "date"
+    t.integer "day"
+    t.time "time"
+    t.integer "event_sequence"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["itinerary_id"], name: "index_activities_on_itinerary_id"
+    t.index ["place_id"], name: "index_activities_on_place_id"
+  end
+
+  create_table "itineraries", force: :cascade do |t|
+    t.string "title"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "travel_days"
+    t.string "phase"
+    t.string "country", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_itineraries_on_user_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.text "review_summary"
+    t.string "category", null: false
+    t.integer "rating", null: false
+    t.boolean "booking", null: false
+    t.float "lat", null: false
+    t.float "lng", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "comment"
+    t.integer "rating"
+    t.integer "price_level"
+    t.bigint "user_id", null: false
+    t.bigint "activity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_reviews_on_activity_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -58,6 +110,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_044747) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_itineraries", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "itinerary_id", null: false
+    t.text "comment"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["itinerary_id"], name: "index_users_itineraries_on_itinerary_id"
+    t.index ["user_id"], name: "index_users_itineraries_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities", "itineraries"
+  add_foreign_key "activities", "places"
+  add_foreign_key "itineraries", "users"
+  add_foreign_key "reviews", "activities"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "users_itineraries", "itineraries"
+  add_foreign_key "users_itineraries", "users"
 end
