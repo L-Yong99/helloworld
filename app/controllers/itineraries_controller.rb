@@ -17,6 +17,11 @@ class ItinerariesController < ApplicationController
 
   def plan
     @itineraries = Itinerary.all
+
+    #place.where.country
+    #convert into geo json file
+
+
     @markers = @itineraries.geocoded.map do |itinerary|
       {
         lat: itinerary.latitude,
