@@ -32,48 +32,24 @@ API_KEY = "AIzaSyC08TpSpRDX03GSMMIdx_2lInLF4QpxfDk"
 # response = https.request(request)
 # puts response.read_body
 
+Itinerary.destroy_all
+User.destroy_all
 
-def get_place_detail(place_id)
-  url = URI("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=name%2Crating%2Creviews%2Ceditorial_summary&key=#{API_KEY}")
+user1 = User.create!(
+  email: "malcolm@gmail.com",
+  first_name: "Malcolm",
+  last_name: "The Rich",
+  gender: "male",
+  country: "Mexican",
+  password: "123456"
+)
 
-  https = Net::HTTP.new(url.host, url.port)
-  https.use_ssl = true
-
-  request = Net::HTTP::Get.new(url)
-
-  response = https.request(request)
-  response.read_body
-end
-
-def get_photo_detail(photo_ref)
-  url = URI("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_ref}&key=#{API_KEY}")
-
-  https = Net::HTTP.new(url.host, url.port)
-  https.use_ssl = true
-
-  request = Net::HTTP::Get.new(url)
-
-  response = https.request(request)
-  response.read_body
-end
-
-
-sg_food = get_food
-sg_food_sym = sg_food.deep_symbolize_keys[:results]
-# puts sg_food_sym.count
-# pp = sg_food_sym[0][:photos]
-# p pp[0][:photo_reference]
-
-# details = []
-# photos = []
-# sg_food_sym.each do |result|
-#   # details << JSON.parse(get_place_detail(result[:place_id])).deep_symbolize_keys[:result]
-#   photos << get_photo_detail(result[:photos][0][:photo_reference])
-#   p photos
-#   return
-# end
-# # p photos
-
-
-sg_food_detail_sym = get_food_detail
-p sg_food_detail_sym[0]
+itinerary1 = Itinerary.create!(
+  title: "fun camping",
+  start_date: Date.new(2022,11,27),
+  end_date: Date.new(2022,11,29),
+  travel_days: 3,
+  phase: "planning",
+  address: "Japan",
+  user: user1
+)
