@@ -10,7 +10,7 @@ export default class extends Controller {
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
-    console.log(JSON.parse(this.geojsonValue))
+    const placesGeoJson = JSON.parse(this.geojsonValue)
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12"
@@ -18,12 +18,7 @@ export default class extends Controller {
 
 
     this.map.on('load', () => {
-      this.map.addSource('earthquakes', {
-        type: 'geojson',
-
-        // Use a URL for the value for the `data` property.
-        data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson'
-      });
+      this.map.addSource('earthquakes', {type: 'geojson', data: placesGeoJson});
 
       this.map.addLayer({
         'id': 'earthquakes-layer',
@@ -37,8 +32,8 @@ export default class extends Controller {
         }
       });
     });
-    this.#addMarkersToMap()
-    this.#fitMapToMarkers()
+    this.#addMarkerToMap()
+    this.#fitMapToMarker()
   }
 
   // #addMarkersToMap() {
