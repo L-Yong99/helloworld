@@ -20,6 +20,7 @@ class ItinerariesController < ApplicationController
     itinerary = Itinerary.new(start_date:start_date,end_date:end_date,address:address,travel_days:travel_days)
     itinerary.user = current_user
     itinerary.save
+    redirect_to plan_itinerary_path(itinerary)
   end
 
   def destroy
