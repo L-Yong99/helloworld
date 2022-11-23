@@ -2,21 +2,27 @@ class ItinerariesController < ApplicationController
   def index
   end
 
+  def show
+  end
+
   def new
     @itinerary = Itinerary.new
   end
 
   def create
-    raise
-  end
-
-  def show
   end
 
   def destroy
   end
 
   def plan
+    @itineraries = Itinerary.all
+    @markers = @itineraries.geocoded.map do |itinerary|
+      {
+        lat: itinerary.latitude,
+        lng: itinerary.longitude
+      }
+    end
   end
 
   def complete
