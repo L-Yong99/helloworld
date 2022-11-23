@@ -1,8 +1,10 @@
 class ItinerariesController < ApplicationController
   def new
+    @itinerary = Itinerary.new
   end
 
   def create
+    raise
   end
 
   def show
