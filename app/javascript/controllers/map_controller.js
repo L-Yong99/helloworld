@@ -4,12 +4,13 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = {
     apiKey: String,
-    center: Array
+    center: Array,
+    geojson: String
   }
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
-    console.log(this.centerValue)
+    console.log(JSON.parse(this.geojsonValue))
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12"

@@ -36,19 +36,28 @@ class ItinerariesController < ApplicationController
     @places = Place.where(country: country)
     geodata = {type: "FeatureCollection"}
     features = @places.map do |place|
-      return {
+      f = {
         type: "Feature",
         geometry: {
             type: "Point",
             coordinates: [place.lng, place.lat]
         },
         properties: {
-            name: place.name
+            name: place.name,
             description: place.description,
             category: place.category,
             rating: place.rating,
+            booking: place.booking,
+            lat: place.lat,
+            lng: place.lng,
+            image: place.image,
+            country: place.country,
+            review: place.review_summary,
         }
       }
+    end
+    geodata[:features] = features
+    @geodata_json = geodata.to_json
   end
 
   def complete
