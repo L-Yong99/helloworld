@@ -1,4 +1,7 @@
 class ItinerariesController < ApplicationController
+  def index
+  end
+
   def new
     @itinerary = Itinerary.new
   end

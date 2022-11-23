@@ -175,6 +175,7 @@ food_data_hash_filter = filter_data(food_data_hash)
 # food_data_hash_filter = add_details_to_place(food_data_hash_filter)
 
 
+
 food_data_hash_filter = get_open_food_hash
 # p food_data_hash_filter
 
