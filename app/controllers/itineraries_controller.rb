@@ -6,6 +6,7 @@ class ItinerariesController < ApplicationController
   end
 
   def new
+    @itinerary = Itinerary.new
   end
 
   def create
