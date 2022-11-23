@@ -9,7 +9,9 @@
         </div>
         <div>
           <%= f.label :date, "Select Date", class:"date-label"%>
+          <div>
           <%= f.date_field :date, data:{ datepicker_target:"datePicker"}, class:"date-form" %>
+          </div>
         </div>
 
       <%= f.submit "Start Planning", class:"form-submit" %>

@@ -1,7 +1,7 @@
 class ItinerariesController < ApplicationController
   def index
   end
-  
+
   def show
   end
 
@@ -20,19 +20,42 @@ class ItinerariesController < ApplicationController
     itinerary = Itinerary.new(start_date:start_date,end_date:end_date,address:address,travel_days:travel_days)
     itinerary.user = current_user
     itinerary.save
+    redirect_to plan_itinerary_path(itinerary)
   end
 
   def destroy
   end
 
   def plan
-    @itineraries = Itinerary.all
-    @markers = @itineraries.geocoded.map do |itinerary|
-      {
-        lat: itinerary.latitude,
-        lng: itinerary.longitude
+    @itinerary = Itinerary.find(params[:id])
+    @center = @itinerary.geocode
+
+    # Query for country
+    country = @itinerary.address
+    country.capitalize!
+    @places = Place.where(country: country)
+    geodata = {type: "FeatureCollection"}
+    features = @places.map do |place|
+      return {
+        type: "Feature",
+        geometry: {
+            type: "Point",
+            coordinates: [place.lng, place.lat]
+        },
+        properties: {
+            name: place.name
+            description: place.description,
+            category: place.category,
+            rating: place.rating,
+
+
+
+        }
       }
+
+
     end
+     raise
   end
 
   def complete
