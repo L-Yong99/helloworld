@@ -1,0 +1,20 @@
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.page-footer {
+  margin-top: auto;
+  background: black;
+}
+
+.page-footer * {
+  color: white ;
+  text-decoration: none;
+ }
+
+ ul {
+  list-style-type: none;
+  // font-weight: bold;
+  font-size: 15px;
+  }
