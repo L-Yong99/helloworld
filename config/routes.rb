@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
     member do
       get :plan
-      post :plan
+      post :plan, to: 'itineraries#complete'
       get :summary
     end
 
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get :search
     end
 
-    resources :trip, only: [:show]
+    resources :activities, only: [:show]
 
   end
 end
