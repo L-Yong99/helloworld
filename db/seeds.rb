@@ -77,3 +77,42 @@ sg_food_sym = sg_food.deep_symbolize_keys[:results]
 
 sg_food_detail_sym = get_food_detail
 p sg_food_detail_sym[0]
+
+
+User.destroy_all
+Itinerary.destroy_all
+
+
+user1 = User.create!(
+  first_name: "Deepika",
+  last_name: "Upreti",
+  gender: "Female",
+  country: "Singapore"
+  )
+
+user2 = User.create!(
+  first_name: "Leon",
+  last_name: "Boon",
+  gender: "Male",
+  country: "Singapore"
+  )
+
+  itinerary1 = itinerary.create!(
+    title: "My son's birthday celebration",
+    start_date: Date.new(2023,1,24),
+    end_date: Date.new(2023,1,26),
+    travel_days: 3,
+    phase: "planning",
+    country: "Singapore",
+    user: user1
+    )
+
+    itinerary2 = itinerary.create!(
+      title: "Leon's Marriage Anniversary celebration",
+      start_date: Date.new(2022,12,10),
+      end_date: Date.new(2022,12,11),
+      travel_days: 2,
+      phase: "planning",
+      country: "Singapore",
+      user: user2
+      )
