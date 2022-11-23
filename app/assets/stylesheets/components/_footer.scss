@@ -1,0 +1,33 @@
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.page-footer {
+  margin-top: auto;
+  background: black;
+  color: white;
+}
+
+.footer-icon {
+  color: grey;
+}
+
+.footer-icon:hover {
+  color: white;
+}
+
+.page-footer a {
+  color: grey ;
+  text-decoration: none;
+ }
+
+ ul {
+  list-style-type: none;
+  font-weight: normal;
+  font-size: 15px;
+  }
+
+  .page-footer a:hover {
+    color: white !important;
+  }
