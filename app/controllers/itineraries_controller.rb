@@ -1,4 +1,10 @@
 class ItinerariesController < ApplicationController
+  def index
+  end
+  
+  def show
+  end
+
   def new
     @itinerary = Itinerary.new
   end
@@ -11,18 +17,22 @@ class ItinerariesController < ApplicationController
     end_date = Date.new(end_date_arr[0].to_i,end_date_arr[1].to_i,end_date_arr[2].to_i)
     travel_days = (end_date - start_date).to_i + 1
     address = params[:address].downcase
-    itinerary = Itinerary.new(start_date:start_date,end_date:end_date,country:address,travel_days:travel_days)
+    itinerary = Itinerary.new(start_date:start_date,end_date:end_date,address:address,travel_days:travel_days)
     itinerary.user = current_user
     itinerary.save
-  end
-
-  def show
   end
 
   def destroy
   end
 
   def plan
+    @itineraries = Itinerary.all
+    @markers = @itineraries.geocoded.map do |itinerary|
+      {
+        lat: itinerary.latitude,
+        lng: itinerary.longitude
+      }
+    end
   end
 
   def complete

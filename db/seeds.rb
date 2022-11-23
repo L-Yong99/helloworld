@@ -33,7 +33,6 @@ require 'openssl'
 # # response = https.request(request)
 # # puts response.read_body
 
-
 # def get_place_detail(place_id)
 #   url = URI("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=name%2Crating%2Creviews%2Ceditorial_summary&key=#{API_KEY}")
 
@@ -175,6 +174,7 @@ food_data_hash_filter = filter_data(food_data_hash)
 # food_data_hash_filter = add_details_to_place(food_data_hash_filter)
 
 
+
 food_data_hash_filter = get_open_food_hash
 # p food_data_hash_filter
 
@@ -193,3 +193,4 @@ food_data_hash_filter[:features].each do |feature|
     booking: false,
   )
 end
+
