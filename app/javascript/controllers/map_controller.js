@@ -15,8 +15,29 @@ export default class extends Controller {
       style: "mapbox://styles/mapbox/streets-v12"
     })
 
-    this.#addMarkerToMap()
-    this.#fitMapToMarker()
+
+    this.map.on('load', () => {
+      this.map.addSource('earthquakes', {
+        type: 'geojson',
+
+        // Use a URL for the value for the `data` property.
+        data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson'
+      });
+
+      this.map.addLayer({
+        'id': 'earthquakes-layer',
+        'type': 'circle',
+        'source': 'earthquakes',
+        'paint': {
+          'circle-radius': 4,
+          'circle-stroke-width': 2,
+          'circle-color': 'red',
+          'circle-stroke-color': 'white'
+        }
+      });
+    });
+    this.#addMarkersToMap()
+    this.#fitMapToMarkers()
   }
 
   // #addMarkersToMap() {

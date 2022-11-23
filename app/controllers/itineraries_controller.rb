@@ -47,15 +47,8 @@ class ItinerariesController < ApplicationController
             description: place.description,
             category: place.category,
             rating: place.rating,
-
-
-
         }
       }
-
-
-    end
-     raise
   end
 
   def complete
