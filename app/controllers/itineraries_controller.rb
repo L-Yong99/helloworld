@@ -27,18 +27,37 @@ class ItinerariesController < ApplicationController
   end
 
   def plan
-    @itineraries = Itinerary.all
+    @itinerary = Itinerary.find(params[:id])
+    @center = @itinerary.geocode
 
-    #place.where.country
-    #convert into geo json file
-
-
-    @markers = @itineraries.geocoded.map do |itinerary|
-      {
-        lat: itinerary.latitude,
-        lng: itinerary.longitude
+    # Query for country
+    country = @itinerary.address
+    country.capitalize!
+    @places = Place.where(country: country)
+    geodata = {type: "FeatureCollection"}
+    features = @places.map do |place|
+      f = {
+        type: "Feature",
+        geometry: {
+            type: "Point",
+            coordinates: [place.lng, place.lat]
+        },
+        properties: {
+            name: place.name,
+            description: place.description,
+            category: place.category,
+            rating: place.rating,
+            booking: place.booking,
+            lat: place.lat,
+            lng: place.lng,
+            image: place.image,
+            country: place.country,
+            review: place.review_summary,
+        }
       }
     end
+    geodata[:features] = features
+    @geodata_json = geodata.to_json
   end
 
   def complete
