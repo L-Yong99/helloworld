@@ -1,2 +1,9 @@
-<%= render "/shared/itinerarycard" %>
+<h1>Hello World</h1>
+<div class="container">
+  <div class="create-button">
+    <%= link_to "new itinerary", "/itineraries/new", class: "btn btn-primary" %>
+  </div>
+  <%= render "shared/itinerarycard" %>
+</div>
+
 <%= render "shared/footer" %>
