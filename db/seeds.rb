@@ -85,7 +85,15 @@ user1 = User.create!(
 )
 
 
-
+itinerary1 = Itinerary.create!(
+  title: "fun camping",
+  start_date: Date.new(2022,11,27),
+  end_date: Date.new(2022,11,29),
+  travel_days: 3,
+  phase: "planning",
+  address: "Japan",
+  user: user1
+)
 
 # sg_food_detail_sym = get_food_detail
 # p sg_food_detail_sym[0]
