@@ -1,4 +1,4 @@
-<div class="plan-main-container">
+<%# <div class="plan-main-container">
 <div class="grid-container">
   <div class="banner-container">dede
     dsfdfd
@@ -58,14 +58,14 @@
   <div>
     <div data-controller="map"
         id='map'
-        class="map-container"
         data-map-center-value="<%= @center.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-        data-map-geojson-value="<%= @geodata_json %>">
+        data-map-geojson-value="<%= @geodata_json %>"
+        style='width: 100%; height: 600px;'>
     </div>
   </div>
 </div>
-<div class="sidebar active d-flex flex-column">
+<div class="sidebar d-flex flex-column">
   <div class="sidebar_container twhite mt-5 m-4  ">
     <div>
     </div>
@@ -87,11 +87,9 @@
 
 <button class="activityBtn">Detail</button>
 
-<div class="itinerarybar active d-flex flex-column">
+<div class="itinerarybar d-flex flex-column">
   <div class="twhite mt-5 m-4">
    <h1>Hui Lau Shan</h1>
+   <a class="btn btn-ghost" href="http://localhost:3000/itineraries/dashboard">Confirm</a>
   </div>
 </div>
-
-
-<a class="btn btn-ghost" href="http://localhost:3000/itineraries/summary">Login</a>

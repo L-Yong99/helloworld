@@ -64,14 +64,15 @@ export default class extends Controller {
     this.#addMarkerToMap();
     this.#fitMapToMarker();
 
+
+    // const sideBarEl = document.querySelector(".sidebar")
+    // const btnEl = document.querySelector(".activityBtn")
+    // console.log(btnEl)
+
+    // btnEl.addEventListener('click',()=>{
+    //   sideBarEl.classList.toggle("active");
+    // })
     const sideBarEl = document.querySelector(".sidebar")
-    const btnEl = document.querySelector(".activityBtn")
-    console.log(btnEl)
-
-    btnEl.addEventListener('click',()=>{
-      sideBarEl.classList.toggle("active");
-    })
-
     const closeBtnEl = document.querySelector(".close")
     console.log(closeBtnEl)
 
@@ -189,7 +190,7 @@ export default class extends Controller {
       }
     });
   }
-
+// fire event HERE
   #clickEvent(source) {
     this.map.on("click", source, (e) => {
       e.preventDefault();
@@ -237,6 +238,26 @@ export default class extends Controller {
           console.log(selectedDate);
         });
 
+        // --------------------------------------------------------
+        // MINE
+        const sideBarEl = document.querySelector(".sidebar")
+        const btnEl = document.querySelector(".detail");
+        console.log("detail", btnEl);
+
+
+        btnEl.addEventListener("click", (e) => {
+          sideBarEl.classList.toggle("active");
+        });
+
+
+        // const sideBarEl = document.querySelector(".sidebar")
+        // const btnEl = document.querySelector(".activityBtn")
+        // console.log(btnEl)
+
+        // btnEl.addEventListener('click',()=>{
+        //   sideBarEl.classList.toggle("active");
+        // })
+
         // Query detail button
         // add event to detail element (detailEl)
         // e.target.dataset.placeid (should get place id)
@@ -244,7 +265,7 @@ export default class extends Controller {
 
         // // Run pop up
         // this.popup.setLngLat(coordinates).setHTML(infoWIndow).addTo(this.map);
-
+        // --------------------------------------------------------
         this.map.flyTo({
           center: coordinates,
         });
