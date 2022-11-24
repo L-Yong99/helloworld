@@ -36,7 +36,7 @@ class ItinerariesController < ApplicationController
     @places = Place.where(country: country)
     geodata = {type: "FeatureCollection"}
     features = @places.map do |place|
-      f = {
+      {
         type: "Feature",
         geometry: {
             type: "Point",
