@@ -75,6 +75,18 @@ require 'openssl'
 # # # p photos
 
 
+user1 = User.create!(
+  email: "malcolm@gmail.com",
+  first_name: "Malcolm",
+  last_name: "The Rich",
+  gender: "male",
+  country: "Mexican",
+  password: "123456"
+)
+
+
+
+
 # sg_food_detail_sym = get_food_detail
 # p sg_food_detail_sym[0]
 
@@ -174,13 +186,25 @@ food_data_hash_filter = filter_data(food_data_hash)
 # food_data_hash_filter = add_details_to_place(food_data_hash_filter)
 
 
-
 food_data_hash_filter = get_open_food_hash
-# p food_data_hash_filter
+
+# def change_property(data_hash_filter,key,value)
+#   key_sym = key.parameterize.underscore.to_sym
+#   puts key_sym.class
+#   data_hash_filter[:features].each_with_index do |feature,i|
+#     data_hash_filter[:features][i][:properties][key_sym] = value
+#   end
+#   return data_hash_filter
+# end
+
+# food_data_hash_filter = change_property(food_data_hash_filter,"kinds","foods")
+
+
+p food_data_hash_filter
 
 
 food_data_hash_filter[:features].each do |feature|
-
+  puts "hey"
   Place.create(
     name: feature[:properties][:name],
     image: feature[:properties][:image],
@@ -193,4 +217,3 @@ food_data_hash_filter[:features].each do |feature|
     booking: false,
   )
 end
-
