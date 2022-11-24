@@ -64,6 +64,22 @@ export default class extends Controller {
     this.#addMarkerToMap();
     this.#fitMapToMarker();
 
+    const sideBarEl = document.querySelector(".sidebar")
+    const btnEl = document.querySelector(".activityBtn")
+    console.log(btnEl)
+
+    btnEl.addEventListener('click',()=>{
+      sideBarEl.classList.toggle("active");
+    })
+
+    const closeBtnEl = document.querySelector(".close")
+    console.log(closeBtnEl)
+
+    closeBtnEl.addEventListener('click',()=>{
+
+      sideBarEl.classList.toggle("active");
+    })
+
     // =================== end ===============================//
   }
 
