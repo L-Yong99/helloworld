@@ -33,7 +33,9 @@ class ItinerariesController < ApplicationController
   def plan
     @itinerary = Itinerary.find(params[:id])
     @center = @itinerary.geocode
-
+    start_date = @itinerary.start_date
+    end_date = @itinerary.end_date
+    date_arr = (start_date..end_date).to_a
     # Query for country
     country = @itinerary.address
     country.capitalize!
@@ -57,7 +59,12 @@ class ItinerariesController < ApplicationController
             image: place.image,
             country: place.country,
             review: place.review_summary,
-        }
+            placeId: place.id,
+            defaultIcon: "default_#{place.category}",
+            activeIcon: "active_#{place.category}",
+            info_window: render_to_string(partial: "info_window", locals: {place: place, dates: date_arr})
+        },
+
       }
     end
     geodata[:features] = features

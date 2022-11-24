@@ -1,0 +1,57 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+// .plan-main-container{
+//   height:80vh;
+//   // border:black 2px solid;
+// }
+
+.map-container { grid-area: mc; }
+.side-bar{ grid-area: sb; }
+.banner-container{ grid-area: rb; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+  'rb rb rb rb rb sb sb'
+  'mc mc mc mc mc sb sb';
+  /* gap: 10px; */
+  // height:100vh;
+}
+
+// .map{
+//   /* margin-top:10px; */
+//   border: 3px solid red;
+//   height:80vh;
+// }
+
+.map-container {
+  // height:100%;
+  border: 3px solid red;
+  height:85vh;
+  width:75vw;
+}
+
+.side-bar{
+  border: 3px solid green;
+  padding:10px;
+  height:100vh;
+
+}
+
+.banner-container{
+height:15vh;
+border: blue solid 2px;
+}
+
+.days-container{
+height:85%;
+overflow-y: scroll;
+}
+
+.day-container{
+  width:100%;
+  // border:1px solid red;
+}
