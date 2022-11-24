@@ -75,6 +75,18 @@ require 'openssl'
 # # # p photos
 
 
+user1 = User.create!(
+  email: "malcolm@gmail.com",
+  first_name: "Malcolm",
+  last_name: "The Rich",
+  gender: "male",
+  country: "Mexican",
+  password: "123456"
+)
+
+
+
+
 # sg_food_detail_sym = get_food_detail
 # p sg_food_detail_sym[0]
 
