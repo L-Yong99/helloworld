@@ -185,23 +185,6 @@ food_data_hash_filter = filter_data(food_data_hash)
 
 # food_data_hash_filter = add_details_to_place(food_data_hash_filter)
 
-user1 = User.create!(
-  email: "malcolm@gmail.com",
-  first_name: "Malcolm",
-  last_name: "The Rich",
-  gender: "male",
-  country: "Mexican",
-  password: "123456"
-)
-itinerary1 = Itinerary.create!(
-  title: "fun camping",
-  start_date: Date.new(2022,11,27),
-  end_date: Date.new(2022,11,29),
-  travel_days: 3,
-  phase: "planning",
-  address: "Japan",
-  user: user1
-)
 
 food_data_hash_filter = get_open_food_hash
 
