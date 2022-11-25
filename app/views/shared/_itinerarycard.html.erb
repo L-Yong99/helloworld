@@ -13,13 +13,13 @@
      alt="profile photo"
     />
     <div class="container__profile__text">
-     <h2>New Zealand, Aoteora</h2>
-     <h6>The Grand tour</h6>
-     <p>by <b>Tigo' Bitties</b></p>
+     <h2><%= itinerary.address %></h2>
+     <h6><%= itinerary.title %></h6>
+     <p>by <b><%= itinerary.user.first_name %></b></p>
        <div class="container_buttons">
-        <button type="button" class="btn btn-primary">edit</button>
-        <button type="button" class="btn btn-primary">show</button>
-        <button type="button" class="btn btn-primary">delete</button>
+        <button type="button" class="btn button-74">edit</button>
+        <button type="button" class="btn button-75">show</button>
+        <button type="button" class="btn button-75">delete</button>
       </div>
     </div>
   </div>

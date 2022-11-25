@@ -1,9 +1,21 @@
 <%= render "shared/navbar" %>
-<h1>Hello World</h1>
-<div class="container">
+<div class="container-index-page">
+  <h1>Hello World</h1>
   <div class="create-button">
     <%= link_to "new itinerary", "/itineraries/new", class: "btn btn-primary" %>
   </div>
-  <%= render "shared/itinerarycard" %>
+
+
+  <div class="index-page-grid-container">
+    <% @itineraries.each do |itinerary| %>
+      <div class="index-page-grid-item">
+        <%= render partial: "shared/itinerarycard", locals: {itinerary: itinerary} %>
+      </div>
+    <% end %>
+
+  </div>
+
+
+
 </div>
 <%= render "shared/footer" %>
