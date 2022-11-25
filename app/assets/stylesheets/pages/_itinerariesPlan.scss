@@ -30,15 +30,15 @@
 .map-container {
   // height:100%;
   border: 3px solid red;
-  height:83vh;
-  width: 75vw;
+  height:85vh;
+  width:75vw;
 }
 
 .side-bar{
   border: 3px solid green;
-  padding:20px;
-  height:98vh;
-  width:25vw;
+  padding:10px;
+  height:100vh;
+
 }
 
 .banner-container{
@@ -49,55 +49,9 @@ border: blue solid 2px;
 .days-container{
 height:85%;
 overflow-y: scroll;
-padding-right:20px;
-padding-left:20px;
 }
 
 .day-container{
   width:100%;
   // border:1px solid red;
-}
-
-// Side bar partial (AJAX)
-.activity-decription{
-  display:none;
-}
-
-.activity {
-  display:flex;
-  gap:10px;
-margin-bottom:20px;
-}
-
-.activity-col-1{
-  position:relative;
-}
-
-.activity-col-1 i{
-  position:absolute;
-  top:30px;
-  left:-10px;
-}
-
-.activity-col-1 > div{
-  padding-left:30px;
-  padding-right:10px;
-  padding-top:15px;
-  padding-bottom:15px;
-  background-color: white;
-  border-radius:10px;
-  width:240px;
-}
-
-.activity-col-2 i{
-  margin-top:30px;
-  // left:-10px;
-}
-
-.date-title{
-border-bottom:1px solid #f0f1f3;
-}
-
-.delete-activity {
-  cursor: pointer;
 }

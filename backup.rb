@@ -10,10 +10,3 @@
     <% end %>
   </div>
 </div>
-
-
-<%# <%= form_with url: "/itineraries/#{@itinerary_id}/delete", method: :post, class:"hidden-form-2" do |f| %>
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= hidden_field_tag 'data','none', class:"data-hidden-2"  %>
-  <%= f.submit "submit", class:"submit-hidden-2 d-none" %>
-<% end %> %>
