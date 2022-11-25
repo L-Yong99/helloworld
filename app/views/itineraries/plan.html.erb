@@ -1,34 +1,100 @@
-
-<div class="plan-main-container">
+<%# <div class="plan-main-container">
 <div class="grid-container">
   <div class="banner-container">dede
     dsfdfd
     fdfdfd
     fdfd
-    dddd
-    dffe
   </div>
   <div class="side-bar">
     <div class="days-container">
-     <%= render "itineraries/sidebar_activity", locals: {activity: @activities,dates: @dates} %>
+      <div class="day-container">
+        <h3>Day 1 .....</h3>
+        <div class="activity">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h5>Place Name1</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae at delectus doloribus, aliquam, debitis voluptatum explicabo dolores commodi ipsam ea soluta reiciendis, eius quas perferendis quia. Quaerat, ratione repudiandae?</p>
+          </div>
+        </div>
+        <div class="activity">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h5>Place Name2</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae at delectus doloribus, aliquam, debitis voluptatum explicabo dolores commodi ipsam ea soluta reiciendis, eius quas perferendis quia. Quaerat, ratione repudiandae?</p>
+          </div>
+        </div>
+        <div class="activity">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h5>Place Name3</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae at delectus doloribus, aliquam, debitis voluptatum explicabo dolores commodi ipsam ea soluta reiciendis, eius quas perferendis quia. Quaerat, ratione repudiandae?</p>
+          </div>
+        </div>
+        <div class="activity">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h5>Place Name4</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae at delectus doloribus, aliquam, debitis voluptatum explicabo dolores commodi ipsam ea soluta reiciendis, eius quas perferendis quia. Quaerat, ratione repudiandae?</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="side-bar-bottom">
+    <%# <div class="day-container">
+      <h3>Day 2 .....</h3>
+      <div>
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <h5>Place Name</h5>
+          <p>Place description</p>
+        </div>
+      </div>
+    </div> %>
+    <%# <div class="side-bar-bottom">
       <button>Back to dashboard</button>
       <button>Complete</button>
+    </div> %>
+
+<div>
+  <div>
+    <div data-controller="map"
+        id='map'
+        data-map-center-value="<%= @center.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+        data-map-geojson-value="<%= @geodata_json %>"
+        style='width: 100%; height: 600px;'>
     </div>
   </div>
-  <div data-controller="map"
-    id='map'
-    class="map-container"
-    data-map-center-value="<%= @center.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-    data-map-geojson-value="<%= @geodata_json %>">
+</div>
+<div class="sidebar d-flex flex-column">
+  <div class="sidebar_container twhite mt-5 m-4  ">
+    <div>
+    </div>
+    <button class="btn close"><i class="fa-solid fa-xmark fa-xl"></i></button>
+    <div class="info_container scroll">
+      <h1 id="place_name"></h1>
+      <div class ="d-flex flex-row ">
+        <div><p id="place_rating"></p></div>
+        <div class ="ps-2"><p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p></div>
+      </div>
+      <p id="place_booking">
+      </p>
+      <div class ="pt-1 pb-1">
+        <p class="filter d-inline" id="place_category"></p>
+      </div>
+      <div class ="pt-3 pb-4">
+        <img id ="place_img"src="" alt="">
+      </div>
+      <p id="place_description"></p>
+          <%# <div class ="box">
+            <div class="overlay"></div>
+          </div> %>
+    </div>
   </div>
 </div>
-</div>
 
-<%= form_with url: "/itineraries/#{@itinerary_id}/delete", method: :post, class:"hidden-form-2" do |f| %>
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <%= hidden_field_tag 'data','none', class:"data-hidden-2"  %>
-  <%= f.submit "submit", class:"submit-hidden-2 d-none" %>
-<% end %>
+<div class="itinerarybar d-flex flex-column">
+  <div class="twhite mt-5 m-4">
+   <h1>Hui Lau Shan</h1>
+   <a class="btn btn-ghost" href="http://localhost:3000/itineraries/dashboard">Confirm</a>
+  </div>
+</div>
