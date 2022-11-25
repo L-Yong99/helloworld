@@ -1,24 +1,16 @@
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .page-footer {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
   margin-top: auto;
   background: black;
   color: white;
-  padding-top: 50px;
-  padding-right: 30px;
-  padding-bottom: 50px;
-  padding-left: 80px;
-
 }
 
 .footer-icon {
   color: grey;
-  background-color: white;
-  border-radius: 50%;
-  border: 1px solid grey;
-  padding: 10px;
 }
 
 .footer-icon:hover {
@@ -26,16 +18,16 @@
 }
 
 .page-footer a {
-  color: grey;
+  color: grey ;
   text-decoration: none;
-}
+ }
 
-ul {
+ ul {
   list-style-type: none;
   font-weight: normal;
   font-size: 15px;
-}
+  }
 
-.page-footer a:hover {
-  color: white !important;
-}
+  .page-footer a:hover {
+    color: white !important;
+  }

@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
     member do
       get :plan
-      post :plan, to: 'itineraries#complete'
+      post :plan, to: 'itineraries#save'
+      post :delete, to: 'itineraries#delete'
       get :summary
+
     end
 
     collection do
