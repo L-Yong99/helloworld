@@ -71,7 +71,7 @@ export default class extends Controller {
     // console.log(e.target)
     //     })
 
-    const hiddenFormEl2 = dayContainerEL.querySelector(".hidden-form-2");
+    const hiddenFormEl2 = document.querySelector(".hidden-form-2");
     console.log("action", hiddenFormEl2.action);
     console.log("hidden-form", hiddenFormEl2);
 
@@ -98,18 +98,18 @@ export default class extends Controller {
 
 
     dayContainerEL.addEventListener("click", (e) => {
-      const submitEl2 = dayContainerEL.querySelector(".submit-hidden-2");
+      const submitEl2 = document.querySelector(".submit-hidden-2");
       if (e.target != submitEl2) {
 
         const userActivityId = e.target.dataset.activityId;
         console.log(userActivityId);
         console.log(e);
 
-        const hiddenTag2 = dayContainerEL.querySelector(".data-hidden-2");
+        const hiddenTag2 = document.querySelector(".data-hidden-2");
         hiddenTag2.value = userActivityId;
         console.log("!!!", hiddenTag2.value);
 
-        const submitEl2 = dayContainerEL.querySelector(".submit-hidden-2");
+        const submitEl2 = document.querySelector(".submit-hidden-2");
         submitEl2.click();
       }
     });
