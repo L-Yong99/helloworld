@@ -1,6 +1,9 @@
 class ItinerariesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  def home
+  end
+
   def index
     @itineraries = Itinerary.all
   end
