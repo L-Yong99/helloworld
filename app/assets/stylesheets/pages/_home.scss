@@ -1,1 +1,49 @@
 // Specific CSS for your home-page
+.home-banner{
+width:100vw;
+height:100vh;
+background-image: url('https://res.cloudinary.com/duadcuueg/image/upload/v1669370391/Hello%20World/5003d452a8da016f3ed02a6385cf54e8_L_msd0gx.jpg'),linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));
+background-image: fill;
+background-repeat: no-repeat;
+background-size: 100%;
+
+}
+
+.title-content{
+  margin:120px;
+  width:500px;
+  // border:red solid 2px;  
+
+}
+
+.title-content > h1{
+  font-size:5rem;
+  color:rgba(255, 255, 255, 0.948);
+}
+
+
+.title-content p {
+  // font-size:5rem;
+  color:#878887;
+}
+
+.home-action{
+ display:flex;
+ gap:40px;
+ justify-content: center;
+ color:white;
+ align-items: center;
+}
+
+.home-action  h3:nth-child(2){
+border-right:2px solid white;
+padding-top:30px;
+padding-bottom:30px;
+ }
+
+ .home-action-text{
+font-size: 2rem;
+color:white;
+text-decoration: none;
+
+   }
