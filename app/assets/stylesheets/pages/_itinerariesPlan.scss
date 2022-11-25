@@ -31,7 +31,7 @@
   // height:100%;
   border: 3px solid red;
   height:83vh;
-  width: 75vw;
+  width: 74vw;
 }
 
 .side-bar{
@@ -44,6 +44,7 @@
 .banner-container{
 height:15vh;
 border: blue solid 2px;
+width:74wh;
 }
 
 .days-container{
@@ -103,13 +104,18 @@ border-bottom:1px solid #f0f1f3;
 }
 
 .side-bar-bottom{
-  border:1px solid red;
+  margin-top:40px;
+  // border:1px solid red;
+  width: fit-content;
 }
 
 .btn-complete{
 background-color: rgb(83, 83, 199);
 border-radius: 7px;
 color:white;
+height:4em;
+width:8em;
+// margin-left:10px;
 }
 
 .btn-complete:hover {
@@ -122,10 +128,15 @@ color:white;
   background-color: rgb(203, 193, 193);
   border-radius: 7px;
   color: rgb(15, 14, 14);
-  padding:10px;
+  padding:7px;
+  // height:3em;
+  width:7em;
+  height:4em;
+  margin-right:15px;
+  margin-left:15px;
 }
 
-.btn-complete:hover {
+.btn-dashboard:hover {
   background-color: rgb(203, 193, 193);
   opacity: 0.7;
   color: rgb(15, 14, 14);

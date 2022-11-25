@@ -13,7 +13,8 @@
      <%= render "itineraries/sidebar_activity", locals: {activity: @activities,dates: @dates} %>
     </div>
     <div class="side-bar-bottom">
-      <button class="btn btn-dashboard" >Back to dashboard</button>
+    <%= link_to "Back to Dashboard", dashboard_itineraries_path, class:"btn btn-dashboard" %>
+      <%# <button class="btn btn-dashboard" >Back to Dashboard</button> %>
       <button class="btn btn-complete">Complete</button>
     </div>
   </div>
