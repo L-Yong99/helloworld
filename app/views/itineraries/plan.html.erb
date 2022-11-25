@@ -1,4 +1,4 @@
-<div class="plan-main-container">
+<%# <div class="plan-main-container">
 <div class="grid-container">
   <div class="banner-container">dede
     dsfdfd
@@ -53,13 +53,43 @@
       <button>Back to dashboard</button>
       <button>Complete</button>
     </div> %>
-  </div>
-  <div data-controller="map"
-    id='map'
-    class="map-container"
-    data-map-center-value="<%= @center.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-    data-map-geojson-value="<%= @geodata_json %>">
+
+<div>
+  <div>
+    <div data-controller="map"
+        id='map'
+        data-map-center-value="<%= @center.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+        data-map-geojson-value="<%= @geodata_json %>"
+        style='width: 100%; height: 600px;'>
+    </div>
   </div>
 </div>
+<div class="sidebar d-flex flex-column">
+  <div class="sidebar_container twhite mt-5 m-4  ">
+    <div>
+    </div>
+    <button class="btn close"><i class="fa-solid fa-xmark fa-xl"></i></button>
+    <div class="info_container scroll">
+      <h1>Hui Lau Shan</h1>
+      <p><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></p>
+      <p>open to public</p>
+      <div class ="pt-3 pb-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/HK_HuiLauShan_YuenLongOldShop.JPG/400px-HK_HuiLauShan_YuenLongOldShop.JPG" alt="">
+      </div>
+      <p>"Hui Lau Shan (Chinese: 許留山; Jyutping: heoi2 lau4 saan1; pinyin: Xǔliú Shān) is a chain of dessert shops based in Hong Kong. Founded in the 1960s as a herbal tea outlet, the chain evolved into a restaurant chain specializing in sweets, snacks and dessert soups called tong sui. Since the introduction of mango pomelo sago in the early 1990s, Hui Lau Shan has additionally been known for its mango-themed desserts.Hui Lau Shan (Chinese: 許留山; Jyutping: heoi2 lau4 saan1; pinyin: Xǔliú Shān) is a chain of dessert shops based in Hong Kong. Founded in the 1960s as a herbal tea outlet, the chain evolved into a restaurant chain specializing in sweets, snacks and dessert soups called tong sui. Since the introduction of mango pomelo sago in the early 1990s, Hui Lau Shan has additionally been known for its mango-themed desserts."</p>
+          <%# <div class ="box">
+            <div class="overlay"></div>
+          </div> %>
+    </div>
+  </div>
+</div>
+
+<button class="activityBtn">Detail</button>
+
+<div class="itinerarybar d-flex flex-column">
+  <div class="twhite mt-5 m-4">
+   <h1>Hui Lau Shan</h1>
+   <a class="btn btn-ghost" href="http://localhost:3000/itineraries/dashboard">Confirm</a>
+  </div>
 </div>
