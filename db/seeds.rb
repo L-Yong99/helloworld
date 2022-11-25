@@ -74,7 +74,6 @@ require 'openssl'
 # # end
 # # # p photos
 
-
 user1 = User.create!(
   email: "malcolm@gmail.com",
   first_name: "Malcolm",
@@ -84,6 +83,52 @@ user1 = User.create!(
   password: "123456"
 )
 
+itinerary1 = Itinerary.create!(
+  title: "fun camping",
+  start_date: Date.new(2022,11,27),
+  end_date: Date.new(2022,11,29),
+  travel_days: 3,
+  phase: "planning",
+  address: "Japan",
+  user: user1
+)
+
+itinerary2 = Itinerary.create!(
+  title: "The 3 Days Magical Gateway",
+  start_date: Date.new(2022,11,27),
+  end_date: Date.new(2022,11,29),
+  travel_days: 3,
+  phase: "planning",
+  address: "Mexico",
+  user: user1
+)
+itinerary3 = Itinerary.create!(
+  title: "Road Trip Toad Lips",
+  start_date: Date.new(2022,11,27),
+  end_date: Date.new(2022,11,29),
+  travel_days: 3,
+  phase: "planning",
+  address: "Malaysia",
+  user: user1
+)
+itinerary4 = Itinerary.create!(
+  title: "School",
+  start_date: Date.new(2022,11,27),
+  end_date: Date.new(2022,11,29),
+  travel_days: 3,
+  phase: "planning",
+  address: "Cambodia",
+  user: user1
+)
+itinerary5 = Itinerary.create!(
+  title: "Soul Searching",
+  start_date: Date.new(2022,11,27),
+  end_date: Date.new(2022,11,29),
+  travel_days: 3,
+  phase: "planning",
+  address: "Laos",
+  user: user1
+)
 
 
 
