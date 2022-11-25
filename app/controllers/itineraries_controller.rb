@@ -26,6 +26,10 @@ class ItinerariesController < ApplicationController
   end
 
   def destroy
+    @itinerary = Itinerary.find(params[:id])
+    @itinerart.destroy
+
+    redirect_to dashboard_itineraries_path, status: :see_other
   end
 
   def plan
