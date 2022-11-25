@@ -8,52 +8,12 @@
   </div>
   <div class="side-bar">
     <div class="days-container">
-      <div class="day-container">
-        <h3>Day 1 .....</h3>
-        <div class="activity">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <h5>Place Name1</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae at delectus doloribus, aliquam, debitis voluptatum explicabo dolores commodi ipsam ea soluta reiciendis, eius quas perferendis quia. Quaerat, ratione repudiandae?</p>
-          </div>
-        </div>
-        <div class="activity">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <h5>Place Name2</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae at delectus doloribus, aliquam, debitis voluptatum explicabo dolores commodi ipsam ea soluta reiciendis, eius quas perferendis quia. Quaerat, ratione repudiandae?</p>
-          </div>
-        </div>
-        <div class="activity">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <h5>Place Name3</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae at delectus doloribus, aliquam, debitis voluptatum explicabo dolores commodi ipsam ea soluta reiciendis, eius quas perferendis quia. Quaerat, ratione repudiandae?</p>
-          </div>
-        </div>
-        <div class="activity">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <h5>Place Name4</h5>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut recusandae at delectus doloribus, aliquam, debitis voluptatum explicabo dolores commodi ipsam ea soluta reiciendis, eius quas perferendis quia. Quaerat, ratione repudiandae?</p>
-          </div>
-        </div>
-      </div>
+     <%= render "itineraries/sidebar_activity", locals: {activity: @activities,dates: @dates} %>
     </div>
-    <%# <div class="day-container">
-      <h3>Day 2 .....</h3>
-      <div>
-        <i class="fa-solid fa-location-dot"></i>
-        <div>
-          <h5>Place Name</h5>
-          <p>Place description</p>
-        </div>
-      </div>
-    </div> %>
-    <%# <div class="side-bar-bottom">
+    <div class="side-bar-bottom">
       <button>Back to dashboard</button>
       <button>Complete</button>
-    </div> %>
+    </div>
   </div>
   <div data-controller="map"
     id='map'
