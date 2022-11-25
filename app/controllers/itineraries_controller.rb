@@ -1,4 +1,6 @@
 class ItinerariesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
   end
 
@@ -32,10 +34,13 @@ class ItinerariesController < ApplicationController
 
   def plan
     @itinerary = Itinerary.find(params[:id])
+    @itinerary_id = params[:id]
     @center = @itinerary.geocode
     start_date = @itinerary.start_date
     end_date = @itinerary.end_date
     date_arr = (start_date..end_date).to_a
+    @dates = date_arr
+    @activities = Activity.where(itinerary_id: @itinerary.id)
     # Query for country
     country = @itinerary.address
     country.capitalize!
@@ -62,7 +67,7 @@ class ItinerariesController < ApplicationController
             placeId: place.id,
             defaultIcon: "default_#{place.category}",
             activeIcon: "active_#{place.category}",
-            info_window: render_to_string(partial: "info_window", locals: {place: place, dates: date_arr})
+            info_window: render_to_string(partial: "info_window", locals: {place: place, dates: date_arr, itineraryId: @itinerary.id})
         },
 
       }
@@ -71,7 +76,54 @@ class ItinerariesController < ApplicationController
     @geodata_json = geodata.to_json
   end
 
-  def complete
+  def save
+      data_json = params[:data]
+      data_hash = JSON.parse(data_json).deep_symbolize_keys
+      @itinerary_id = data_hash[:itinerary_id].to_i
+      day = data_hash[:day].to_i
+      activities_count = Activity.where(day: day, itinerary_id: @itinerary_id).count
+      # data_hash[:date] = Date.new(data_hash[:date])
+      data_hash[:event_sequence] = activities_count + 1
+      place = Place.find(data_hash[:place_id])
+      itinerary = Itinerary.find(data_hash[:itinerary_id])
+      @activity = Activity.new(data_hash)
+      @activity.place = place
+      @activity.itinerary = itinerary
+      @activity.save
+      @activities = Activity.where(itinerary_id: @itinerary_id)
+      @dates = (itinerary.start_date..itinerary.end_date).to_a
+      respond_to do |format|
+      if @activity.save
+        # format.html { redirect_to restaurant_path(@restaurant) }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      else
+        # format.html { render "restaurants/show", status: :unprocessable_entity }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
+    end
+  end
+
+  def delete
+   itinerary = Itinerary.find(params[:id])
+   @itinerary_id = params[:id]
+   @activities = Activity.where(itinerary_id: @itinerary_id)
+   @dates = (itinerary.start_date..itinerary.end_date).to_a
+   activity_id = params[:data].to_i
+   activity = Activity.find(activity_id)
+   activities_a = Activity.where(itinerary: itinerary, day: activity.day).where('event_sequence > ?', activity.event_sequence)
+   activities_a.each do |a|
+      a.event_sequence = a.event_sequence - 1
+   end
+   respond_to do |format|
+    if activity.destroy
+      # format.html { redirect_to restaurant_path(@restaurant) }
+      format.json # Follow the classic Rails flow and look for a create.json view
+    else
+      # format.html { render "restaurants/show", status: :unprocessable_entity }
+      format.json # Follow the classic Rails flow and look for a create.json view
+    end
+  end
+
   end
 
   def summary
