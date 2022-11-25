@@ -74,16 +74,23 @@ $bright-color: #fff;
   }
 }
 
-.container__profile__text {
-
-}
-
-
 .container-index-page {
-  display: grid;
+  display: auto;
   // border: 10px solid blue;
   padding: auto;
   justify-content: center;
+}
+
+
+.index-page-grid-container {
+  display: grid;
+  // grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  // border: 2px solid red;
+  padding: 15px;
+  width: 90%;
+  border: 4px solid red;
 }
 
 
