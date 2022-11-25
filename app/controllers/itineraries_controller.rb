@@ -130,6 +130,8 @@ class ItinerariesController < ApplicationController
   end
 
   def dashboard
+    @myitineraries = Itinerary.where(user:current_user)
+    # raise
   end
 
   def search
