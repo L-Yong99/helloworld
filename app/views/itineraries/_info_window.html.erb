@@ -1,15 +1,21 @@
 <h4><%= place.name %></h4>
 <img class="info-image" src="<%= place.image %>" alt="places">
-
 <div class="text-box">
   <%= place.description %>
 </div>
+<button class="detail" data-placeId=<%= "#{place.id}"%> data-itineraryId=<%= "#{itineraryId}"%> data-dates=<%= dates.to_json %>>Details</button>
 
 
-<button class="detail" data-placeId=<%= "#{place.id}"%>>Details</button>
-<select data-placeId=<%= "#{place.id}" %> name="date" class="date">
+<select data-placeId=<%= "#{place.id}"%> data-itineraryId=<%= "#{itineraryId}"%> data-dates=<%= dates.to_json %> name="date" class="date">
   <option value="">--Select Date--</option>
   <%= dates.each_with_index do |date,i| %>
     <option class="day" data-date="<%= date %>" value="<%= i + 1 %>" >Day <%=i + 1%> (<%= date%>)</option>
   <% end %>
 </select>
+
+
+<%= form_with url: "/itineraries/#{itineraryId}/plan", method: :post, class:"hidden-form-1" do |f| %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag 'data','none', class:"data-hidden-1"  %>
+  <%= f.submit "Start Planning", class:"submit-hidden-1 d-none" %>
+<% end %>

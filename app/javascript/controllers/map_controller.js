@@ -19,14 +19,14 @@ export default class extends Controller {
 
     this.map.on("load", () => {
       // Load all markers for use later
-      // Add Blue Marker
+      // Add default food
       this.#addImage(
-        "https://res.cloudinary.com/duadcuueg/image/upload/v1669210659/Hello%20World/bluemarker_wi2m0m.png",
+        "https://res.cloudinary.com/duadcuueg/image/upload/v1669289929/Hello%20World/Vegan_8_1_kbpop0.png",
         "default_foods"
       );
-      // Add Red Marker
+      // Add active food
       this.#addImage(
-        "https://res.cloudinary.com/duadcuueg/image/upload/v1669210667/Hello%20World/redmarker_wvzqko.png",
+        "https://res.cloudinary.com/duadcuueg/image/upload/v1669289929/Hello%20World/Vegan_8_bpi6cs.png",
         "active_foods"
       );
 
@@ -61,25 +61,62 @@ export default class extends Controller {
       // console.log("detail", detailEl);
     });
 
+    // delete-activity
+
+    // const deleteActivityEls = document.querySelectorAll(".delete-activity");
+
+    const dayContainerEL = document.querySelector(".days-container");
+    console.log("delete elements", dayContainerEL);
+    //     dayContainerEL.addEventListener("click", (e) => {
+    // console.log(e.target)
+    //     })
+
+    const hiddenFormEl2 = document.querySelector(".hidden-form-2");
+    console.log("action", hiddenFormEl2.action);
+    console.log("hidden-form", hiddenFormEl2);
+
+    hiddenFormEl2.addEventListener("submit", (e) => {
+      console.log("hidden-form", hiddenFormEl2);
+      e.preventDefault();
+      console.log("lets send");
+      fetch(hiddenFormEl2.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(hiddenFormEl2),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data.inserted_item) {
+            const daysContainerEl = document.querySelector(".days-container");
+            daysContainerEl.innerHTML = "";
+            daysContainerEl.insertAdjacentHTML("beforeend", data.inserted_item);
+          }
+          this.formTarget.outerHTML = data.form;
+        });
+    });
+
+
+    dayContainerEL.addEventListener("click", (e) => {
+      const submitEl2 = document.querySelector(".submit-hidden-2");
+      if (e.target != submitEl2) {
+
+        const userActivityId = e.target.dataset.activityId;
+        console.log(userActivityId);
+        console.log(e);
+
+        const hiddenTag2 = document.querySelector(".data-hidden-2");
+        hiddenTag2.value = userActivityId;
+        console.log("!!!", hiddenTag2.value);
+
+        const submitEl2 = document.querySelector(".submit-hidden-2");
+        submitEl2.click();
+      }
+    });
+
+
     this.#addMarkerToMap();
     this.#fitMapToMarker();
-
-
-    // const sideBarEl = document.querySelector(".sidebar")
-    // const btnEl = document.querySelector(".activityBtn")
-    // console.log(btnEl)
-
-    // btnEl.addEventListener('click',()=>{
-    //   sideBarEl.classList.toggle("active");
-    // })
-    const sideBarEl = document.querySelector(".sidebar")
-    const closeBtnEl = document.querySelector(".close")
-    console.log(closeBtnEl)
-
-    closeBtnEl.addEventListener('click',()=>{
-
-      sideBarEl.classList.toggle("active");
-    })
 
     // =================== end ===============================//
   }
@@ -167,11 +204,9 @@ export default class extends Controller {
         .setDOMContent(popupNode)
         .addTo(this.map);
 
-      const dateEl = document.querySelector(".date");
-      // console.log("days", daysEl);
-
-      const daysEl = document.querySelectorAll(".days");
-      // console.log("days", daysEl);
+      this.clickedId = null;
+      console.log("Clicked ID", this.clickedId);
+      this.#selectDateEventPopUp();
     });
   }
 
@@ -190,7 +225,7 @@ export default class extends Controller {
       }
     });
   }
-// fire event HERE
+
   #clickEvent(source) {
     this.map.on("click", source, (e) => {
       e.preventDefault();
@@ -222,104 +257,144 @@ export default class extends Controller {
           .setDOMContent(popupNode)
           .addTo(this.map);
 
-        const dateEl = document.querySelector(".date");
-        console.log("date", dateEl);
+        // // Pop up date event listener (AJAX) - Add activities
+        // const dateEl = document.querySelector(".date");
+        // console.log("date", dateEl);
 
-        // const daysEl = document.querySelectorAll(".day");
-        // console.log("days", daysEl);
+        // dateEl.addEventListener("change", (e) => {
+        //   const daysEl = document.querySelectorAll(".day");
+        //   const day = e.target.value;
+        //   // console.log("day", day);
+        //   const placeId = e.target.dataset.placeid;
+        //   // console.log("Place ID", placeId);
+        //   const selectedDate = daysEl[day - 1].dataset.date;
+        //   // console.log(selectedDate);
+        //   const itineraryId = e.target.dataset.itineraryid;
+        //   // console.log("itineraryId", itineraryId);
+        //   const dates = e.target.dataset.dates;
+        //   // console.log("dates", dates);
 
-        dateEl.addEventListener("change", (e) => {
-          const daysEl = document.querySelectorAll(".day");
-          const value = e.target.value;
-          console.log("day", value);
-          const placeId = e.target.dataset.placeid;
-          console.log("Place ID", placeId);
-          const selectedDate = daysEl[value-1].dataset.date;
-          console.log(selectedDate);
-        });
+        //   const dataout = {
+        //     itinerary_id: itineraryId,
+        //     place_id: placeId,
+        //     date: selectedDate,
+        //     day: day,
+        //   };
 
-        // --------------------------------------------------------
-        // MINE
-        const sideBarEl = document.querySelector(".sidebar")
-        const btnEl = document.querySelector(".detail");
-        console.log("detail", btnEl);
+        //   const dataout_json = JSON.stringify(dataout);
+        //   console.log(typeof dataout_json);
 
+        //   // Input Data into hidden Tag
+        //   const hiddenTag = document.querySelector(".data-hidden-1");
+        //   hiddenTag.value = dataout_json;
 
-        btnEl.addEventListener("click", (e) => {
-          console.log("test", e)
-          const placeId = e.target.dataset.placeid;
-          console.log(placeId);
-          const placesGeoJson = JSON.parse(this.geojsonValue);
-          console.log("please", placesGeoJson);
-          const features = placesGeoJson.features
-          console.log(placeId)
-          // console.log(placesGeoJson[0].properties.placeId)
-          console.log("feature",features[0].properties.placeId)
-          const a = features.find((element)=>{
-            return +element.properties.placeId === +placeId
-          })
-          console.log("hi", a)
+        //   const hiddenFormEl = document.querySelector(".hidden-form-1");
+        //   //  console.log("action",hiddenFormEl.action)
 
-          document.getElementById("place_name").innerHTML = a.properties.name
-          document.getElementById("place_rating").innerHTML = a.properties.rating
+        //   hiddenFormEl.addEventListener("submit", (e) => {
+        //     e.preventDefault();
+        //     console.log("lets send");
+        //     fetch(hiddenFormEl.action, {
+        //       method: "POST",
+        //       headers: { Accept: "application/json" },
+        //       body: new FormData(hiddenFormEl),
+        //     })
+        //       .then((response) => response.json())
+        //       .then((data) => {
+        //         console.log(data);
+        //         if (data.inserted_item) {
+        //           const daysContainerEl =
+        //             document.querySelector(".days-container");
+        //           daysContainerEl.innerHTML = "";
+        //           daysContainerEl.insertAdjacentHTML(
+        //             "beforeend",
+        //             data.inserted_item
+        //           );
+        //         }
+        //         this.formTarget.outerHTML = data.form;
+        //       });
+        //   });
 
-          document.getElementById("place_booking").innerHTML = a.properties.booking.toString()
-          if ( document.getElementById("place_booking").innerHTML === "false") {
-            document.getElementById("place_booking").innerHTML = "Open to public"
-          } else {
-            document.getElementById("place_booking").innerHTML = "Require booking"
-          }
-          document.getElementById("place_category").innerHTML = a.properties.category
-          document.getElementById("place_img").src = a.properties.image
-          document.getElementById("place_description").innerHTML = a.properties.description
-
-          sideBarEl.classList.toggle("active");
-
-
-
-        //   theArray.forEach(element => {
-        //     // ...use `element`...
+        //   const submitEl = document.querySelector(".submit-hidden-1");
+        //   submitEl.click();
         // });
-
-
-              // #clickEvent(source) {
-              //   this.map.on("click", source, (e) => {
-              //     e.preventDefault();
-              //     console.log(this.clickedId);
-              //     this.map.getCanvas().style.cursor = "pointer";
-              //     console.log(source, e.features);
-              //     if (e.features) {
-              //       this.clickedId = e.features[0].id;
-
-
-          // const found = placeId.find(element => );
-
-
-
-          // const dataPlaceId = document.querySelector("data-placeId")
-          // console.log(dataPlaceId)
-
-
-          // if (e.features) {
-          //   this.clickedId = e.features[0].id;
-
-
-        });
-
 
         // Query detail button
         // add event to detail element (detailEl)
         // e.target.dataset.placeid (should get place id)
-        // ---------------
         // placeJSON -> search for place id -> get data to populate side
 
         // // Run pop up
         // this.popup.setLngLat(coordinates).setHTML(infoWIndow).addTo(this.map);
-        // --------------------------------------------------------
+        this.#selectDateEventPopUp();
+
         this.map.flyTo({
           center: coordinates,
         });
       }
+    });
+  }
+
+  #selectDateEventPopUp() {
+    // Pop up date event listener (AJAX) - Add activities
+    const dateEl = document.querySelector(".date");
+    console.log("date", dateEl);
+
+    dateEl.addEventListener("change", (e) => {
+      const daysEl = document.querySelectorAll(".day");
+      const day = e.target.value;
+      // console.log("day", day);
+      const placeId = e.target.dataset.placeid;
+      // console.log("Place ID", placeId);
+      const selectedDate = daysEl[day - 1].dataset.date;
+      // console.log(selectedDate);
+      const itineraryId = e.target.dataset.itineraryid;
+      // console.log("itineraryId", itineraryId);
+      const dates = e.target.dataset.dates;
+      // console.log("dates", dates);
+
+      const dataout = {
+        itinerary_id: itineraryId,
+        place_id: placeId,
+        date: selectedDate,
+        day: day,
+      };
+
+      const dataout_json = JSON.stringify(dataout);
+      console.log(typeof dataout_json);
+
+      // Input Data into hidden Tag
+      const hiddenTag = document.querySelector(".data-hidden-1");
+      hiddenTag.value = dataout_json;
+
+      const hiddenFormEl = document.querySelector(".hidden-form-1");
+      //  console.log("action",hiddenFormEl.action)
+
+      hiddenFormEl.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log("lets send");
+        fetch(hiddenFormEl.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(hiddenFormEl),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (data.inserted_item) {
+              const daysContainerEl = document.querySelector(".days-container");
+              daysContainerEl.innerHTML = "";
+              daysContainerEl.insertAdjacentHTML(
+                "beforeend",
+                data.inserted_item
+              );
+            }
+            this.formTarget.outerHTML = data.form;
+          });
+      });
+
+      const submitEl = document.querySelector(".submit-hidden-1");
+      submitEl.click();
     });
   }
 
