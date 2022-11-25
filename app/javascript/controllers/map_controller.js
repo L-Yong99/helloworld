@@ -59,6 +59,14 @@ export default class extends Controller {
 
       // const detailEl = document.querySelector(".detail");
       // console.log("detail", detailEl);
+      const sideBarEl = document.querySelector(".sidebar")
+      const closeBtnEl = document.querySelector(".close")
+      console.log(closeBtnEl)
+
+      closeBtnEl.addEventListener('click',()=>{
+
+        sideBarEl.classList.toggle("active");
+      })
     });
 
     // delete-activity
@@ -112,6 +120,13 @@ export default class extends Controller {
         const submitEl2 = document.querySelector(".submit-hidden-2");
         submitEl2.click();
       }
+
+
+
+
+
+
+
     });
 
 
@@ -318,7 +333,72 @@ export default class extends Controller {
         //   const submitEl = document.querySelector(".submit-hidden-1");
         //   submitEl.click();
         // });
+          // MINE
+          const sideBarEl = document.querySelector(".sidebar")
+          const btnEl = document.querySelector(".detail");
+          console.log("detail", btnEl);
 
+
+          btnEl.addEventListener("click", (e) => {
+            console.log("test", e)
+            const placeId = e.target.dataset.placeid;
+            console.log(placeId);
+            const placesGeoJson = JSON.parse(this.geojsonValue);
+            console.log("please", placesGeoJson);
+            const features = placesGeoJson.features
+            console.log(placeId)
+            // console.log(placesGeoJson[0].properties.placeId)
+            console.log("feature",features[0].properties.placeId)
+            const a = features.find((element)=>{
+              return +element.properties.placeId === +placeId
+            })
+            console.log("hi", a)
+
+            document.getElementById("place_name").innerHTML = a.properties.name
+            document.getElementById("place_rating").innerHTML = a.properties.rating
+
+            document.getElementById("place_booking").innerHTML = a.properties.booking.toString()
+            if ( document.getElementById("place_booking").innerHTML === "false") {
+              document.getElementById("place_booking").innerHTML = "Open to public"
+            } else {
+              document.getElementById("place_booking").innerHTML = "Require booking"
+            }
+            document.getElementById("place_category").innerHTML = a.properties.category
+            document.getElementById("place_img").src = a.properties.image
+            document.getElementById("place_description").innerHTML = a.properties.description
+
+            sideBarEl.classList.toggle("active");
+
+
+
+          //   theArray.forEach(element => {
+          //     // ...use `element`...
+          // });
+
+
+                // #clickEvent(source) {
+                //   this.map.on("click", source, (e) => {
+                //     e.preventDefault();
+                //     console.log(this.clickedId);
+                //     this.map.getCanvas().style.cursor = "pointer";
+                //     console.log(source, e.features);
+                //     if (e.features) {
+                //       this.clickedId = e.features[0].id;
+
+
+            // const found = placeId.find(element => );
+
+
+
+            // const dataPlaceId = document.querySelector("data-placeId")
+            // console.log(dataPlaceId)
+
+
+            // if (e.features) {
+            //   this.clickedId = e.features[0].id;
+
+
+          });
         // Query detail button
         // add event to detail element (detailEl)
         // e.target.dataset.placeid (should get place id)

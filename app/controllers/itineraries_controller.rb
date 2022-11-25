@@ -30,6 +30,10 @@ class ItinerariesController < ApplicationController
   end
 
   def destroy
+    @itinerary = Itinerary.find(params[:id])
+    @itinerart.destroy
+
+    redirect_to dashboard_itineraries_path, status: :see_other
   end
 
   def plan
@@ -123,8 +127,11 @@ class ItinerariesController < ApplicationController
       format.json # Follow the classic Rails flow and look for a create.json view
     end
   end
+end
 
+  def complete
   end
+
 
   def summary
   end
