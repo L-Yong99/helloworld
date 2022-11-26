@@ -1,9 +1,3 @@
-$bright-color: #fff;
-@mixin bottom {
-  position: absolute;
-  right: 0;
-  left: 0;
-}
 * {
   margin: 0;
   padding: 0;
@@ -11,37 +5,35 @@ $bright-color: #fff;
 }
 
 .container_card {
+  background: url("https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
+  background-position: center;
+  background-size: cover;
+  // width: 300px;
+  height: 420px;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
+  border-radius: 8px;
 
- background: url("https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
- background-position: center;
- background-size: cover;
- width: 300px;
- height: 380px;
- position: relative;
- box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
- border-radius: 8px;
-
-
-  .container__info {
-    bottom: 20%;
-    display: flex;
-    align-items: flex-end;
-    padding: 15px 30px;
-    color: $bright-color;
-    span {
-      margin-right: 200px;
-    }
-    i {
-      margin-right: 10px;
-    }
-  }
+  // .container__info {
+  //   bottom: 20%;
+  //   display: flex;
+  //   align-items: flex-end;
+  //   padding: 15px 30px;
+  //   color: $bright-color;
+  //   span {
+  //     margin-right: 200px;
+  //   }
+  //   i {
+  //     margin-right: 10px;
+  //   }
+  // }
 
   .container__profile {
     background-color: #f8f8f8;
     display: flex;
     align-items: center;
     padding: 10px;
-    // @include bottom();
+    @include bottom();
     bottom: 0px;
     height: 150px;
     margin-top: 10px;
@@ -74,24 +66,9 @@ $bright-color: #fff;
   }
 }
 
-.container-index-page {
-  display: auto;
-  // border: 10px solid blue;
-  padding: auto;
-  justify-content: center;
+.container__profile__text {
 }
 
-
-.index-page-grid-container {
-  display: grid;
-  // grid-template-columns: repeat(3, 1fr);
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  // border: 2px solid red;
-  padding: 15px;
-  width: 90%;
-  border: 4px solid red;
-}
 
 
 .button-74 {
@@ -112,7 +89,6 @@ $bright-color: #fff;
   // touch-action: manipulation;
   justify-content: space-evenly;
 }
-
 
 .button-75 {
   background-color: #ffffff;
@@ -135,5 +111,17 @@ $bright-color: #fff;
 
 .container_buttons {
   justify-content: space-between;
-  width: 300px;
+  // width: 300px;
+}
+
+.dashboard-page-grid-container{
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:20px;
+}
+
+.container-dashbox-page{
+  width:80%;
+  margin: 0 auto;
+  border:2px red solid;
 }

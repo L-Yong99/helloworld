@@ -1,2 +1,16 @@
-<h1>Itineraries#dashboard</h1>
-<p>Find me in app/views/itineraries/dashboard.html.erb</p>
+<div class="container-dashbox-page">
+  <div class="create-button">
+    <%= link_to "new itinerary", "/itineraries/new", class: "btn btn-primary" %>
+  </div>
+
+
+  <div class="dashboard-page-grid-container">
+    <% @myitineraries.each do |itinerary| %>
+        <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+    <% end %>
+
+  </div>
+
+
+
+</div>

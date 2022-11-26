@@ -10,3 +10,69 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbarsearch {
+  width: 30%;
+}
+
+.nav-left{
+  gap:20px;
+}
+
+.search-form{
+  margin:0;
+  padding:0;
+  display:flex;
+}
+
+.search,
+.search-form{
+  height:2.5rem;
+}
+
+.search:active,
+.search-country:active{
+  // border-radius:0;
+  outline: none;
+}
+
+.search:focus,
+.search-country:focus{
+  // border-radius:0;
+  outline: none;
+}
+
+
+.search{
+  border-right:none;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  padding-left:5px;
+  padding-right:5px;
+  border:#d9d9d9 solid 1px;
+}
+
+.search-country{
+  // border:none;
+  border-radius:0;
+  padding-left:5px;
+  padding-right:5px;
+  border:#d9d9d9 solid 1px;
+  border-right:none;
+}
+
+.search-submit{
+  border-left:none;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  width:45px;
+  border:#d9d9d9 solid 1px;
+  background-color: #f65858;
+  color:white;
+  border:none;
+}
+
+.navbar-nav{
+  display:flex;
+  gap:10px;
+}

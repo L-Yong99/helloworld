@@ -1,0 +1,51 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+
+    <div class="d-flex nav-left">
+      <a class="navbar-brand" href="/">
+      <%= image_tag "logo.jpeg" %>
+      </a>
+      <%= render "shared/searchbar" %>
+    </div>
+
+    <%# <div class ="">
+      <i class="fa-regular fa-message"></i>
+      <i class="fa-regular fa-square-caret-down"></i>
+      <i class="fa-regular fa-bell"></i>
+      <i class="fa-regular fa-user"></i>
+    </div> %>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"><i class="fa-regular fa-message"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> <i class="fa-regular fa-bell"></i></a>
+        </li>
+        <li class="nav-item dropdown">
+        <% if current_user.image.key.nil? %>
+          <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+          <% else %>
+          <%= cl_image_tag current_user.image.key, class:"avatar dropdown-toggle", id:"navbarDropdown",  data:{bs_toggle:"dropdown"} %>
+          <% end %>
+
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href=<%="/users/#{current_user.id}/attendances"%>>Attending Events</a>
+              <a class="dropdown-item" href=<%="/users/#{current_user.id}/events"%>>Hosted Event</a>
+              <a class="dropdown-item" href=<%="/events/new"%>>Host Event</a>
+              <%= link_to "Setting", edit_user_path(current_user), class:"dropdown-item"%>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%# <a class="dropdown-item" data-turbo-method="delete" href="#">Log out</a> %>
+            </div>
+            </li>
+            <!--li class="nav-item"-->
+            <!--/li-->
+          </ul>
+        </div>
+      </div>
+    </div>

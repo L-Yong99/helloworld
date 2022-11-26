@@ -1,0 +1,15 @@
+<%= form_with url: "/itineraries/search", method: :get, class: "search-form" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "search",
+    placeholder: "Search for event"
+  %>
+  <%= text_field_tag :address,
+     params[:address],
+    class: "search-country",
+    placeholder: "Enter Location"
+  %>
+  <%= button_tag type: 'submit', class: "search-submit" do %>
+    <i class="fa-solid fa-magnifying-glass"></i>
+  <% end %>
+<% end %>
