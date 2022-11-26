@@ -32,6 +32,32 @@
   border: 3px solid red;
   height:83vh;
   width: 74vw;
+  position:relative;
+
+}
+
+.toggle-icons{
+  border-radius:100%;
+  width:50px;
+  height:50px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index:1000;
+  position:absolute;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  top:15px;
+  left:20px;
+}
+
+.toggle-icons:hover{
+  opacity: 0.7;
+}
+
+.toggle-icons.active{
+  opacity: 0.7;
 }
 
 .side-bar{

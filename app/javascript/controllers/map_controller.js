@@ -11,8 +11,8 @@ export default class extends Controller {
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue;
-    const placesGeoJson = JSON.parse(this.geojsonValue);
-    console.log(placesGeoJson);
+    this.placesGeoJson = JSON.parse(this.geojsonValue);
+    console.log(this.placesGeoJson);
     console.log(this.activitiesIdValue);
     this.map = new mapboxgl.Map({
       container: this.element,
@@ -55,8 +55,8 @@ export default class extends Controller {
       );
 
       // Add Food Source and Layer
-      this.#addSource("foods", placesGeoJson);
-      this.#addLayer("foods", "default_foods", 0.35);
+      this.#addSource("places", this.placesGeoJson);
+      this.#addLayer("places", 0.35);
 
       //Initilaize pop up and click id
       this.#createPopEvent();
@@ -66,43 +66,69 @@ export default class extends Controller {
       // this.clickedId = null;
 
       // Initialize hover Event
-      this.#hoverEvent("foods", 0.35, 0.45);
+      this.#hoverEvent("places", 0.35, 0.45);
 
       // Initialize remove hover Event
-      this.#removeHoverEvent("foods", 0.35);
+      this.#removeHoverEvent("places", 0.35);
 
       // Initialize Click Event
-      this.#clickEvent("foods");
+      this.#clickEvent("places");
 
       // Initialize Remove Click Event
-      this.#clickRemoveEvent("foods", 0.35);
+      this.#clickRemoveEvent("places", 0.35);
     });
 
     this.#deleteActivity();
     this.#addMarkerToMap();
     this.#fitMapToMarker();
+
+    // Lets initialize an array to store all markers for users
     this.userMarkers = [];
+    this.#loadUserMarkers();
+
+    // Toogle layer off and on
+    this.#toggleMarkers("places",0.35);
+
+
+    // =================== end ===============================//
+  }
+
+  #toggleMarkers(source,defaultSize) {
+    const toggleLayerEl = document.querySelector(".toggle-icons");
+    console.log(toggleLayerEl);
+    toggleLayerEl.id = source;
+    toggleLayerEl.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const visibility = this.map.getLayoutProperty(source, "visibility");
+
+      console.log(visibility);
+
+      // Toggle layer visibility by changing the layout object's visibility property.
+      if (visibility === "visible") {
+        this.map.setLayoutProperty(source, "visibility", "none");
+        toggleLayerEl.classList.add("active");
+        this.#setMarkerDefault(source,defaultSize)
+      } else {
+        toggleLayerEl.classList.remove("active");
+        this.map.setLayoutProperty(source, "visibility", "visible");
+      }
+    });
+  }
+
+  #loadUserMarkers() {
     this.activitiesIdValue.forEach((id) => {
-      const feature = placesGeoJson.features.find((feature) => {
+      const feature = this.placesGeoJson.features.find((feature) => {
         return feature.properties.placeId === id;
       });
-      console.log(feature.geometry.coordinates);
+      // console.log(feature.geometry.coordinates);
       const coordinates = feature.geometry.coordinates;
       const markerId = feature.properties.placeId;
 
       this.#createUserMarker(coordinates, markerId);
-
-      console.log(this.userMarkers);
-      // const el = document.createElement("div");
-      // el.className = "marker";
-
-      // // make a marker for each feature and add it to the map
-      // new mapboxgl.Marker(el)
-      //   .setLngLat(feature.geometry.coordinates)
-      //   .addTo(this.map);
+      // console.log(this.userMarkers);
     });
-
-    // =================== end ===============================//
   }
 
   #createUserMarker(coordinates, id) {
@@ -114,7 +140,7 @@ export default class extends Controller {
       .setLngLat(coordinates)
       .addTo(this.map);
 
-    console.log("marker id", id);
+    // console.log("marker id", id);
 
     this.userMarkers.push({
       id: id,
@@ -142,21 +168,20 @@ export default class extends Controller {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           if (data.inserted_item) {
             const daysContainerEl = document.querySelector(".days-container");
             daysContainerEl.innerHTML = "";
             daysContainerEl.insertAdjacentHTML("beforeend", data.inserted_item);
 
             // Find place id object index and delete marker
-            console.log("user act id",placeId)
+            console.log("user act id", placeId);
             const markerindex = this.userMarkers.findIndex((markerObj) => {
               return +markerObj.id === +placeId;
             });
-            console.log("marker",markerindex)
-            this.userMarkers[markerindex].marker.remove()
+            // console.log("marker",markerindex)
+            this.userMarkers[markerindex].marker.remove();
             this.userMarkers.splice(markerindex, 1);
-
           }
           this.formTarget.outerHTML = data.form;
         });
@@ -188,7 +213,7 @@ export default class extends Controller {
     });
   }
 
-  #addLayer(source, defaultIcon, defaultIconSize) {
+  #addLayer(source, defaultIconSize) {
     this.map.addLayer({
       id: source,
       type: "symbol",
@@ -196,6 +221,7 @@ export default class extends Controller {
       layout: {
         "icon-image": ["get", "defaultIcon"], // reference the image
         "icon-size": defaultIconSize,
+        visibility: "visible",
       },
     });
   }
@@ -215,11 +241,11 @@ export default class extends Controller {
       // this.thing = false
 
       if (this.clickedId == null) {
-        this.map.setLayoutProperty("foods", "icon-image", [
+        this.map.setLayoutProperty(source, "icon-image", [
           "get",
           "defaultIcon",
         ]);
-        this.map.setLayoutProperty("foods", "icon-size", defaultSize);
+        this.map.setLayoutProperty(source, "icon-size", defaultSize);
         this.popup.remove();
       }
     });
@@ -264,7 +290,7 @@ export default class extends Controller {
         .addTo(this.map);
 
       this.clickedId = null;
-      console.log("Clicked ID", this.clickedId);
+      // console.log("Clicked ID", this.clickedId);
       this.#selectDateEventPopUp();
     });
   }
@@ -273,17 +299,18 @@ export default class extends Controller {
     this.map.on("click", (e) => {
       // console.log("map", e);
       if (e.defaultPrevented === false) {
-        if (this.map._popups != 0) {
-          this.map._popups[0].remove();
-        }
-        this.map.setLayoutProperty(source, "icon-image", [
-          "get",
-          "defaultIcon",
-        ]);
-        this.map.setLayoutProperty(source, "icon-size", defaultSize);
-        this.clickedId = null;
+        this.#setMarkerDefault(source,defaultSize)
       }
     });
+  }
+
+  #setMarkerDefault(source,defaultSize) {
+    if (this.map._popups != 0) {
+      this.map._popups[0].remove();
+    }
+    this.map.setLayoutProperty(source, "icon-image", ["get", "defaultIcon"]);
+    this.map.setLayoutProperty(source, "icon-size", defaultSize);
+    this.clickedId = null;
   }
 
   #clickEvent(source) {
@@ -307,7 +334,7 @@ export default class extends Controller {
         const coordinates = e.features[0].geometry.coordinates.slice();
         const description = e.features[0].properties.description;
         const infoWIndow = e.features[0].properties.info_window;
-        const placeId= e.features[0].properties.place_id;
+        const placeId = e.features[0].properties.place_id;
 
         const popupNode = document.createElement("div");
         popupNode.insertAdjacentHTML("beforeend", infoWIndow);
@@ -330,7 +357,7 @@ export default class extends Controller {
   #selectDateEventPopUp(source, coordinates, placeId) {
     // Pop up date event listener (AJAX) - Add activities
     const dateEl = document.querySelector(".date");
-    console.log("date", dateEl);
+    // console.log("date", dateEl);
 
     dateEl.addEventListener("change", (e) => {
       const daysEl = document.querySelectorAll(".day");
@@ -391,7 +418,7 @@ export default class extends Controller {
               this.map.setLayoutProperty(source, "icon-size", 0.35);
 
               //Add user selected marker here
-              this.#createUserMarker(coordinates,placeId);
+              this.#createUserMarker(coordinates, placeId);
             }
             this.formTarget.outerHTML = data.form;
           });
