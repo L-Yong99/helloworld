@@ -1,5 +1,6 @@
 class ItinerariesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!, only: [:index, :show, :home]
 
   def home
   end
@@ -41,6 +42,7 @@ class ItinerariesController < ApplicationController
     date_arr = (start_date..end_date).to_a
     @dates = date_arr
     @activities = Activity.where(itinerary_id: @itinerary.id)
+    @activities_id = @activities.map {|activity| activity.place.id}
     # Query for country
     country = @itinerary.address
     country.capitalize!
