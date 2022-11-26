@@ -81,25 +81,49 @@ export default class extends Controller {
     this.#deleteActivity();
     this.#addMarkerToMap();
     this.#fitMapToMarker();
-
+    this.userMarkers = [];
     this.activitiesIdValue.forEach((id) => {
       const feature = placesGeoJson.features.find((feature) => {
         return feature.properties.placeId === id;
       });
-console.log(feature.geometry.coordinates)
-        const el = document.createElement('div');
-        el.className = 'marker';
+      console.log(feature.geometry.coordinates);
+      const coordinates = feature.geometry.coordinates;
+      const markerId = feature.properties.placeId;
 
-        // make a marker for each feature and add it to the map
-        new mapboxgl.Marker(el)
-        .setLngLat(feature.geometry.coordinates)
-        .addTo(this.map)
+      this.#createUserMarker(coordinates, markerId);
+
+      console.log(this.userMarkers);
+      // const el = document.createElement("div");
+      // el.className = "marker";
+
+      // // make a marker for each feature and add it to the map
+      // new mapboxgl.Marker(el)
+      //   .setLngLat(feature.geometry.coordinates)
+      //   .addTo(this.map);
     });
 
     // =================== end ===============================//
   }
 
+  #createUserMarker(coordinates, id) {
+    const el = document.createElement("div");
+    el.className = "marker";
+
+    // make a marker for each feature and add it to the map
+    const marker = new mapboxgl.Marker(el)
+      .setLngLat(coordinates)
+      .addTo(this.map);
+
+    console.log("marker id", id);
+
+    this.userMarkers.push({
+      id: id,
+      marker: marker,
+    });
+  }
+
   #deleteActivity() {
+    let placeId;
     const dayContainerEL = document.querySelector(".days-container");
     // console.log("delete elements", dayContainerEL);
 
@@ -123,6 +147,16 @@ console.log(feature.geometry.coordinates)
             const daysContainerEl = document.querySelector(".days-container");
             daysContainerEl.innerHTML = "";
             daysContainerEl.insertAdjacentHTML("beforeend", data.inserted_item);
+
+            // Find place id object index and delete marker
+            console.log("user act id",placeId)
+            const markerindex = this.userMarkers.findIndex((markerObj) => {
+              return +markerObj.id === +placeId;
+            });
+            console.log("marker",markerindex)
+            this.userMarkers[markerindex].marker.remove()
+            this.userMarkers.splice(markerindex, 1);
+
           }
           this.formTarget.outerHTML = data.form;
         });
@@ -132,6 +166,7 @@ console.log(feature.geometry.coordinates)
       const submitEl2 = document.querySelector(".submit-hidden-2");
       if (e.target != submitEl2) {
         const userActivityId = e.target.dataset.activityId;
+        placeId = e.target.dataset.placeId;
         // console.log(userActivityId);
         // console.log(e);
 
@@ -272,6 +307,7 @@ console.log(feature.geometry.coordinates)
         const coordinates = e.features[0].geometry.coordinates.slice();
         const description = e.features[0].properties.description;
         const infoWIndow = e.features[0].properties.info_window;
+        const placeId= e.features[0].properties.place_id;
 
         const popupNode = document.createElement("div");
         popupNode.insertAdjacentHTML("beforeend", infoWIndow);
@@ -282,7 +318,7 @@ console.log(feature.geometry.coordinates)
           .setDOMContent(popupNode)
           .addTo(this.map);
 
-        this.#selectDateEventPopUp(source);
+        this.#selectDateEventPopUp(source, coordinates, placeId);
 
         this.map.flyTo({
           center: coordinates,
@@ -291,7 +327,7 @@ console.log(feature.geometry.coordinates)
     });
   }
 
-  #selectDateEventPopUp(source) {
+  #selectDateEventPopUp(source, coordinates, placeId) {
     // Pop up date event listener (AJAX) - Add activities
     const dateEl = document.querySelector(".date");
     console.log("date", dateEl);
@@ -353,6 +389,9 @@ console.log(feature.geometry.coordinates)
                 "defaultIcon",
               ]);
               this.map.setLayoutProperty(source, "icon-size", 0.35);
+
+              //Add user selected marker here
+              this.#createUserMarker(coordinates,placeId);
             }
             this.formTarget.outerHTML = data.form;
           });
