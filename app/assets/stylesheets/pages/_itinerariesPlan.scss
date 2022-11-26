@@ -1,6 +1,6 @@
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 // .plan-main-container{
@@ -8,15 +8,21 @@
 //   // border:black 2px solid;
 // }
 
-.map-container { grid-area: mc; }
-.side-bar{ grid-area: sb; }
-.banner-container{ grid-area: rb; }
+.map-container {
+  grid-area: mc;
+}
+.side-bar {
+  grid-area: sb;
+}
+.banner-container {
+  grid-area: rb;
+}
 
 .grid-container {
   display: grid;
   grid-template-areas:
-  'rb rb rb rb rb sb sb'
-  'mc mc mc mc mc sb sb';
+    "rb rb rb rb rb sb sb"
+    "mc mc mc mc mc sb sb";
   /* gap: 10px; */
   // height:100vh;
 }
@@ -30,136 +36,171 @@
 .map-container {
   // height:100%;
   border: 3px solid red;
-  height:83vh;
+  height: 83vh;
   width: 74vw;
-  position:relative;
-
+  position: relative;
 }
 
-.toggle-icons{
-  border-radius:100%;
-  width:50px;
-  height:50px;
+.toggle-icons {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  z-index:1000;
-  position:absolute;
-  display:flex;
+  z-index: 1000;
+  position: absolute;
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  top:15px;
-  left:20px;
+  top: 15px;
+  left: 20px;
 }
 
-.toggle-icons:hover{
+.toggle-icons:hover {
   opacity: 0.7;
 }
 
-.toggle-icons.active{
+.toggle-icons.active {
   opacity: 0.7;
 }
 
-.side-bar{
+// Filter container for map
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  gap:15px;
+  width:fit-content;
+  position:absolute;
+  top: 20px;
+  left: 80px;
+}
+
+.filter-container div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 100vw;
+  padding: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 1000;
+  font-size: 1rem;
+  padding-left:15px;
+  padding-right:15px;
+  cursor: pointer;
+}
+
+.filter-container div:hover {
+  opacity: 0.7;
+}
+
+.filter-container div.active {
+  opacity: 0.7;
+}
+
+.side-bar {
   border: 3px solid green;
-  padding:20px;
-  height:98vh;
-  width:25vw;
+  padding: 20px;
+  height: 98vh;
+  width: 25vw;
 }
 
-.banner-container{
-height:15vh;
-border: blue solid 2px;
-width:74wh;
+.banner-container {
+  height: 15vh;
+  border: blue solid 2px;
+  width: 74wh;
 }
 
-.days-container{
-height:85%;
-overflow-y: scroll;
-padding-right:20px;
-padding-left:20px;
+.days-container {
+  height: 85%;
+  overflow-y: scroll;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
-.day-container{
-  width:100%;
+.day-container {
+  width: 100%;
   // border:1px solid red;
 }
 
 // Side bar partial (AJAX)
-.activity-decription{
-  display:none;
+.activity-decription {
+  display: none;
 }
 
 .activity {
-  display:flex;
-  gap:10px;
-margin-bottom:20px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.activity-col-1{
-  position:relative;
+.activity-col-1 {
+  position: relative;
 }
 
-.activity-col-1 i{
-  position:absolute;
-  top:30px;
-  left:-10px;
+.activity-col-1 i {
+  position: absolute;
+  top: 30px;
+  left: -10px;
 }
 
-.activity-col-1 > div{
-  padding-left:30px;
-  padding-right:10px;
-  padding-top:15px;
-  padding-bottom:15px;
+.activity-col-1 > div {
+  padding-left: 30px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background-color: white;
-  border-radius:10px;
-  width:240px;
+  border-radius: 10px;
+  width: 240px;
 }
 
-.activity-col-2 i{
-  margin-top:30px;
+.activity-col-2 i {
+  margin-top: 30px;
   // left:-10px;
 }
 
-.date-title{
-border-bottom:1px solid #f0f1f3;
+.date-title {
+  border-bottom: 1px solid #f0f1f3;
 }
 
 .delete-activity {
   cursor: pointer;
 }
 
-.side-bar-bottom{
-  margin-top:40px;
+.side-bar-bottom {
+  margin-top: 40px;
   // border:1px solid red;
   width: fit-content;
 }
 
-.btn-complete{
-background-color: rgb(83, 83, 199);
-border-radius: 7px;
-color:white;
-height:4em;
-width:8em;
-// margin-left:10px;
+.btn-complete {
+  background-color: rgb(83, 83, 199);
+  border-radius: 7px;
+  color: white;
+  height: 4em;
+  width: 8em;
+  // margin-left:10px;
 }
 
 .btn-complete:hover {
   background-color: rgb(83, 83, 199);
   opacity: 0.7;
-  color:white;
+  color: white;
 }
 
-.btn-dashboard{
+.btn-dashboard {
   background-color: rgb(203, 193, 193);
   border-radius: 7px;
   color: rgb(15, 14, 14);
-  padding:7px;
+  padding: 7px;
   // height:3em;
-  width:7em;
-  height:4em;
-  margin-right:15px;
-  margin-left:15px;
+  width: 7em;
+  height: 4em;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .btn-dashboard:hover {

@@ -54,28 +54,46 @@ export default class extends Controller {
         "active_shops"
       );
 
+      // Declare the source
+      const source = "places";
+
       // Add Food Source and Layer
-      this.#addSource("places", this.placesGeoJson);
-      this.#addLayer("places", 0.35);
+      this.#addSource(source, this.placesGeoJson);
+
+      // this.#addLayer(source, 0.35);
+      this.layersIdStore = [];
+      this.symbolsIdStore = [];
+      this.#addMultipleLayers(source);
 
       //Initilaize pop up and click id
       this.#createPopEvent();
 
       //Initilaize click id
       let clickedId = null;
-      // this.clickedId = null;
 
-      // Initialize hover Event
-      this.#hoverEvent("places", 0.35, 0.45);
+      // const layerIds = ["layer-foods","layer-interesting_places","layer-shops"] // Set more here if add more types of places
+      this.index = 0;
+      this.layersIdStore.forEach((layerId) => {
+        // Initialize events
+        // Initialize hover Event
+        this.#hoverEvent(layerId, 0.35, 0.45);
 
-      // Initialize remove hover Event
-      this.#removeHoverEvent("places", 0.35);
+        // Initialize remove hover event
+        this.#removeHoverEvent(layerId, 0.35);
 
-      // Initialize Click Event
-      this.#clickEvent("places");
+        // Initialize Click event
+        this.#clickEvent(layerId);
 
-      // Initialize Remove Click Event
-      this.#clickRemoveEvent("places", 0.35);
+        // Initialize click remove event
+        this.#clickRemoveEvent(layerId, 0.35);
+
+        // Set toggle marker
+        this.#toggleMarkers(layerId, 0.35);
+
+        // Set filters
+        this.#FilterLayer(layerId, 0.35)
+      });
+
     });
 
     this.#deleteActivity();
@@ -86,33 +104,88 @@ export default class extends Controller {
     this.userMarkers = [];
     this.#loadUserMarkers();
 
-    // Toogle layer off and on
-    this.#toggleMarkers("places",0.35);
-
-
     // =================== end ===============================//
   }
 
-  #toggleMarkers(source,defaultSize) {
+  #FilterLayer(layerId,defaultSize) {
+  const filterEl = document.querySelector(".filter-container");
+        const divEl = document.createElement("div");
+
+        divEl.setAttribute("for", layerId);
+        divEl.classList.add("filter-element")
+        divEl.textContent = this.symbolsIdStore[this.index];
+        filterEl.insertAdjacentElement("beforeend", divEl);
+        this.index = this.index + 1;
+        console.log(filterEl);
+
+        // When the checkbox changes, update the visibility of the layer.
+        divEl.addEventListener("click", (e) => {
+          const visibility = this.map.getLayoutProperty(layerId, "visibility");
+          if (visibility === "visible") {
+            this.map.setLayoutProperty(layerId, "visibility", "none");
+            divEl.classList.add("active");
+            this.#setMarkerDefault(layerId, defaultSize);
+          } else {
+            divEl.classList.remove("active");
+            this.map.setLayoutProperty(layerId, "visibility", "visible");
+          }
+        });
+  }
+
+  #addMultipleLayers(source) {
+    // this.layersIdStore = []
+    this.placesGeoJson.features.forEach((feature) => {
+      const symbol = feature.properties.category;
+      const layerID = `layer-${symbol}`;
+      console.log(layerID);
+      const defaultIconSize = 0.35;
+      // Add a layer for this symbol type if it hasn't been added already.
+      if (!this.map.getLayer(layerID)) {
+        this.layersIdStore.push(layerID);
+        this.symbolsIdStore.push(symbol);
+        this.map.addLayer({
+          id: layerID,
+          type: "symbol",
+          source: source,
+          layout: {
+            "icon-image": ["get", "defaultIcon"], // reference the image
+            "icon-size": defaultIconSize,
+            visibility: "visible",
+            "icon-allow-overlap": true,
+          },
+          filter: ["==", "category", symbol],
+        });
+      }
+    });
+  }
+
+  #toggleMarkers(layerId, defaultSize) {
     const toggleLayerEl = document.querySelector(".toggle-icons");
     console.log(toggleLayerEl);
-    toggleLayerEl.id = source;
+    toggleLayerEl.id = layerId;
     toggleLayerEl.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-
-      const visibility = this.map.getLayoutProperty(source, "visibility");
-
+      const visibility = this.map.getLayoutProperty(layerId, "visibility");
       console.log(visibility);
 
-      // Toggle layer visibility by changing the layout object's visibility property.
-      if (visibility === "visible") {
-        this.map.setLayoutProperty(source, "visibility", "none");
-        toggleLayerEl.classList.add("active");
-        this.#setMarkerDefault(source,defaultSize)
+      const filterEls = document.querySelectorAll(".filter-element")
+      if (toggleLayerEl.classList.contains("active")) {
+        this.layersIdStore.forEach((layerId) => {
+          // const visibility = this.map.getLayoutProperty(layerId, "visibility");
+          this.map.setLayoutProperty(layerId, "visibility", 'visible');
+          toggleLayerEl.classList.remove("active");
+          filterEls.forEach(filterEl => filterEl.classList.remove("active"))
+          this.#setMarkerDefault(layerId, defaultSize);
+        });
       } else {
-        toggleLayerEl.classList.remove("active");
-        this.map.setLayoutProperty(source, "visibility", "visible");
+        this.layersIdStore.forEach((layerId) => {
+        // const visibility = this.map.getLayoutProperty(layerId, "visibility");
+        this.map.setLayoutProperty(layerId, "visibility", 'none');
+        toggleLayerEl.classList.add("active");
+        filterEls.forEach(filterEl => filterEl.classList.add("active"))
+        this.#setMarkerDefault(layerId, defaultSize);
+        })
       }
     });
   }
@@ -234,32 +307,32 @@ export default class extends Controller {
     });
   }
 
-  #removeHoverEvent(source, defaultSize) {
+  #removeHoverEvent(layerID, defaultSize) {
     // Remove hover
-    this.map.on("mouseleave", source, (e) => {
+    this.map.on("mouseleave", layerID, (e) => {
       // console.log("mouseleave");
       // this.thing = false
 
       if (this.clickedId == null) {
-        this.map.setLayoutProperty(source, "icon-image", [
+        this.map.setLayoutProperty(layerID, "icon-image", [
           "get",
           "defaultIcon",
         ]);
-        this.map.setLayoutProperty(source, "icon-size", defaultSize);
+        this.map.setLayoutProperty(layerID, "icon-size", defaultSize);
         this.popup.remove();
       }
     });
   }
 
-  #hoverEvent(source, defaultSize, activeSize) {
-    this.map.on("mouseenter", source, (e) => {
-      // console.log("mouseenter");
+  #hoverEvent(layerId, defaultSize, activeSize) {
+    this.map.on("mouseenter", layerId, (e) => {
+      console.log("mouseenter");
 
       // console.log("in", e);
       // Pop Up
       this.map.getCanvas().style.cursor = "pointer";
       // e.preventDefault();
-      this.map.setLayoutProperty(source, "icon-image", [
+      this.map.setLayoutProperty(layerId, "icon-image", [
         "match",
         ["id"], // get the feature id (make sure your data has an id set or use generateIds for GeoJSON sources
         e.features[0].id,
@@ -267,7 +340,7 @@ export default class extends Controller {
         ["get", "defaultIcon"], // default
       ]);
 
-      this.map.setLayoutProperty(source, "icon-size", [
+      this.map.setLayoutProperty(layerId, "icon-size", [
         "match",
         ["id"], // get the feature id (make sure your data has an id set or use generateIds for GeoJSON sources
         e.features[0].id,
@@ -291,30 +364,30 @@ export default class extends Controller {
 
       this.clickedId = null;
       // console.log("Clicked ID", this.clickedId);
-      this.#selectDateEventPopUp();
+      this.#selectDateEventPopUp(); // Must ON BACK!
     });
   }
 
-  #clickRemoveEvent(source, defaultSize) {
+  #clickRemoveEvent(layerID, defaultSize) {
     this.map.on("click", (e) => {
       // console.log("map", e);
       if (e.defaultPrevented === false) {
-        this.#setMarkerDefault(source,defaultSize)
+        this.#setMarkerDefault(layerID, defaultSize);
       }
     });
   }
 
-  #setMarkerDefault(source,defaultSize) {
+  #setMarkerDefault(layerID, defaultSize) {
     if (this.map._popups != 0) {
       this.map._popups[0].remove();
     }
-    this.map.setLayoutProperty(source, "icon-image", ["get", "defaultIcon"]);
-    this.map.setLayoutProperty(source, "icon-size", defaultSize);
+    this.map.setLayoutProperty(layerID, "icon-image", ["get", "defaultIcon"]);
+    this.map.setLayoutProperty(layerID, "icon-size", defaultSize);
     this.clickedId = null;
   }
 
-  #clickEvent(source) {
-    this.map.on("click", source, (e) => {
+  #clickEvent(layerId) {
+    this.map.on("click", layerId, (e) => {
       e.preventDefault();
       // console.log(this.clickedId);
       this.map.getCanvas().style.cursor = "pointer";
@@ -322,7 +395,7 @@ export default class extends Controller {
       if (e.features) {
         this.clickedId = e.features[0].id;
         // console.log(this.clickedId);
-        this.map.setLayoutProperty(source, "icon-image", [
+        this.map.setLayoutProperty(layerId, "icon-image", [
           "match",
           ["id"], // get the feature id (make sure your data has an id set or use generateIds for GeoJSON sources
           e.features[0].id,
@@ -345,7 +418,7 @@ export default class extends Controller {
           .setDOMContent(popupNode)
           .addTo(this.map);
 
-        this.#selectDateEventPopUp(source, coordinates, placeId);
+        this.#selectDateEventPopUp(layerId, coordinates, placeId);
 
         this.map.flyTo({
           center: coordinates,
@@ -354,7 +427,7 @@ export default class extends Controller {
     });
   }
 
-  #selectDateEventPopUp(source, coordinates, placeId) {
+  #selectDateEventPopUp(layerID, coordinates, placeId) {
     // Pop up date event listener (AJAX) - Add activities
     const dateEl = document.querySelector(".date");
     // console.log("date", dateEl);
@@ -411,11 +484,11 @@ export default class extends Controller {
               if (this.map._popups != 0) {
                 this.map._popups[0].remove();
               }
-              this.map.setLayoutProperty(source, "icon-image", [
+              this.map.setLayoutProperty(layerID, "icon-image", [
                 "get",
                 "defaultIcon",
               ]);
-              this.map.setLayoutProperty(source, "icon-size", 0.35);
+              this.map.setLayoutProperty(layerID, "icon-size", 0.35);
 
               //Add user selected marker here
               this.#createUserMarker(coordinates, placeId);
