@@ -31,6 +31,10 @@ class ItinerariesController < ApplicationController
   end
 
   def destroy
+    @itinerary = Itinerary.find(params[:id])
+    @itinerart.destroy
+
+    redirect_to dashboard_itineraries_path, status: :see_other
   end
 
   def plan
@@ -106,26 +110,28 @@ class ItinerariesController < ApplicationController
   end
 
   def delete
-   itinerary = Itinerary.find(params[:id])
-   @itinerary_id = params[:id]
-   @activities = Activity.where(itinerary_id: @itinerary_id)
-   @dates = (itinerary.start_date..itinerary.end_date).to_a
-   activity_id = params[:data].to_i
-   activity = Activity.find(activity_id)
-   activities_a = Activity.where(itinerary: itinerary, day: activity.day).where('event_sequence > ?', activity.event_sequence)
-   activities_a.each do |a|
+    itinerary = Itinerary.find(params[:id])
+    @itinerary_id = params[:id]
+    @activities = Activity.where(itinerary_id: @itinerary_id)
+    @dates = (itinerary.start_date..itinerary.end_date).to_a
+    activity_id = params[:data].to_i
+    activity = Activity.find(activity_id)
+    activities_a = Activity.where(itinerary: itinerary, day: activity.day).where('event_sequence > ?', activity.event_sequence)
+    activities_a.each do |a|
       a.event_sequence = a.event_sequence - 1
-   end
-   respond_to do |format|
-    if activity.destroy
+    end
+    respond_to do |format|
+      if activity.destroy
       # format.html { redirect_to restaurant_path(@restaurant) }
-      format.json # Follow the classic Rails flow and look for a create.json view
-    else
+        format.json # Follow the classic Rails flow and look for a create.json view
+      else
       # format.html { render "restaurants/show", status: :unprocessable_entity }
-      format.json # Follow the classic Rails flow and look for a create.json view
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
     end
   end
 
+  def complete
   end
 
   def summary
