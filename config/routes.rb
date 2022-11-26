@@ -21,5 +21,10 @@ Rails.application.routes.draw do
 
     resources :activities, only: [:show]
 
+
+
   end
+
+  resources :users, only: [:edit, :update]
+
 end
