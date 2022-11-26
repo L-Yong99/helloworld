@@ -7,12 +7,19 @@
     width:500px;
     height:100%;
     background-color: rgb(78, 78, 78);
-    z-index:100;
-    position:absolute;
+    z-index:2000;
+    position:fixed;
     top:0;
     left:0;
     transform: translateX(-500px);
     transition: all 0.3s ease-in-out;
+}
+
+
+
+
+.sidebar .test {
+
 }
 
 
@@ -30,7 +37,7 @@
   color: rgb(230, 230, 230); /* White text */
   font-size: 16px; /* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 15px;
 }
@@ -43,7 +50,7 @@
 
 .sidebar .info_container{
   width:420px;
-  height:750px;
+  height:730px;
   overflow: auto;
 }
 

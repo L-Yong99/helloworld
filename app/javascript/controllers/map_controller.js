@@ -91,7 +91,9 @@ export default class extends Controller {
         this.#toggleMarkers(layerId, 0.35);
 
         // Set filters
-        this.#FilterLayer(layerId, 0.35)
+        this.#FilterLayer(layerId, 0.35);
+
+        this.#something(layerId);
       });
 
     });
@@ -99,8 +101,8 @@ export default class extends Controller {
     this.#deleteActivity();
     this.#addMarkerToMap();
     this.#fitMapToMarker();
-    
-    
+
+
     const sideBarEl = document.querySelector(".sidebar")
     const closeBtnEl = document.querySelector(".close")
     console.log(closeBtnEl)
@@ -109,12 +111,19 @@ export default class extends Controller {
       sideBarEl.classList.toggle("active");
     })
 
+    this.map.doubleClickZoom.disable();
+
+
+
+
     // Lets initialize an array to store all markers for users
     this.userMarkers = [];
     this.#loadUserMarkers();
 
     // =================== end ===============================//
   }
+
+
 
 
   #FilterLayer(layerId,defaultSize) {
@@ -469,71 +478,87 @@ export default class extends Controller {
         });
 
 
-          this.map.on("click", source, () => {
-            if (sideBarEl.classList[3] === "active") {
-              console.log("hahaah");
-              const activityEl = document.querySelector(".activity")
-              console.log("test2", activityEl)
-              // console.log("to see e", e)
-              const placeId= activityEl.dataset.placeid
-              console.log(placeId);
-              const placesGeoJson = JSON.parse(this.geojsonValue);
-              console.log("please", placesGeoJson);
-              const features = placesGeoJson.features
-              console.log(placeId)
-              // console.log(placesGeoJson[0].properties.placeId)
-              console.log("feature",features[0].properties.placeId)
-              const a = features.find((element)=>{
-                return +element.properties.placeId === +placeId
-              })
-              console.log("hi", a)
+        this.map.on("click", layerId, () => {
+          if (sideBarEl.classList[3] === "active") {
+            console.log("hahaah");
+            const activityEl = document.querySelector(".activity")
+            console.log("test2", activityEl)
+            // console.log("to see e", e)
+            const placeId= activityEl.dataset.placeid
+            console.log(placeId);
+            const placesGeoJson = JSON.parse(this.geojsonValue);
+            console.log("please", placesGeoJson);
+            const features = placesGeoJson.features
+            console.log(placeId)
+            // console.log(placesGeoJson[0].properties.placeId)
+            console.log("feature",features[0].properties.placeId)
+            const a = features.find((element)=>{
+              return +element.properties.placeId === +placeId
+            })
+            console.log("hi", a)
 
-              document.getElementById("place_name").innerHTML = a.properties.name
-              document.getElementById("place_rating").innerHTML = a.properties.rating
+            document.getElementById("place_name").innerHTML = a.properties.name
+            document.getElementById("place_rating").innerHTML = a.properties.rating
 
-              document.getElementById("place_booking").innerHTML = a.properties.booking.toString()
-              if ( document.getElementById("place_booking").innerHTML === "false") {
-                document.getElementById("place_booking").innerHTML = "Open to public"
-              } else {
-                document.getElementById("place_booking").innerHTML = "Require booking"
-              }
-              document.getElementById("place_category").innerHTML = a.properties.category
-              document.getElementById("place_img").src = a.properties.image
-              document.getElementById("place_description").innerHTML = a.properties.description
+            document.getElementById("place_booking").innerHTML = a.properties.booking.toString()
+            if ( document.getElementById("place_booking").innerHTML === "false") {
+              document.getElementById("place_booking").innerHTML = "Open to public"
+            } else {
+              document.getElementById("place_booking").innerHTML = "Require booking"
+            }
+            document.getElementById("place_category").innerHTML = a.properties.category
+            document.getElementById("place_img").src = a.properties.image
+            document.getElementById("place_description").innerHTML = a.properties.description
 
-            };
-
-
-            // const placesGeoJsonActive = JSON.parse(this.geojsonValue);
-            // console.log("please", placesGeoJsonActive);
-            // const featuresActive = placesGeoJsonActive.features
-            // // console.log(placesGeoJson[0].properties.placeId)
-            // console.log("feature",featuresActive[0].properties.placeId)
-            // const b = featuresActive.find((element)=>{
-            //   return +element.properties.placeId === +placeIdActive
-            // })
-            // console.log("hi", b)
-
-            // document.getElementById("place_name").innerHTML = b.properties.name
-            // document.getElementById("place_rating").innerHTML = b.properties.rating
-
-            // document.getElementById("place_booking").innerHTML = b.properties.booking.toString()
-            // if ( document.getElementById("place_booking").innerHTML === "false") {
-            //   document.getElementById("place_booking").innerHTML = "Open to public"
-            // } else {
-            //   document.getElementById("place_booking").innerHTML = "Require booking"
-            // }
-            // document.getElementById("place_category").innerHTML = b.properties.category
-            // document.getElementById("place_img").src = b.properties.image
-            // document.getElementById("place_description").innerHTML = b.properties.description
-          });
-
-        this.map.flyTo({
-          center: coordinates,
+          };
         });
+
+        // this.map.flyTo({
+        //   center: coordinates,
+        // });
       }
     });
   }
+
+
+  #something(layerId) {
+    this.map.on("dblclick", layerId, () => {
+      console.log("hahaah");
+      const activityEl = document.querySelector(".activity")
+      console.log("test2", activityEl)
+      // console.log("to see e", e)
+      const placeId= activityEl.dataset.placeid
+      console.log(placeId);
+      const placesGeoJson = JSON.parse(this.geojsonValue);
+      console.log("please", placesGeoJson);
+      const features = placesGeoJson.features
+      console.log(placeId)
+      // console.log(placesGeoJson[0].properties.placeId)
+      console.log("feature",features[0].properties.placeId)
+      const a = features.find((element)=>{
+        return +element.properties.placeId === +placeId
+      })
+      console.log("hi", a)
+
+      document.getElementById("place_name").innerHTML = a.properties.name
+      document.getElementById("place_rating").innerHTML = a.properties.rating
+
+      document.getElementById("place_booking").innerHTML = a.properties.booking.toString()
+      if ( document.getElementById("place_booking").innerHTML === "false") {
+        document.getElementById("place_booking").innerHTML = "Open to public"
+      } else {
+        document.getElementById("place_booking").innerHTML = "Require booking"
+      }
+      document.getElementById("place_category").innerHTML = a.properties.category
+      document.getElementById("place_img").src = a.properties.image
+      document.getElementById("place_description").innerHTML = a.properties.description
+
+      const sideBarEl = document.querySelector(".sidebar")
+      sideBarEl.classList.toggle("active");
+  });
+
+  };
+
 
   #selectDateEventPopUp(layerID, coordinates, placeId) {
     // Pop up date event listener (AJAX) - Add activities
