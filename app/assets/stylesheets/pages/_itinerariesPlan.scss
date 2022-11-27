@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 // .plan-main-container{
@@ -21,10 +22,10 @@
 .grid-container {
   display: grid;
   grid-template-areas:
-    "rb rb rb rb rb sb sb"
     "mc mc mc mc mc sb sb";
+    // "mc mc mc mc mc sb sb";
   /* gap: 10px; */
-  // height:100vh;
+  height:100vh;
 }
 
 // .map{
@@ -35,8 +36,8 @@
 
 .map-container {
   // height:100%;
-  border: 3px solid red;
-  height: 83vh;
+  // border: 3px solid red;
+  height: 100vh;
   width: 74vw;
   position: relative;
 }
@@ -102,9 +103,9 @@
 }
 
 .side-bar {
-  border: 3px solid green;
+  // border: 3px solid green;
   padding: 20px;
-  height: 98vh;
+  height: 100vh;
   width: 25vw;
 }
 

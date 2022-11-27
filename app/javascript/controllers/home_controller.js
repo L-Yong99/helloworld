@@ -9,7 +9,7 @@ export default class extends Controller {
       console.log("Window inner height", window.innerHeight);
 
       //Country 1
-      if (window.scrollY > 800) {
+      if (window.scrollY > 100) {
         const country1ImgEl = document
           .querySelector(".country-img-1")
           .classList.add("active");
@@ -22,7 +22,7 @@ export default class extends Controller {
       }
 
       //Country 2
-      if (window.scrollY > 1400) {
+      if (window.scrollY > 1600) {
         const country1ImgEl = document
           .querySelector(".country-img-2")
           .classList.add("active");
@@ -35,7 +35,7 @@ export default class extends Controller {
       }
 
        //Country 3
-       if (window.scrollY > 2000) {
+       if (window.scrollY > 2200) {
         const country1ImgEl = document
           .querySelector(".country-img-3")
           .classList.add("active");
