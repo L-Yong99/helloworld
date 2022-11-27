@@ -120,18 +120,19 @@ transition: all 0.3s ease-in-out;
 
 .swiper-button-prev,
 .swiper-rtl .swiper-button-next {
-  top:1100px;
+  top:1200px;
   left: 70px;
   // right: auto;
   z-index: 10000;
 }
+
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
   content: "prev";
 }
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
-  top:1100px;
+  top:1200px;
   right: 70px;
   left: auto;
 }
@@ -142,5 +143,5 @@ transition: all 0.3s ease-in-out;
   transition: 0.3s opacity;
   transform: translate3d(0, 0, 0);
   z-index: 10;
-  top:1350px;
+  top:1450px;
 }

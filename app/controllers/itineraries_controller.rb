@@ -18,6 +18,7 @@ class ItinerariesController < ApplicationController
   end
 
   def create
+    @navbar = false
     date_range = params[:date]
     start_date_arr = date_range.split(' ')[0].split('-')
     end_date_arr = date_range.split(' ')[2].split('-')

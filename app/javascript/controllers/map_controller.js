@@ -23,7 +23,7 @@ export default class extends Controller {
       // Load all markers for use later
       // Add default food
       this.#addImage(
-        "https://res.cloudinary.com/duadcuueg/image/upload/v1669289929/Hello%20World/Vegan_8_1_kbpop0.png",
+        "https://res.cloudinary.com/duadcuueg/image/upload/v1669558371/Hello%20World/Vegan_8_2_n3vzc1.png",
         "default_foods"
       );
       // Add active food
@@ -45,7 +45,7 @@ export default class extends Controller {
 
       // Add default shops
       this.#addImage(
-        "https://res.cloudinary.com/duadcuueg/image/upload/v1669289929/Hello%20World/Building_8_rjxila.png",
+        "https://res.cloudinary.com/duadcuueg/image/upload/v1669558370/Hello%20World/Building_8_2_etwydr.png",
         "default_shops"
       );
       // Add active shops
