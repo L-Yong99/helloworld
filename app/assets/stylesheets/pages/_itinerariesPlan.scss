@@ -13,20 +13,25 @@
   grid-area: mc;
 }
 .side-bar {
-  grid-area: sb;
+  position: fixed;
+  right: 0;
+  background-color: rgba(235, 235, 235, 0.74);
+  z-index: 3000;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
 }
+
 .banner-container {
   grid-area: rb;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    "mc mc mc mc mc sb sb";
-    // "mc mc mc mc mc sb sb";
-  /* gap: 10px; */
-  height:100vh;
-}
+// .grid-container {
+//   // display: grid;
+//   // grid-template-areas:
+//   //   "mc mc mc mc mc sb sb";
+//     // "mc mc mc mc mc sb sb";
+//   /* gap: 10px; */
+//   height:100vh;
+// }
 
 // .map{
 //   /* margin-top:10px; */
@@ -38,7 +43,7 @@
   // height:100%;
   // border: 3px solid red;
   height: 100vh;
-  width: 74vw;
+  width: 100vw;
   position: relative;
 }
 
@@ -106,7 +111,7 @@
   // border: 3px solid green;
   padding: 20px;
   height: 100vh;
-  width: 25vw;
+  width: 24vw;
 }
 
 .banner-container {
@@ -117,7 +122,7 @@
 
 .days-container {
   height: 85%;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   padding-right: 20px;
   padding-left: 20px;
 }
@@ -178,12 +183,17 @@
 }
 
 .btn-complete {
-  background-color: rgb(83, 83, 199);
-  border-radius: 7px;
-  color: white;
-  height: 4em;
+  position: fixed;
+  background-color: rgb(97, 97, 97);
+  // border-radius: 7px;
+  color: rgb(216, 216, 216);
+  height: 5em;
   width: 8em;
   // margin-left:10px;
+  bottom: 0;
+  right: 0;
+  width: 24vw;
+
 }
 
 .btn-complete:hover {
