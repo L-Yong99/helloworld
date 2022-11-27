@@ -1,18 +1,26 @@
-<div class="main-container">
+<div class="main-container ">
   <div class="inter-container">
-    <h1 class="mb-4">Start a New Trip</h1>
-    <%= form_with url: '/itineraries', method: :post, class:"form-container", data:{ controller:"datepicker" } do |f| %>
-      <div data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%= ENV["MAPBOX_API_KEY"]%>">
-        <%= f.label :address, "Destination" , class:"myform-block"%>
-        <%= f.text_field :address, data: { address_autocomplete_target: "address" }, class:"d-none myform-block" %>
-      </div>
-      <div>
-        <%= f.label :date, "Select Date", class:"date-label"%>
+    <div class="start_gap">
+      <h1> Start a New Trip</h1>
+    </div>
+    <div class="new_form">
+      <%= form_with url: '/itineraries', method: :post, class:"form-container", data:{ controller:"datepicker" } do |f| %>
         <div>
-        <%= f.date_field :date, data:{ datepicker_target:"datePicker"}, class:"date-form" %>
         </div>
-      </div>
-      <%= f.submit "Start Planning", class:"form-submit" %>
-    <% end %>
+        <div data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%= ENV["MAPBOX_API_KEY"]%>">
+          <%= f.label :address, "Destination" , class:"myform-destination"%>
+          <%= f.text_field :address, data: { address_autocomplete_target: "address" }, class:"d-none myform-dsearch" %>
+        </div>
+        <div>
+          <%= f.label :date, "Select Date", class:"date-label"%>
+          <div>
+            <%= f.date_field :date, data:{ datepicker_target:"datePicker"}, class:"date-form" %>
+          </div>
+        </div>
+        <div class="submit_button">
+          <%= f.submit "Start Planning", class:"form-submit" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
