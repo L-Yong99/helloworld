@@ -1,7 +1,7 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
-}
+// .navbar-lewagon {
+//   justify-content: space-between;
+//   background: white;
+// }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
@@ -9,6 +9,7 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+  display: none;
 }
 
 .navbarsearch {
@@ -50,15 +51,20 @@
   padding-left:5px;
   padding-right:5px;
   border:#d9d9d9 solid 1px;
+  // background-color: transparent;
+  display: none;
 }
 
 .search-country{
   // border:none;
   border-radius:0;
-  padding-left:5px;
+  padding-left:10px;
   padding-right:5px;
   border:#d9d9d9 solid 1px;
   border-right:none;
+  background-color: transparent;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .search-submit{
@@ -67,12 +73,40 @@
   border-top-right-radius: 10px;
   width:45px;
   border:#d9d9d9 solid 1px;
-  background-color: #f65858;
+  background-color: #02020200;
   color:white;
-  border:none;
+  // border:none;
+}
+
+.search-icon.active{
+  color:rgb(34, 32, 32);
 }
 
 .navbar-nav{
   display:flex;
   gap:10px;
+}
+
+/* app/assets/stylesheets/components/_navbar.scss */
+.navbar-lewagon {
+  /* [...] */
+  justify-content: space-between;
+  background-color: transparent;
+  transition: 0.5s background-color ease;
+  position:fixed;
+  top:0;
+  width:100%;
+}
+
+.navbar-lewagon-white {
+  background-color: white;
+  z-index:1000;
+}
+
+.nav-link.inverse{
+  color:#51514f;
+}
+
+.nav-link{
+   color:rgb(226, 226, 226);
 }
