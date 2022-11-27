@@ -9,73 +9,9 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
-# require_relative "sg_food"
-# require_relative "sg_food_detail"
-# # Place.destroy_all
-
-# # # Get Singapore (Foods)
-# # require "uri"
-# # require "net/http"
-
-# API_KEY = "AIzaSyC08TpSpRDX03GSMMIdx_2lInLF4QpxfDk"
-# # lat = 1.3521
-# # lng = 103.8198
-# # radius = 100000
-# # type = "restaurant"
-
-# # url = URI("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=#{lat}%2C#{lng}&radius=#{radius}&type=#{type}&key=#{API_KEY}")
-
-# # https = Net::HTTP.new(url.host, url.port)
-# # https.use_ssl = true
-
-# # request = Net::HTTP::Get.new(url)
-
-# # response = https.request(request)
-# # puts response.read_body
-
-# def get_place_detail(place_id)
-#   url = URI("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=name%2Crating%2Creviews%2Ceditorial_summary&key=#{API_KEY}")
-
-#   https = Net::HTTP.new(url.host, url.port)
-#   https.use_ssl = true
-
-#   request = Net::HTTP::Get.new(url)
-
-#   response = https.request(request)
-#   response.read_body
-# end
-
-# def get_photo_detail(photo_ref)
-#   url = URI("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_ref}&key=#{API_KEY}")
-
-#   https = Net::HTTP.new(url.host, url.port)
-#   https.use_ssl = true
-
-#   request = Net::HTTP::Get.new(url)
-
-#   response = https.request(request)
-#   response.read_body
-# end
-
-
-# sg_food = get_food
-# sg_food_sym = sg_food.deep_symbolize_keys[:results]
-# # puts sg_food_sym.count
-# # pp = sg_food_sym[0][:photos]
-# # p pp[0][:photo_reference]
-
-# # details = []
-# # photos = []
-# # sg_food_sym.each do |result|
-# #   # details << JSON.parse(get_place_detail(result[:place_id])).deep_symbolize_keys[:result]
-# #   photos << get_photo_detail(result[:photos][0][:photo_reference])
-# #   p photos
-# #   return
-# # end
-# # # p photos
-
 puts "Start seeding......"
 
+puts "seeding users..."
 user1 = User.create!(
   email: "malcolm@gmail.com",
   first_name: "Malcolm",
@@ -85,14 +21,54 @@ user1 = User.create!(
   password: "123456"
 )
 
+puts "seeding itinieraries..."
+
+
+def get_photo_ref(country)
+  require "uri"
+  require "net/http"
+
+  url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{country}&inputtype=textquery&fields=photos&key=AIzaSyCVNGTJoSPEQ-WO0j-irTq5KwIkhB5uNco")
+
+  https = Net::HTTP.new(url.host, url.port)
+  https.use_ssl = true
+
+  request = Net::HTTP::Get.new(url)
+
+  response = https.request(request)
+  response.read_body
+end
+
+def json_to_hash(json_data)
+  data_hash = JSON.parse(json_data).deep_symbolize_keys
+end
+
+
+def get_photo_address_all(country)
+  photo_ref_json = get_photo_ref(country)
+  data_hash = json_to_hash(photo_ref_json)
+  height = data_hash[:candidates][0][:photos][0][:height]
+  width = data_hash[:candidates][0][:photos][0][:width]
+  ref = data_hash[:candidates][0][:photos][0][:photo_reference]
+  return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=#{width}&maxheight=#{height}&photo_reference=#{ref}&key=AIzaSyCVNGTJoSPEQ-WO0j-irTq5KwIkhB5uNco"
+end
+
+# image_add = get_photo_address_all("laos")
+# puts image_add
+
+
+
 itinerary1 = Itinerary.create!(
-  title: "fun camping",
+  title: "3 days fun camping in Japan",
   start_date: Date.new(2022,11,27),
   end_date: Date.new(2022,11,29),
   travel_days: 3,
   phase: "planning",
-  address: "Japan",
-  user: user1
+  image: get_photo_address_all("japan"),
+  user: user1,
+  rating: 5,
+  vote:5500,
+  address: "japan"
 )
 
 itinerary2 = Itinerary.create!(
@@ -101,8 +77,11 @@ itinerary2 = Itinerary.create!(
   end_date: Date.new(2022,11,29),
   travel_days: 3,
   phase: "planning",
-  address: "Mexico",
-  user: user1
+  image: get_photo_address_all("mexico"),
+  user: user1,
+  rating: 3,
+  vote:200,
+  address: "mexico"
 )
 itinerary3 = Itinerary.create!(
   title: "Road Trip Toad Lips",
@@ -110,8 +89,11 @@ itinerary3 = Itinerary.create!(
   end_date: Date.new(2022,11,29),
   travel_days: 3,
   phase: "planning",
-  address: "Malaysia",
-  user: user1
+  image: get_photo_address_all("malaysia"),
+  user: user1,
+  rating: 2,
+  vote:20,
+  address: "malaysia"
 )
 itinerary4 = Itinerary.create!(
   title: "School",
@@ -119,17 +101,62 @@ itinerary4 = Itinerary.create!(
   end_date: Date.new(2022,11,29),
   travel_days: 3,
   phase: "planning",
-  address: "Cambodia",
-  user: user1
+  image: get_photo_address_all("cambodia"),
+  user: user1,
+  rating: 3,
+  vote:200,
+  address: "cambodia"
 )
 itinerary5 = Itinerary.create!(
-  title: "Soul Searching",
-  start_date: Date.new(2022,11,27),
-  end_date: Date.new(2022,11,29),
+  title: "4 days in Soul Searching",
+  start_date: Date.new(2022,11,22),
+  end_date: Date.new(2022,11,25),
+  travel_days: 4,
+  phase: "planning",
+  image: get_photo_address_all("korea"),
+  user: user1,
+  rating: 5,
+  vote:4000,
+  address: "korea"
+)
+
+itinerary6 = Itinerary.create!(
+  title: "7 days in New Zealand",
+  start_date: Date.new(2022,11,8),
+  end_date: Date.new(2022,11,14),
   travel_days: 3,
   phase: "planning",
-  address: "Laos",
-  user: user1
+  image: get_photo_address_all("laos"),
+  user: user1,
+  rating: 5,
+  vote:3000,
+  address: "laos"
+)
+
+itinerary7 = Itinerary.create!(
+  title: "5 days in Spain",
+  start_date: Date.new(2022,11,11),
+  end_date: Date.new(2022,11,15),
+  travel_days: 5,
+  phase: "planning",
+  image: get_photo_address_all("spain"),
+  user: user1,
+  rating: 5,
+  vote:4000,
+  address: "spain"
+)
+
+itinerary8 = Itinerary.create!(
+  title: "3 days in Iceland",
+  start_date: Date.new(2022,11,11),
+  end_date: Date.new(2022,11,13),
+  travel_days: 3,
+  phase: "planning",
+  image: get_photo_address_all("iceland"),
+  address: "iceland",
+  user: user1,
+  rating: 5,
+  vote:8000,
 )
 
 
@@ -140,6 +167,9 @@ itinerary5 = Itinerary.create!(
 # require_relative "open_food"
 # require_relative "open_food_hash"
 ## Get place by radius funtion (returns a Geo JSON format)
+
+puts "seeding places..."
+
 def get_places_by_radius(attr ={})
   lat = attr[:lat]
   lng = attr[:lng]
@@ -165,11 +195,6 @@ end
 # food_data =  get_places_by_radius(lat:1.3521,lng:103.8198,radius:100000,kind:"foods",limit:30)
 
 # food_data_json = get_open_food # get from our file
-
-# convert json to hash
-def json_to_hash(json_data)
-  data_hash = JSON.parse(json_data).deep_symbolize_keys
-end
 
 # food_data_hash = json_to_hash(food_data_json)
 
@@ -280,7 +305,7 @@ require_relative "open_shops_hash"
 # Food Places create
 food_data_hash_filter = get_open_foods_hash
 food_data_hash_filter[:features].each do |feature|
-  puts "foods"
+  # puts "foods"
   Place.create(
     name: feature[:properties][:name],
     image: feature[:properties][:image],
@@ -297,7 +322,7 @@ end
 ## Interesting place create
 interesting_places_data_hash_filter = get_open_interesting_places_hash
 interesting_places_data_hash_filter[:features].each do |feature|
-    puts "interesting_places"
+    # puts "interesting_places"
     Place.create(
       name: feature[:properties][:name],
       image: feature[:properties][:image],
@@ -314,7 +339,7 @@ interesting_places_data_hash_filter[:features].each do |feature|
   ## Shops create
 shops_data_hash_filter = get_open_shops_hash
 shops_data_hash_filter[:features].each do |feature|
-    puts "shops"
+    # puts "shops"
     Place.create(
       name: feature[:properties][:name],
       image: feature[:properties][:image],

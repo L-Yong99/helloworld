@@ -3,6 +3,7 @@ class ItinerariesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :home]
 
   def home
+    @itineraries = Itinerary.order(vote: :desc).limit(6)
   end
 
   def index

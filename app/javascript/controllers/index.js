@@ -13,5 +13,17 @@ application.register("datepicker", DatepickerController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import HomeController from "./home_controller"
+application.register("home", HomeController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import NavbarController from "./navbar_controller"
+application.register("navbar", NavbarController)
+
+// import SwiperController from "./swiper_controller"
+// application.register("swiper", SwiperController)
+
+import TypedJsController from "./typed_js_controller"
+application.register("typed-js", TypedJsController)
