@@ -1,21 +1,25 @@
-<div class="container-index-page">
-  <h1>Hello World</h1>
-  <div class="create-button">
-    <%= link_to "new itinerary", "/itineraries/new", class: "btn btn-primary" %>
-  </div>
-
-
-  <div class="index-page-grid-container">
-    <% @itineraries.each do |itinerary| %>
-      <div class="index-page-grid-item">
-        <%= render partial: "shared/itinerarycard", locals: {itinerary: itinerary} %>
+<div class="background_index">
+  <div class="index_2">
+    <div class="container-index-page">
+      <%# <h1>Hello World</h1> %>
+      <div class="create-button">
+        <%= link_to "new itinerary", "/itineraries/new", class: "btn btn-primary" %>
       </div>
-    <% end %>
 
+
+      <div class="index-page-grid-container">
+        <% @itineraries.each do |itinerary| %>
+          <div class="index-page-grid-item">
+            <%= render partial: "shared/itinerarycard", locals: {itinerary: itinerary} %>
+          </div>
+        <% end %>
+
+      </div>
+
+
+
+    </div>
   </div>
-
-
-
 </div>
 
-<%= render "shared/footer" %>
+<%# <%= render "shared/footer" %>
