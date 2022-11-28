@@ -21,6 +21,15 @@ user1 = User.create!(
   password: "123456"
 )
 
+user2 = User.create!(
+  email: "lincoln@gmail.com",
+  first_name: "lincoln",
+  last_name: "flora",
+  gender: "female",
+  country: "japan",
+  password: "123456"
+)
+
 puts "seeding itinieraries..."
 
 
