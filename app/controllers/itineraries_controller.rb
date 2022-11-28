@@ -139,6 +139,7 @@ class ItinerariesController < ApplicationController
   end
 
   def summary
+    @itinerary = Itinerary.find(params[:id])
   end
 
   def dashboard
