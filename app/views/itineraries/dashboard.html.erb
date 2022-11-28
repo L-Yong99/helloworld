@@ -1,10 +1,26 @@
+<link
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+   integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+   crossorigin="anonymous"
+  />
+
+
+
 <div class="container-dashbox-page">
-  <div class="create-button">
+  <%# <div class="create-button">
     <%= link_to "new itinerary", "/itineraries/new", class: "btn btn-primary" %>
-  </div>
+  <%# </div> %>
 
 
   <div class="dashboard-page-grid-container">
+    <form action="/itineraries/new">
+          <button class="no_border" type="submit"> <div class ="container_card_dashed">
+      <div class="plus_button">
+        <i class="fa-solid fa-circle-plus"></i>
+      </div>
+    </div> </button>
+    </form>
+
     <% @myitineraries.each do |itinerary| %>
         <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
     <% end %>

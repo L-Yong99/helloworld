@@ -10,6 +10,33 @@ $bright-color: #fff;
   box-sizing: border-box;
 }
 
+
+.container_card_dashed {
+  width: 300px;
+  height: 420px;
+  position: relative;
+  // box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
+  border: dashed 4px rgb(184, 184, 184);
+  border-radius: 8px;
+}
+
+.container_card_dashed:hover {
+  border: dashed 4px rgb(122, 122, 122);
+  .plus_button {
+    color: rgb(122, 122, 122);
+  }
+
+}
+
+.plus_button {
+  text-align: center;
+  padding: 173px 0;
+  color: rgb(184, 184, 184);
+  font-size: 47px;
+
+}
+
+
 .container_card {
 
  background: url("https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
