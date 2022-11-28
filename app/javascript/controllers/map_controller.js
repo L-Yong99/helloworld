@@ -85,7 +85,7 @@ export default class extends Controller {
         this.#clickEvent(layerId);
 
         // Initialize click remove event
-        this.#clickRemoveEvent(layerId, 0.35);
+        // this.#clickRemoveEvent(layerId, 0.35);
 
         // Set toggle marker
         this.#toggleMarkers(layerId, 0.35);
