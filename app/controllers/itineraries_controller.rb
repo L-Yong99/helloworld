@@ -191,8 +191,9 @@ class ItinerariesController < ApplicationController
   end
 
   def dashboard
-    @myitineraries = Itinerary.where(user:current_user)
-    @currentUser = current_user.id
+    @myitineraries = Itinerary.where(user: current_user)
+    @inplan = @myitineraries.where(phase: "in plan")
+    @completed = @myitineraries.where(phase: "completed")
     # raise
   end
 
