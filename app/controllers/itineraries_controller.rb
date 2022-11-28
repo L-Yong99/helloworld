@@ -140,10 +140,12 @@ class ItinerariesController < ApplicationController
 
   def summary
     @itinerary = Itinerary.find(params[:id])
+
   end
 
   def dashboard
     @myitineraries = Itinerary.where(user:current_user)
+    @currentUser = current_user.id
     # raise
   end
 
