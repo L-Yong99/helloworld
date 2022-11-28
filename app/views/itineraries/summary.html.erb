@@ -1,9 +1,9 @@
 <div class="container">
   <div class="bannertitle">
     <div class="summary_header" >
-      <h1>New Zealand</h1>
-      <h5>The 14 days Grand Tour</h5>
-      <h6><p>By Tigo' Beaties</p></h6>
+      <h1><%= @itinerary.address %></h1>
+      <h5><%= @itinerary.title %></h5>
+      <h6><p>By <%= @itinerary.user.first_name %></p></h6>
     </div>
     <div class="summary_img_banner">
       <img
@@ -29,9 +29,26 @@
   </div>
 
 
-  <div class="activity_container">
+  <%# <div class="activity_container"> %>
+  <div class="daily_activity_text">
     <h3>Daily Activities</h3>
-    <p>Day 1</p>
+     <p>Day 1</p>
+  </div>
+  <div class="activity_container">
+    <div class="daily_activity">
+      <div class="place_thumbnail">
+        <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+      </div>
+      <div class="place_summary">
+        <h4>Description</h4>
+        <h6 id>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis hendrerit dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam non dolor lectus. Aliquam convallis finibus fringilla. Sed malesuada augue eu eleifend volutpat.</h6>
+      </div>
+    </div>
+  </div>
+
+<br><br>
+
+  <div class="activity_container">
     <div class="daily_activity">
       <div class="place_thumbnail">
         <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
@@ -43,7 +60,19 @@
     </div>
   </div>
 
+<br><br>
 
+  <div class="activity_container">
+    <div class="daily_activity">
+      <div class="place_thumbnail">
+        <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+      </div>
+      <div class="place_summary">
+        <h4>Description</h4>
+        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis hendrerit dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam non dolor lectus. Aliquam convallis finibus fringilla. Sed malesuada augue eu eleifend volutpat.</h6>
+      </div>
+    </div>
+  </div>
 
-
+<br><br><br>
 </div>

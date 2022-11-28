@@ -17,17 +17,24 @@
      <h6><%= itinerary.title %></h6>
      <p>by <b><%= itinerary.user.first_name %></b></p>
 
-       <div class="container_buttons">
-        <button type="button" class="btn button-74">edit</button>
-        <button type="button" class="btn button-75">show</button>
-        <button type="button" class="btn button-75">delete</button>
+      <div class="container_buttons">
+        <form action="/itineraries/1/plan">
+          <button class="btn button-74" type="submit">edit</button>
+        </form>
+        <form action="/itineraries/1/summary">
+          <button class="btn button-75" type="submit">show</button>
+        </form>
+        <form action="/itineraries/1/delete">
+          <button class="btn button-75" type="submit">delete</button>
+        </form>
       </div>
     </div>
   </div>
 
 
 
-
-
-
-</div>
+        <%# <%= link to "edit", "/itineraries/plan",  class: "btn button-74"
+        <%# <button type="button" class="btn button-74">edit</button> %>
+        <%# <button class="btn btn-complete" type="submit"> complete </button>
+        <button type="button" class="btn button-75">show</button>
+        <button type="button" class="btn button-75">delete</button> %>
