@@ -10,23 +10,29 @@
   <%# <div class="create-button">
     <%= link_to "new itinerary", "/itineraries/new", class: "btn btn-primary" %>
   <%# </div> %>
+  <div class="in_plan_container">
+    <h1>Ongoing</h1>
+    <div class="dashboard-page-grid-container">
+      <form action="/itineraries/new">
+            <button class="no_border" type="submit"> <div class ="container_card_dashed">
+        <div class="plus_button">
+          <i class="fa-solid fa-circle-plus"></i>
+        </div>
+      </div> </button>
+      </form>
 
-
-  <div class="dashboard-page-grid-container">
-    <form action="/itineraries/new">
-          <button class="no_border" type="submit"> <div class ="container_card_dashed">
-      <div class="plus_button">
-        <i class="fa-solid fa-circle-plus"></i>
-      </div>
-    </div> </button>
-    </form>
-
-    <% @myitineraries.each do |itinerary| %>
-        <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
-    <% end %>
-
+      <% @inplan.each do |itinerary| %>
+          <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+      <% end %>
+    </div>
   </div>
 
-
-
+  <div class="completed_container">
+    <h1>Completed</h1>
+    <div class="dashboard-page-grid-container">
+      <% @completed.each do |itinerary| %>
+          <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+      <% end %>
+    </div>
+  </div>
 </div>
