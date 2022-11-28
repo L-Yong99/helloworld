@@ -122,7 +122,10 @@ class ItinerariesController < ApplicationController
     activity = Activity.find(activity_id)
     activities_a = Activity.where(itinerary: itinerary, day: activity.day).where('event_sequence > ?', activity.event_sequence)
     activities_a.each do |a|
-      a.event_sequence = a.event_sequence - 1
+      # a.event_sequence = a.event_sequence - 1
+      event_sequence = a.event_sequence - 1
+      a.update(event_sequence:event_sequence)
+      a.save
     end
     respond_to do |format|
       if activity.destroy
@@ -134,6 +137,50 @@ class ItinerariesController < ApplicationController
       end
     end
   end
+
+  def sort
+    itinerary = Itinerary.find(params[:id])
+    @itinerary_id = params[:id]
+    activities = Activity.where(itinerary_id: @itinerary_id)
+    @dates = (itinerary.start_date..itinerary.end_date).to_a
+    sort_hash = json_to_hash(params[:data])
+    p_from = sort_hash[:p_from]
+    p_to = sort_hash[:p_to]
+    e_from = sort_hash[:e_from]
+    e_to = sort_hash[:e_to]
+
+    ## Get the activity that was sorted
+    activity_selected = activities.find_by(day:p_from,event_sequence:e_from )
+
+    ## Reduce all event seqence from day by 1
+    activity_from = activities.where(day:p_from).where('event_sequence > ?', e_from)
+    activity_from.each do |a|
+      event_sequence = a.event_sequence - 1
+      a.update(event_sequence:event_sequence)
+      a.save
+    end
+
+    ## increment all event sequence to day by 1
+    activity_to = activities.where(day:p_to).where('event_sequence >= ?', e_to)
+    activity_to.each do |a|
+      event_sequence = a.event_sequence + 1
+      a.update(event_sequence:event_sequence)
+      a.save
+    end
+
+    ## Get acitivity that is sorted
+    activity_selected.update(day: p_to, event_sequence:e_to,date: @dates[p_to - 1])
+    activity_selected.save
+
+    ## Get updated activites for the day
+    @activities = Activity.where(itinerary_id: @itinerary_id)
+    respond_to do |format|
+     format.json # Follow the classic Rails flow and look for a create.json view
+    end
+  end
+
+
+
 
   def complete
   end

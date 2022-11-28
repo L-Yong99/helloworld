@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :plan
       post :plan, to: 'itineraries#save'
       post :delete, to: 'itineraries#delete'
+      post :sort, to: 'itineraries#sort'
       get :summary
 
     end
