@@ -95,26 +95,20 @@ export default class extends Controller {
 
         this.#something(layerId);
       });
-
     });
 
     this.#deleteActivity();
     this.#addMarkerToMap();
     this.#fitMapToMarker();
 
-
-    const sideBarEl = document.querySelector(".sidebar")
-    const closeBtnEl = document.querySelector(".close")
-    console.log(closeBtnEl)
-    closeBtnEl.addEventListener('click',()=>{
-
+    const sideBarEl = document.querySelector(".sidebar");
+    const closeBtnEl = document.querySelector(".close");
+    console.log(closeBtnEl);
+    closeBtnEl.addEventListener("click", () => {
       sideBarEl.classList.toggle("active");
-    })
+    });
 
     this.map.doubleClickZoom.disable();
-
-
-
 
     // Lets initialize an array to store all markers for users
     this.userMarkers = [];
@@ -123,32 +117,29 @@ export default class extends Controller {
     // =================== end ===============================//
   }
 
+  #FilterLayer(layerId, defaultSize) {
+    const filterEl = document.querySelector(".filter-container");
+    const divEl = document.createElement("div");
 
+    divEl.setAttribute("for", layerId);
+    divEl.classList.add("filter-element");
+    divEl.textContent = this.symbolsIdStore[this.index];
+    filterEl.insertAdjacentElement("beforeend", divEl);
+    this.index = this.index + 1;
+    console.log(filterEl);
 
-
-  #FilterLayer(layerId,defaultSize) {
-  const filterEl = document.querySelector(".filter-container");
-        const divEl = document.createElement("div");
-
-        divEl.setAttribute("for", layerId);
-        divEl.classList.add("filter-element")
-        divEl.textContent = this.symbolsIdStore[this.index];
-        filterEl.insertAdjacentElement("beforeend", divEl);
-        this.index = this.index + 1;
-        console.log(filterEl);
-
-        // When the checkbox changes, update the visibility of the layer.
-        divEl.addEventListener("click", (e) => {
-          const visibility = this.map.getLayoutProperty(layerId, "visibility");
-          if (visibility === "visible") {
-            this.map.setLayoutProperty(layerId, "visibility", "none");
-            divEl.classList.add("active");
-            this.#setMarkerDefault(layerId, defaultSize);
-          } else {
-            divEl.classList.remove("active");
-            this.map.setLayoutProperty(layerId, "visibility", "visible");
-          }
-        });
+    // When the checkbox changes, update the visibility of the layer.
+    divEl.addEventListener("click", (e) => {
+      const visibility = this.map.getLayoutProperty(layerId, "visibility");
+      if (visibility === "visible") {
+        this.map.setLayoutProperty(layerId, "visibility", "none");
+        divEl.classList.add("active");
+        this.#setMarkerDefault(layerId, defaultSize);
+      } else {
+        divEl.classList.remove("active");
+        this.map.setLayoutProperty(layerId, "visibility", "visible");
+      }
+    });
   }
 
   #addMultipleLayers(source) {
@@ -188,23 +179,23 @@ export default class extends Controller {
       const visibility = this.map.getLayoutProperty(layerId, "visibility");
       console.log(visibility);
 
-      const filterEls = document.querySelectorAll(".filter-element")
+      const filterEls = document.querySelectorAll(".filter-element");
       if (toggleLayerEl.classList.contains("active")) {
         this.layersIdStore.forEach((layerId) => {
           // const visibility = this.map.getLayoutProperty(layerId, "visibility");
-          this.map.setLayoutProperty(layerId, "visibility", 'visible');
+          this.map.setLayoutProperty(layerId, "visibility", "visible");
           toggleLayerEl.classList.remove("active");
-          filterEls.forEach(filterEl => filterEl.classList.remove("active"))
+          filterEls.forEach((filterEl) => filterEl.classList.remove("active"));
           this.#setMarkerDefault(layerId, defaultSize);
         });
       } else {
         this.layersIdStore.forEach((layerId) => {
-        // const visibility = this.map.getLayoutProperty(layerId, "visibility");
-        this.map.setLayoutProperty(layerId, "visibility", 'none');
-        toggleLayerEl.classList.add("active");
-        filterEls.forEach(filterEl => filterEl.classList.add("active"))
-        this.#setMarkerDefault(layerId, defaultSize);
-        })
+          // const visibility = this.map.getLayoutProperty(layerId, "visibility");
+          this.map.setLayoutProperty(layerId, "visibility", "none");
+          toggleLayerEl.classList.add("active");
+          filterEls.forEach((filterEl) => filterEl.classList.add("active"));
+          this.#setMarkerDefault(layerId, defaultSize);
+        });
       }
     });
   }
@@ -392,6 +383,8 @@ export default class extends Controller {
       // console.log("map", e);
       if (e.defaultPrevented === false) {
         this.#setMarkerDefault(layerID, defaultSize);
+        const sideBarEl = document.querySelector(".sidebar");
+        sideBarEl.classList.remove("active");
       }
     });
   }
@@ -439,78 +432,87 @@ export default class extends Controller {
 
         this.#selectDateEventPopUp(layerId, coordinates, placeId);
 
-
-        const sideBarEl = document.querySelector(".sidebar")
+        const sideBarEl = document.querySelector(".sidebar");
         const btnEl = document.querySelector(".detail");
         console.log("detail", btnEl);
 
-
         btnEl.addEventListener("click", (e) => {
-          console.log("test", e)
+          console.log("test", e);
           const placeId = e.target.dataset.placeid;
           console.log(placeId);
           const placesGeoJson = JSON.parse(this.geojsonValue);
           console.log("please", placesGeoJson);
-          const features = placesGeoJson.features
-          console.log(placeId)
+          const features = placesGeoJson.features;
+          console.log(placeId);
           // console.log(placesGeoJson[0].properties.placeId)
-          console.log("feature",features[0].properties.placeId)
-          const a = features.find((element)=>{
-            return +element.properties.placeId === +placeId
-          })
-          console.log("hi", a)
+          console.log("feature", features[0].properties.placeId);
+          const a = features.find((element) => {
+            return +element.properties.placeId === +placeId;
+          });
+          console.log("hi", a);
 
-          document.getElementById("place_name").innerHTML = a.properties.name
-          document.getElementById("place_rating").innerHTML = a.properties.rating
+          document.getElementById("place_name").innerHTML = a.properties.name;
+          document.getElementById("place_rating").innerHTML =
+            a.properties.rating;
 
-          document.getElementById("place_booking").innerHTML = a.properties.booking.toString()
-          if ( document.getElementById("place_booking").innerHTML === "false") {
-            document.getElementById("place_booking").innerHTML = "Open to public"
+          document.getElementById("place_booking").innerHTML =
+            a.properties.booking.toString();
+          if (document.getElementById("place_booking").innerHTML === "false") {
+            document.getElementById("place_booking").innerHTML =
+              "Open to public";
           } else {
-            document.getElementById("place_booking").innerHTML = "Require booking"
+            document.getElementById("place_booking").innerHTML =
+              "Require booking";
           }
-          document.getElementById("place_category").innerHTML = a.properties.category
-          document.getElementById("place_img").src = a.properties.image
-          document.getElementById("place_description").innerHTML = a.properties.description
+          document.getElementById("place_category").innerHTML =
+            a.properties.category;
+          document.getElementById("place_img").src = a.properties.image;
+          document.getElementById("place_description").innerHTML =
+            a.properties.description;
 
           sideBarEl.classList.toggle("active");
-
         });
-
 
         this.map.on("click", layerId, () => {
           if (sideBarEl.classList[3] === "active") {
             console.log("hahaah");
-            const activityEl = document.querySelector(".activity")
-            console.log("test2", activityEl)
+            const activityEl = document.querySelector(".activity");
+            console.log("test2", activityEl);
             // console.log("to see e", e)
-            const placeId= activityEl.dataset.placeid
+            const placeId = activityEl.dataset.placeid;
             console.log(placeId);
             const placesGeoJson = JSON.parse(this.geojsonValue);
             console.log("please", placesGeoJson);
-            const features = placesGeoJson.features
-            console.log(placeId)
+            const features = placesGeoJson.features;
+            console.log(placeId);
             // console.log(placesGeoJson[0].properties.placeId)
-            console.log("feature",features[0].properties.placeId)
-            const a = features.find((element)=>{
-              return +element.properties.placeId === +placeId
-            })
-            console.log("hi", a)
+            console.log("feature", features[0].properties.placeId);
+            const a = features.find((element) => {
+              return +element.properties.placeId === +placeId;
+            });
+            console.log("hi", a);
 
-            document.getElementById("place_name").innerHTML = a.properties.name
-            document.getElementById("place_rating").innerHTML = a.properties.rating
+            document.getElementById("place_name").innerHTML = a.properties.name;
+            document.getElementById("place_rating").innerHTML =
+              a.properties.rating;
 
-            document.getElementById("place_booking").innerHTML = a.properties.booking.toString()
-            if ( document.getElementById("place_booking").innerHTML === "false") {
-              document.getElementById("place_booking").innerHTML = "Open to public"
+            document.getElementById("place_booking").innerHTML =
+              a.properties.booking.toString();
+            if (
+              document.getElementById("place_booking").innerHTML === "false"
+            ) {
+              document.getElementById("place_booking").innerHTML =
+                "Open to public";
             } else {
-              document.getElementById("place_booking").innerHTML = "Require booking"
+              document.getElementById("place_booking").innerHTML =
+                "Require booking";
             }
-            document.getElementById("place_category").innerHTML = a.properties.category
-            document.getElementById("place_img").src = a.properties.image
-            document.getElementById("place_description").innerHTML = a.properties.description
-
-          };
+            document.getElementById("place_category").innerHTML =
+              a.properties.category;
+            document.getElementById("place_img").src = a.properties.image;
+            document.getElementById("place_description").innerHTML =
+              a.properties.description;
+          }
         });
 
         // this.map.flyTo({
@@ -520,45 +522,45 @@ export default class extends Controller {
     });
   }
 
-
   #something(layerId) {
     this.map.on("dblclick", layerId, () => {
       console.log("hahaah");
-      const activityEl = document.querySelector(".activity")
-      console.log("test2", activityEl)
+      const activityEl = document.querySelector(".activity");
+      console.log("test2", activityEl);
       // console.log("to see e", e)
-      const placeId= activityEl.dataset.placeid
+      const placeId = activityEl.dataset.placeid;
       console.log(placeId);
       const placesGeoJson = JSON.parse(this.geojsonValue);
       console.log("please", placesGeoJson);
-      const features = placesGeoJson.features
-      console.log(placeId)
+      const features = placesGeoJson.features;
+      console.log(placeId);
       // console.log(placesGeoJson[0].properties.placeId)
-      console.log("feature",features[0].properties.placeId)
-      const a = features.find((element)=>{
-        return +element.properties.placeId === +placeId
-      })
-      console.log("hi", a)
+      console.log("feature", features[0].properties.placeId);
+      const a = features.find((element) => {
+        return +element.properties.placeId === +placeId;
+      });
+      console.log("hi", a);
 
-      document.getElementById("place_name").innerHTML = a.properties.name
-      document.getElementById("place_rating").innerHTML = a.properties.rating
+      document.getElementById("place_name").innerHTML = a.properties.name;
+      document.getElementById("place_rating").innerHTML = a.properties.rating;
 
-      document.getElementById("place_booking").innerHTML = a.properties.booking.toString()
-      if ( document.getElementById("place_booking").innerHTML === "false") {
-        document.getElementById("place_booking").innerHTML = "Open to public"
+      document.getElementById("place_booking").innerHTML =
+        a.properties.booking.toString();
+      if (document.getElementById("place_booking").innerHTML === "false") {
+        document.getElementById("place_booking").innerHTML = "Open to public";
       } else {
-        document.getElementById("place_booking").innerHTML = "Require booking"
+        document.getElementById("place_booking").innerHTML = "Require booking";
       }
-      document.getElementById("place_category").innerHTML = a.properties.category
-      document.getElementById("place_img").src = a.properties.image
-      document.getElementById("place_description").innerHTML = a.properties.description
+      document.getElementById("place_category").innerHTML =
+        a.properties.category;
+      document.getElementById("place_img").src = a.properties.image;
+      document.getElementById("place_description").innerHTML =
+        a.properties.description;
 
-      const sideBarEl = document.querySelector(".sidebar")
+      const sideBarEl = document.querySelector(".sidebar");
       sideBarEl.classList.toggle("active");
-  });
-
-  };
-
+    });
+  }
 
   #selectDateEventPopUp(layerID, coordinates, placeId) {
     // Pop up date event listener (AJAX) - Add activities
