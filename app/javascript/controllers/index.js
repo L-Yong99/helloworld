@@ -22,8 +22,8 @@ application.register("map", MapController)
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
-// import SwiperController from "./swiper_controller"
-// application.register("swiper", SwiperController)
+import SortableController from "./sortable_controller"
+application.register("sortable", SortableController)
 
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)
