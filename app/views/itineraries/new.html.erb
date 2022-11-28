@@ -13,8 +13,9 @@
         </div>
         <div>
           <%= f.label :date, "Select Date", class:"date-label"%>
-          <div>
-            <%= f.date_field :date, data:{ datepicker_target:"datePicker"}, class:"date-form" %>
+          <div class="date-input">
+          <i class="fa-regular fa-calendar-days date-icon"></i>
+            <%= f.date_field :date, placeholder: "Select Date", data:{ datepicker_target:"datePicker"}, class:"date-form" %>
           </div>
         </div>
         <div class="submit_button">

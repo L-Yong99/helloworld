@@ -26,7 +26,8 @@
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4);
   text-align: center;
   margin-bottom: 100px;
-
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
 }
 
 .myform-destination {
@@ -50,9 +51,13 @@
 
 .date-form {
   margin-top: 3px !important;
+  width:240px;
 // width:100%;
-// height:2.3rem;
+height:36px;
 // margin-bottom:30px;
+padding-left: 35px;
+border:1px solid black !important;
+border-radius:2px;
 }
 
 .form-submit {
@@ -70,3 +75,34 @@
 .form-submit:hover {
   background-color: rgb(61, 61, 61);
 }
+
+.date-input{
+  position: relative;
+
+}
+
+.date-icon{
+position:absolute;
+color:#757575;
+top:50%;
+transform:translateY(-50%);
+left: 130px;
+}
+
+
+.mapboxgl-ctrl-geocoder--input{
+border:1px solid black !important;
+border-radius:2px;
+}
+
+.mapboxgl-ctrl-geocoder--input:active,
+.mapboxgl-ctrl-geocoder--input:focus
+{
+  outline: none !important;
+  }
+
+.date-form:active,
+.date-form:focus
+{
+  outline: none !important;
+  }
