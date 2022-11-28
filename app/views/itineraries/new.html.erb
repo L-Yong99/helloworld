@@ -5,8 +5,10 @@
     </div>
     <div class="new_form">
       <%= form_with url: '/itineraries', method: :post, class:"form-container", data:{ controller:"datepicker" } do |f| %>
-        <div>
-        </div>
+        <%# <div class="title-container"> %>
+          <%= f.label :address, "Trip Title" , class:"title-label"%>
+          <%= f.text_field :title, class:"title-input" %>
+        <%# </div> %>
         <div data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%= ENV["MAPBOX_API_KEY"]%>">
           <%= f.label :address, "Destination" , class:"myform-destination"%>
           <%= f.text_field :address, data: { address_autocomplete_target: "address" }, class:"d-none myform-dsearch" %>
@@ -14,7 +16,7 @@
         <div>
           <%= f.label :date, "Select Date", class:"date-label"%>
           <div class="date-input">
-          <i class="fa-regular fa-calendar-days date-icon"></i>
+            <i class="fa-regular fa-calendar-days date-icon"></i>
             <%= f.date_field :date, placeholder: "Select Date", data:{ datepicker_target:"datePicker"}, class:"date-form" %>
           </div>
         </div>

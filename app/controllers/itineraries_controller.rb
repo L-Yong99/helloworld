@@ -19,6 +19,7 @@ class ItinerariesController < ApplicationController
 
   def create
     @navbar = false
+    title =  params[:title]
     date_range = params[:date]
     start_date_arr = date_range.split(' ')[0].split('-')
     end_date_arr = date_range.split(' ')[2].split('-')
@@ -26,7 +27,8 @@ class ItinerariesController < ApplicationController
     end_date = Date.new(end_date_arr[0].to_i,end_date_arr[1].to_i,end_date_arr[2].to_i)
     travel_days = (end_date - start_date).to_i + 1
     address = params[:address].downcase
-    itinerary = Itinerary.new(start_date:start_date,end_date:end_date,address:address,travel_days:travel_days)
+    image = get_photo_address_all(address)
+    itinerary = Itinerary.new(title: title,start_date:start_date,end_date:end_date,address:address,travel_days:travel_days, image:image,vote:0,rating:0)
     itinerary.user = current_user
     itinerary.save
     redirect_to plan_itinerary_path(itinerary)
@@ -145,5 +147,37 @@ class ItinerariesController < ApplicationController
   end
 
   def search
+  end
+
+
+  private
+
+  def get_photo_ref(country)
+    require "uri"
+    require "net/http"
+
+    url = URI("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=#{country}&inputtype=textquery&fields=photos&key=#{ENV['GOOGLE_API']}")
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(url)
+
+    response = https.request(request)
+    response.read_body
+  end
+
+  def json_to_hash(json_data)
+    data_hash = JSON.parse(json_data).deep_symbolize_keys
+  end
+
+
+  def get_photo_address_all(country)
+    photo_ref_json = get_photo_ref(country)
+    data_hash = json_to_hash(photo_ref_json)
+    height = data_hash[:candidates][0][:photos][0][:height]
+    width = data_hash[:candidates][0][:photos][0][:width]
+    ref = data_hash[:candidates][0][:photos][0][:photo_reference]
+    return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=#{width}&maxheight=#{height}&photo_reference=#{ref}&key=AIzaSyCVNGTJoSPEQ-WO0j-irTq5KwIkhB5uNco"
   end
 end
