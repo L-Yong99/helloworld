@@ -3,17 +3,21 @@ class ItinerariesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :home]
 
   def home
+    @navbar = true
     @itineraries = Itinerary.order(vote: :desc).limit(6)
   end
 
   def index
+    @navbar = true
     @itineraries = Itinerary.all
   end
 
   def show
+    @navbar = true
   end
 
   def new
+    @navbar = true
     @itinerary = Itinerary.new
   end
 
@@ -97,6 +101,7 @@ class ItinerariesController < ApplicationController
       place = Place.find(data_hash[:place_id])
       itinerary = Itinerary.find(data_hash[:itinerary_id])
       @activity = Activity.new(data_hash)
+      @activity.status = "pending"
       @activity.place = place
       @activity.itinerary = itinerary
       @activity.save
@@ -199,11 +204,14 @@ class ItinerariesController < ApplicationController
   end
 
   def summary
+    @navbar = true
     @itinerary = Itinerary.find(params[:id])
 
   end
 
   def dashboard
+    @navbar = true
+    @currentUser = current_user.id
     @myitineraries = Itinerary.where(user: current_user)
     @inplan = @myitineraries.where(phase: "in plan")
     @review = @myitineraries.where(phase: "require review")

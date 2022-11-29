@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get :search
     end
 
-    resources :activities, only: [:show]
+    resources :activities, only: [:show, :create, :update]
 
 
 
