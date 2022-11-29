@@ -1,0 +1,12 @@
+<div class="activity" data-placeId=<%= "#{place.id}"%>></div>
+<h4><%= place.name %></h4>
+<img class="info-image" src="<%= place.image %>" alt="places">
+<div class="text-box">
+  <%= place.description %>
+</div>
+<% if activity.status == "pending" %>
+  <div><button class="add-review">Add Review</button></div>
+<% else %>
+  <div><button class="add-review">View Review</button>
+    <button class="edit-review">Edit Review</button></div>
+<% end %>

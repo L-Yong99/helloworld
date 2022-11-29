@@ -19,11 +19,17 @@ application.register("home", HomeController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import MapdayController from "./mapday_controller"
+application.register("mapday", MapdayController)
+
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
 import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
+
+import StarRatingController from "./star_rating_controller"
+application.register("star-rating", StarRatingController)
 
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)
