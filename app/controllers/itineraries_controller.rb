@@ -122,10 +122,8 @@ class ItinerariesController < ApplicationController
     when "require review"
       redirect_to summary_itinerary_path(@itinerary)
     when "completed"
-      redirect_to itineraries_path
+      redirect_to review_itinerary_path(@itinerary)
     end
-
-
   end
 
   def delete
@@ -214,6 +212,10 @@ class ItinerariesController < ApplicationController
   end
 
   def search
+  end
+
+  def review
+    @itinerary = Itinerary.find(params[:id])
   end
 
 
