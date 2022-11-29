@@ -116,7 +116,14 @@ class ItinerariesController < ApplicationController
   def update
     @itinerary = Itinerary.find(params[:id])
     @itinerary.update!(phase: params[:phase])
-    redirect_to plan_itinerary_path(@itinerary)
+    case params[:phase]
+    when "ongoing"
+      redirect_to plan_itinerary_path(@itinerary)
+    when "require review"
+      redirect_to summary_itinerary_path(@itinerary)
+    when "completed"
+      redirect_to itineraries_path
+    end
 
 
   end
