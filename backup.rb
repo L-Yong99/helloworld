@@ -17,3 +17,36 @@
   <%= hidden_field_tag 'data','none', class:"data-hidden-2"  %>
   <%= f.submit "submit", class:"submit-hidden-2 d-none" %>
 <% end %> %>
+
+
+
+<div class="day-activities-container">
+  <h4 class="activity-day-date"><strong><%= @date_day.strftime("%A, %B %d") %></strong></h4>
+  <% @activities_done.each_with_index do |activity,i| %>
+    <div class="activity-day" >
+      <div class="activity-col">
+        <div class="marker-container">
+          <img class="activity-marker" src="/assets/greenmarker-day.png" alt="">
+          <div><%= i+1 %></div>
+        </div>
+        <div>
+          <h6><%= i+1 %>. <%= activity.place.name %></h6>
+        </div>
+        <div class="review-details">
+          <img src="" alt="">
+          <p class="activity-decription"><%= activity.place.description %></p>
+          <% 3.times do |a| %>
+            <i class="fa-solid fa-star"></i>
+          <% end %>
+          <% 2.times do |a| %>
+            <i class="fa-regular fa-star"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%# <div class="center-line">
+<%# <a href="#" class="scroll-icon"></a> %>
+<%#  </div> %>

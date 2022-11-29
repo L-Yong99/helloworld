@@ -1,0 +1,35 @@
+// Filter container for map
+.mapday-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  gap:15px;
+  width:fit-content;
+  position:absolute;
+  top: 20px;
+  left: 80px;
+}
+
+.mapday-filter-container div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 100vw;
+  padding: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 1000;
+  font-size: 1rem;
+  padding-left:15px;
+  padding-right:15px;
+  cursor: pointer;
+}
+
+.mapday-filter-container div:hover {
+  opacity: 0.7;
+}
+
+.mapday-filter-container div.active {
+  opacity: 0.7;
+}

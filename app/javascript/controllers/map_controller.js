@@ -114,6 +114,22 @@ export default class extends Controller {
     this.userMarkers = [];
     this.#loadUserMarkers();
 
+    //Dates side bar
+    const ddLabel = document.querySelector(".dropdown-label")
+    ddLabel.addEventListener("click", (e) => {
+      document.querySelector(".dates-dropdown").classList.toggle("d-none")
+    })
+
+    const closeEl = document.querySelector(".dates-sidebar .close")
+    closeEl.addEventListener("click", (e) => {
+      document.querySelector(".dates-sidebar").classList.remove("active")
+    })
+
+    const openEl = document.querySelector(".toggle-sidebar")
+    openEl.addEventListener("click", (e) => {
+      document.querySelector(".dates-sidebar").classList.add("active")
+    })
+
     // =================== end ===============================//
   }
 

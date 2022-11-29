@@ -1,0 +1,28 @@
+<h4 class="activity-day-date"><strong><%= @date_day.strftime("%A, %B %d") %></strong></h4>
+<div class="wrapper">
+  <% index = 0%>
+  <% @activities_done.each_with_index do |activity,i|%>
+    <div class="row row-1">
+      <section>
+        <i class="icon fas fa-2xl number"><strong><%= i+1 %></strong></i>
+        <div class="details">
+          <span class="title"><%= activity.place.name %></span>
+        </div>
+        <% activity.reviews.each_with_index do |review,i|%>
+          <% unless review.photo.key.nil? %>
+            <%= cl_image_tag review.photo.key, class:"review-image"%>
+          <% end %>
+          <p><%= review.comment %></p>
+          <p class="user-name"><em>by <%= review.user.first_name %></em></p>
+        <% end %>
+        <div class="bottom">
+          <a href="#">View Review</a>
+        </div>
+      </section>
+    </div>
+    <% index = index + 1%>
+  <% end %>
+  <div class="center-line" style=<%="height:#{(index-1)*50}%;"%>>
+    <%# <a href="#" class="scroll-icon"></a> %>
+  </div>
+</div>

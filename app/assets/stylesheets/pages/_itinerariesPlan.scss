@@ -47,7 +47,7 @@
   position: relative;
 }
 
-.toggle-icons {
+.toggle-sidebar {
   border-radius: 100%;
   width: 50px;
   height: 50px;
@@ -61,6 +61,22 @@
   cursor: pointer;
   top: 15px;
   left: 20px;
+}
+
+.toggle-icons {
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 1000;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  top: 15px;
+  left: 85px;
 }
 
 .toggle-icons:hover {
@@ -81,7 +97,7 @@
   width:fit-content;
   position:absolute;
   top: 20px;
-  left: 80px;
+  left: 150px;
 }
 
 .filter-container div {
@@ -122,7 +138,7 @@
 
 .days-container {
   height: 85%;
-  // overflow-y: scroll;
+  overflow-y: scroll;
   padding-right: 20px;
   padding-left: 20px;
 }
@@ -218,4 +234,12 @@
   background-color: rgb(203, 193, 193);
   opacity: 0.7;
   color: rgb(15, 14, 14);
+}
+
+.mapday-container {
+  // height:100%;
+  // border: 3px solid red;
+  height: 100vh;
+  width: 70vw;
+  position: relative;
 }

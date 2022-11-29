@@ -6,6 +6,32 @@
   cursor: pointer;
 }
 
+.marker-red{
+  background-image: url("redmarker-day");
+  background-size: cover;
+  height:50px;
+  width:50px;
+  cursor: pointer;
+  // position:relative;
+}
+
+.marker-number{
+position:absolute;
+font-weight: bold;
+font-size:1rem;
+top:10px;
+left:20px;
+}
+
+.marker-green{
+  background-image: url("greenmarker-day");
+  background-size: cover;
+  height:50px;
+  width:50px;
+  cursor: pointer;
+  // position:relative;
+}
+
 // .toggle-icons{
 //   border-radius:100%;
 //   width:30px;

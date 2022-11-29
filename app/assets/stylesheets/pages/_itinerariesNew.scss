@@ -53,7 +53,7 @@ border-bottom-right-radius: 15px;
   margin-top: 3px !important;
   width:240px;
 // width:100%;
-height:36px;
+height:40px;
 // margin-bottom:30px;
 padding-left: 35px;
 border:1px solid black !important;
@@ -119,7 +119,7 @@ border-radius:2px;
   margin-top: 3px !important;
   width:240px;
 // width:100%;
-height:36px;
+height:38px;
 // margin-bottom:30px;
 padding-left: 15px;
 border:1px solid black !important;
@@ -135,4 +135,9 @@ border-radius:2px;
 
 .form-container{
   padding-top:15px;
+}
+
+.mapboxgl-ctrl-geocoder--input{
+padding-left:35px !important;
+font-size:1rem !important;
 }
