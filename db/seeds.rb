@@ -21,6 +21,15 @@ user1 = User.create!(
   password: "123456"
 )
 
+user2 = User.create!(
+  email: "lincoln@gmail.com",
+  first_name: "lincoln",
+  last_name: "flora",
+  gender: "female",
+  country: "japan",
+  password: "123456"
+)
+
 puts "seeding itinieraries..."
 
 
@@ -63,7 +72,7 @@ itinerary1 = Itinerary.create!(
   start_date: Date.new(2022,11,27),
   end_date: Date.new(2022,11,29),
   travel_days: 3,
-  phase: "planning",
+  phase: "in plan",
   image: get_photo_address_all("japan"),
   user: user1,
   rating: 5,
@@ -76,7 +85,7 @@ itinerary2 = Itinerary.create!(
   start_date: Date.new(2022,11,27),
   end_date: Date.new(2022,11,29),
   travel_days: 3,
-  phase: "planning",
+  phase: "in plan",
   image: get_photo_address_all("mexico"),
   user: user1,
   rating: 3,
@@ -88,7 +97,7 @@ itinerary3 = Itinerary.create!(
   start_date: Date.new(2022,11,27),
   end_date: Date.new(2022,11,29),
   travel_days: 3,
-  phase: "planning",
+  phase: "in plan",
   image: get_photo_address_all("malaysia"),
   user: user1,
   rating: 2,
@@ -100,7 +109,7 @@ itinerary4 = Itinerary.create!(
   start_date: Date.new(2022,11,27),
   end_date: Date.new(2022,11,29),
   travel_days: 3,
-  phase: "planning",
+  phase: "in plan",
   image: get_photo_address_all("cambodia"),
   user: user1,
   rating: 3,
@@ -112,7 +121,7 @@ itinerary5 = Itinerary.create!(
   start_date: Date.new(2022,11,22),
   end_date: Date.new(2022,11,25),
   travel_days: 4,
-  phase: "planning",
+  phase: "in plan",
   image: get_photo_address_all("korea"),
   user: user1,
   rating: 5,
@@ -125,7 +134,7 @@ itinerary6 = Itinerary.create!(
   start_date: Date.new(2022,11,8),
   end_date: Date.new(2022,11,14),
   travel_days: 3,
-  phase: "planning",
+  phase: "in plan",
   image: get_photo_address_all("laos"),
   user: user1,
   rating: 5,
@@ -138,7 +147,7 @@ itinerary7 = Itinerary.create!(
   start_date: Date.new(2022,11,11),
   end_date: Date.new(2022,11,15),
   travel_days: 5,
-  phase: "planning",
+  phase: "completed",
   image: get_photo_address_all("spain"),
   user: user1,
   rating: 5,
@@ -151,7 +160,7 @@ itinerary8 = Itinerary.create!(
   start_date: Date.new(2022,11,11),
   end_date: Date.new(2022,11,13),
   travel_days: 3,
-  phase: "planning",
+  phase: "completed",
   image: get_photo_address_all("iceland"),
   address: "iceland",
   user: user1,
@@ -159,6 +168,18 @@ itinerary8 = Itinerary.create!(
   vote:8000,
 )
 
+itinerary9 = Itinerary.create!(
+  title: "10 days in Japan",
+  start_date: Date.new(2022,11,10),
+  end_date: Date.new(2022,11,20),
+  travel_days: 10,
+  phase: "require review",
+  image: get_photo_address_all("japan"),
+  address: "japan",
+  user: user1,
+  rating: 5,
+  vote:8000,
+)
 
 
 # sg_food_detail_sym = get_food_detail

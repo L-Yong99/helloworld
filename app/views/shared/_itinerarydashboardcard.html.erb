@@ -8,6 +8,7 @@
     <span><i class="fas fa-thumbs-up"></i>2350</span>
    </div>
   <div class="container__profile">
+    <p class="phase"><%= itinerary.phase %></p>
     <img
      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
      alt="country or city of travel"
@@ -19,20 +20,20 @@
 
       <div class="container_buttons d-flex justify-content-start">
         <div class="pe-1">
-          <form action="/itineraries/1/plan">
+          <form class="form_button" action=<%="/itineraries/#{current_user.id}/plan"%>>
             <button class="btn button-74" type="submit">edit</button>
           </form>
         </div>
-        <div class="pe-1">
-          <form action="/itineraries/1/summary">
-            <button class="btn button-75" type="submit">show</button>
+        <div class="">
+          <form action=<%="/itineraries/#{current_user.id}/summary"%>>
+            <button class="btn button-75" type="submit">detail</button>
           </form>
-        </div class="">
-        <div>
+        </div>
+        <%# <div>
           <form action="/itineraries/1/delete">
             <button class="btn button-75" type="submit">delete</button>
           </form>
-        </div>
+        </div> %>
       </div>
     </div>
   </div>

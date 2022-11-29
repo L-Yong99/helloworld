@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "itineraries#home"
 
-  resources :itineraries, only: [:index, :new, :create, :show, :destroy] do
+  resources :itineraries do
 
     member do
       get :home
