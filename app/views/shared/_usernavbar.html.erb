@@ -35,6 +35,7 @@
           <% end %>
 
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href=<%= "/" %>>home</a>
             <a class="dropdown-item" href=<%="/itineraries/dashboard"%>>Dashboard</a>
             <%= link_to "Setting", edit_user_path(current_user), class:"dropdown-item"%>
             <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
