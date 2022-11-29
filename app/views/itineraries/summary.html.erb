@@ -12,6 +12,23 @@
       />
     </div>
   </div>
+  
+    <% if @itinerary.phase == "in plan" %>
+    <%= button_to "start trip", itinerary_path(@itinerary),  method: :patch, class:"summary_btn", params: {phase: 'ongoing'} %>
+  <% end %>
+
+  <% if @itinerary.phase == "ongoing" %>
+    <%= button_to "view", plan_itinerary_path(@itinerary), method: :get, class:"summary_btn" %>
+    <%= button_to "end", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'require review'}%>
+  <% end %>
+
+  <% if @itinerary.phase == "require review" %>
+    <%= button_to "trip review", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'completed'}%>
+  <% end %>
+
+  <% if @itinerary.phase == "completed" %>
+    <%= button_to "edit review", itineraries_path, method: :get, class:"summary_btn" %>
+  <% end %>
 
   <div class="album_heading">
     <h2>Your memories</h2>
@@ -52,9 +69,6 @@
     </figure>
   </div>
 
-
-
-<%#
   <div class="summary_body">
     <div class="user_notes">
       <h3>Creator Notes</h3>

@@ -113,6 +113,21 @@ class ItinerariesController < ApplicationController
     end
   end
 
+  def update
+    @itinerary = Itinerary.find(params[:id])
+    @itinerary.update!(phase: params[:phase])
+    case params[:phase]
+    when "ongoing"
+      redirect_to plan_itinerary_path(@itinerary)
+    when "require review"
+      redirect_to summary_itinerary_path(@itinerary)
+    when "completed"
+      redirect_to itineraries_path
+    end
+
+
+  end
+
   def delete
     itinerary = Itinerary.find(params[:id])
     @itinerary_id = params[:id]
@@ -193,6 +208,7 @@ class ItinerariesController < ApplicationController
   def dashboard
     @myitineraries = Itinerary.where(user: current_user)
     @inplan = @myitineraries.where(phase: "in plan")
+    @review = @myitineraries.where(phase: "require review")
     @completed = @myitineraries.where(phase: "completed")
     # raise
   end
