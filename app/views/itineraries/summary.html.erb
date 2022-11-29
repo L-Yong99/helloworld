@@ -12,7 +12,7 @@
       />
     </div>
   </div>
-  
+
     <% if @itinerary.phase == "in plan" %>
     <%= button_to "start trip", itinerary_path(@itinerary),  method: :patch, class:"summary_btn", params: {phase: 'ongoing'} %>
   <% end %>
@@ -27,7 +27,7 @@
   <% end %>
 
   <% if @itinerary.phase == "completed" %>
-    <%= button_to "edit review", itineraries_path, method: :get, class:"summary_btn" %>
+    <%= button_to "edit review", review_itinerary_path(@itinerary), method: :get, class:"summary_btn" %>
   <% end %>
 
   <div class="album_heading">
@@ -82,7 +82,7 @@
       <h3>Pros and Cons</h3>
       <p>Extremely scenic but not child friendly. Very few things for kids to do. </p>
     </div>
-  </div> %>
+  </div>
 
 
   <%# <div class="activity_container"> %>
