@@ -15,12 +15,20 @@
 
 
   <% if @itinerary.phase == "in plan" %>
-    <%= button_to "start trip", itinerary_path(@itinerary), method: :patch, params: {phase: 'ongoing'}%>
+    <%= button_to "start trip", itinerary_path(@itinerary),  method: :patch, class:"summary_btn", params: {phase: 'ongoing'} %>
   <% end %>
 
   <% if @itinerary.phase == "ongoing" %>
-    <%= button_to "view", itinerary_path(@itinerary), method: :patch, params: {phase: 'in plan'}%>
-    <%= button_to "end", itinerary_path(@itinerary), method: :patch, params: {phase: 'in plan'}%>
+    <%= button_to "view", plan_itinerary_path(@itinerary), method: :get, class:"summary_btn" %>
+    <%= button_to "end", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'require review'}%>
+  <% end %>
+
+  <% if @itinerary.phase == "require review" %>
+    <%= button_to "trip review", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'completed'}%>
+  <% end %>
+
+  <% if @itinerary.phase == "completed" %>
+    <%= button_to "edit review", itineraries_path, method: :get, class:"summary_btn" %>
   <% end %>
 
 
