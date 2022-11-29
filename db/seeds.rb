@@ -168,6 +168,18 @@ itinerary8 = Itinerary.create!(
   vote:8000,
 )
 
+itinerary9 = Itinerary.create!(
+  title: "10 days in Japan",
+  start_date: Date.new(2022,11,10),
+  end_date: Date.new(2022,11,20),
+  travel_days: 10,
+  phase: "require review",
+  image: get_photo_address_all("japan"),
+  address: "japan",
+  user: user1,
+  rating: 5,
+  vote:8000,
+)
 
 
 # sg_food_detail_sym = get_food_detail

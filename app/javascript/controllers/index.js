@@ -25,5 +25,8 @@ application.register("navbar", NavbarController)
 import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
 
+import SummaryController from "./summary_controller"
+application.register("summary", SummaryController)
+
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)

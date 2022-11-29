@@ -30,6 +30,9 @@
   <div class="completed_container">
     <h1>Completed</h1>
     <div class="dashboard-page-grid-container">
+      <% @review.each do |itinerary| %>
+          <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+      <% end %>
       <% @completed.each do |itinerary| %>
           <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
       <% end %>

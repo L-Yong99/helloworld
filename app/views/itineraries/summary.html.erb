@@ -13,6 +13,20 @@
     </div>
   </div>
 
+
+  <% if @itinerary.phase == "in plan" %>
+    <%= button_to "start trip", itinerary_path(@itinerary), method: :patch, params: {phase: 'ongoing'}%>
+  <% end %>
+
+  <% if @itinerary.phase == "ongoing" %>
+    <%= button_to "view", itinerary_path(@itinerary), method: :patch, params: {phase: 'in plan'}%>
+    <%= button_to "end", itinerary_path(@itinerary), method: :patch, params: {phase: 'in plan'}%>
+  <% end %>
+
+
+
+
+
   <div class="summary_body">
     <div class="user_notes">
       <h3>Creator Notes</h3>
