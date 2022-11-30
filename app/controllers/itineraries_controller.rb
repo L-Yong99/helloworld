@@ -8,12 +8,12 @@ class ItinerariesController < ApplicationController
   end
 
   def index
-    @navbar = true
+    @navbar = "others"
     @itineraries = Itinerary.all
   end
 
   def show
-    @navbar = true
+    @navbar = "others"
   end
 
   def new
@@ -206,7 +206,35 @@ class ItinerariesController < ApplicationController
   def summary
     @navbar = "others"
     @itinerary = Itinerary.find(params[:id])
+    start_date = @itinerary.start_date
+    end_date = @itinerary.end_date
+    date_arr = (start_date..end_date).to_a
+    @dates_all = date_arr
+    @dates = date_arr
+    @activities = Activity.where(itinerary: @itinerary)
+    @activities_completed = @activities.where(status: "updated").limit(5)
 
+    # debugger
+  end
+
+  def filter
+    day = params[:date].to_i
+    @itinerary = Itinerary.find(params[:id])
+    start_date = @itinerary.start_date
+    end_date = @itinerary.end_date
+    date_arr = (start_date..end_date).to_a
+    @dates_all = date_arr
+
+    if day == 0
+      @dates = date_arr
+    else
+      @dates = date_arr.slice(day-1,1)
+    end
+    @activities = Activity.where(itinerary: @itinerary)
+    respond_to do |format|
+      format.json # Follow the classic Rails flow and look for a create.json view
+    end
+# debugger
   end
 
   def dashboard

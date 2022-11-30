@@ -24,9 +24,11 @@
           </form>
         </div>
         <div class="pe-1">
-          <form action="/itineraries/1/summary">
+
+        <%= link_to "show", itinerary_path(itinerary), class:"btn button-75" %>
+          <%# <form action="/itineraries/1/summary">
             <button class="btn button-75" type="submit">show</button>
-          </form>
+          </form> %>
         </div class="">
         <div>
           <form action="/itineraries/1/delete">

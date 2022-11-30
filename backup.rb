@@ -50,3 +50,47 @@
 <%# <div class="center-line">
 <%# <a href="#" class="scroll-icon"></a> %>
 <%#  </div> %>
+
+
+
+
+
+
+<% @dates.each_with_index do |date,i| %>
+  <h3 class="summary-day-date">Day <%= i+1 %>: <%= date.strftime("%A, %B %d") %></h3>
+  <% @activities_day = @activities.where(date: date)%>
+  <% @activities_day.each_with_index do |activity,j| %>
+    <% if activity.status == "updated"%>
+      <% reviews = activity.reviews.where(user: current_user) %>
+      <div class="activity_container">
+        <div class="daily_activity">
+          <div class="place_thumbnail">
+            <% if reviews.count == 0 %>
+              <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+            <% else %>
+              <%= cl_image_tag reviews[0].photo.key, class:"review-image"%>
+            <% end %>
+          </div>
+          <div class="place_summary">
+            <div class="place-summary-title d-flex .justify-content-between">
+              <h4 class="activity-place"><%= activity.place.name %></h4>
+              <h4 class="activity-date"><%= activity.date.strftime("%b %d")  %></h4>
+            </div>
+            <% reviews.each do |review| %>
+              <h6><%= review.comment %></h6>
+              <h6>by <%= review.user.first_name %></h6>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  <% end %>
+<% end %>
+
+
+<select name="date" class="summary-date">
+<option value="">--All Days--</option>
+<%= @dates.each_with_index do |date,i| %>
+  <option class="day" data-date="<%= date %>" value="<%= i + 1 %>" >Day <%=i + 1%> (<%= date%>)</option>
+<% end %>
+</select>
