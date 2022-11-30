@@ -41,11 +41,19 @@
     </div>
     <div class="summary_images_container">
       <figure>
-       <% if @activities_completed[0].reviews.count == 0 %>
-          <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+        <% if @activities_completed[0].nil? %>
+          <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">
         <% else %>
-          <%= cl_image_tag @activities_completed[0].reviews[0].photo.key, class:"review-image"%>
+          <% if @activities_completed[0].reviews[0].photo.key.nil? %>
+          <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">
+          <% else %>
+          <%= cl_image_tag @activities_completed[0].reviews[0].photo.key, class:"review-image" %>
+          <% end %>
         <% end %>
+
+
+
+
         <%# <img src="https://assets.codepen.io/12005/windmill.jpg" alt="A windmill" /> %>
         <%# <form action="/itineraries/new">
           <button class="add_image_no_border" type="submit"> <div class ="container_card_dashed">
@@ -56,43 +64,43 @@
         </form> %>
       </figure>
       <figure class="landscape">
-        <% if @activities_completed[1].reviews.count == 0 %>
-          <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
-        <% else %>
-          <%= cl_image_tag @activities_completed[1].reviews[0].photo.key, class:"review-image"%>
+        <% if @activities_completed[1].nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
+          <% if @activities_completed[1].reviews[0].photo.key.nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
+          <%= cl_image_tag @activities_completed[1].reviews[0].photo.key, class:"review-image" %>
+          <% end %>
         <% end %>
-        <%# <img src="https://assets.codepen.io/12005/suspension-bridge.jpg" alt="The Clifton Suspension Bridge" /> %>
       </figure>
       <figure>
-         <% if @activities_completed[2].reviews.count == 0 %>
-          <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
-        <% else %>
-          <%= cl_image_tag @activities_completed[2].reviews[0].photo.key, class:"review-image"%>
+         <% if @activities_completed[2].nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
+          <% if @activities_completed[2].reviews[0].photo.key.nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
+          <%= cl_image_tag @activities_completed[2].reviews[0].photo.key, class:"review-image" %>
+          <% end %>
         <% end %>
-        <%# <img src="https://assets.codepen.io/12005/sunset.jpg" alt="Sunset and boats" /> %>
       </figure>
       <figure>
-        <% if @activities_completed[3].reviews.count == 0 %>
-          <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
-        <% else %>
-          <%= cl_image_tag @activities_completed[3].reviews[0].photo.key, class:"review-image"%>
+       <% if @activities_completed[3].nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
+          <% if @activities_completed[3].reviews[0].photo.key.nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
+          <%= cl_image_tag @activities_completed[3].reviews[0].photo.key, class:"review-image" %>
+          <% end %>
         <% end %>
-        <%# <img src="https://assets.codepen.io/12005/snowy.jpg" alt="a river in the snow" /> %>
       </figure>
       <figure class="landscape">
-        <% if @activities_completed[4].reviews.count == 0 %>
-          <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
-        <% else %>
-          <%= cl_image_tag @activities_completed[4].reviews[0].photo.key, class:"review-image"%>
+        <% if @activities_completed[4].nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
+          <% if @activities_completed[4].reviews[0].photo.key.nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
+          <%= cl_image_tag @activities_completed[4].reviews[0].photo.key, class:"review-image" %>
+          <% end %>
         <% end %>
-        <%# <img src="https://assets.codepen.io/12005/bristol-balloons1.jpg" alt="a single checked balloon" /> %>
       </figure>
       <figure>
         <%# <img src="https://assets.codepen.io/12005/dog-balloon.jpg" alt="a hot air balloon shaped like a dog" /> %>
-
-
-
-
           <%# <button class="add_image_no_border" type="submit"> %>
           <%=  link_to "/itineraries/new" do %>
             <div class ="add_image_container_card_dashed">
@@ -122,7 +130,16 @@
   </div>
 
   <div class="summary-right">
-
+    <div class="booking-checklist-container">
+    <div class="booking-checklist-title"><h5>Booking Checklist</h5></div>
+    <ul>
+      <li class="checkbox">
+        <input class="checkbox-spin" type="checkbox" id="check4"/>
+        <label for="check4"><span></span>Spin Me</label>
+      </li>
+    </ul>
+    </div>
+    <div class="prepare-checklist-container"></div>
   </div>
 
 
