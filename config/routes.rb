@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       get :summary
       post :summary, to: 'itineraries#filter'
       post :bookingcheck, to: 'itineraries#bookingcheck'
+      post :addlist, to: 'itineraries#addlist'
+      post :addlistcheck, to: 'itineraries#addlistcheck'
+      post :listdelete, to: 'itineraries#listdelete'
       get :review
     end
 

@@ -135,14 +135,14 @@
       <div class="booking-checklist-title"><h5>Booking Checklist</h5></div>
       <div class="booking-checklist-content">
         <ul>
-          <% @activities_with_booking.each do |activity| %>
+          <% @activities_with_booking.each_with_index do |activity,i| %>
             <li class="booking-checklist-checkbox">
               <% if activity.booking == "pending" %>
-                <input value=<%= activity.id %> class="booking-checkbox-input" type="checkbox" id="check1"/>
+                <input value=<%= activity.id %> class="booking-checkbox-input" type="checkbox" id=<%= "check#{i}" %> />
               <% else %>
-               <input value=<%= activity.id %> class="booking-checkbox-input" checked type="checkbox" id="check1"/>
+               <input value=<%= activity.id %> class="booking-checkbox-input" checked type="checkbox" id=<%= "check#{i}" %> />
               <% end %>
-              <label class="booking-checkbox-input"for="check1">
+              <label class="booking-checkbox-input"for=<%= "check#{i}" %> >
                 <h6><%= activity.place.name %></h6>
                 <h6><%= activity.date %></h6>
               </label>
@@ -151,16 +151,47 @@
        </ul>
       </div>
     </div>
-    <div class="prepare-checklist-container"></div>
+
+    <div class="prepare-checklist-container">
+      <div class="prepare-checklist-title"><h5>To-do List</h5></div>
+      <div class="add-bar-container">
+        <%= form_with url: "/itineraries/#{@itinerary.id}/addlist", method: :get, class: "add-form" do |f|%>
+          <%= f.text_field :todo, placeholder:"Add to do", class:"add-list" %>
+          <%= button_tag type: 'submit', class: "add-submit" do %>
+            <i class="fa-solid fa-plus add-icon"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="prepare-checklist-content">
+          <ul class="prepare-checklist">
+            <%= render "itineraries/todolist", locals: {todolist: @todolist} %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
 
+  <%# booking AJAX form %>
   <%= form_with url: "/itineraries/#{@itinerary.id}/bookingcheck", method: :post, class:"booking-form" do |f| %>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
      <%= hidden_field_tag 'data','none', class:"booking-data-hidden"  %>
     <%= f.submit "submit", class:"booking-submit d-none" %>
   <% end %>
+
+    <%# to-do AJAX Form %>
+    <%= form_with url: "/itineraries/#{@itinerary.id}/addlistcheck", method: :post, class:"todo-form" do |f| %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag 'data','none', class:"todo-data-hidden"  %>
+      <%= f.submit "submit", class:"todo-submit d-none" %>
+    <% end %>
+
+       <%# to-do delete AJAX Form %>
+    <%= form_with url: "/itineraries/#{@itinerary.id}/listdelete", method: :post, class:"todo-delete-form" do |f| %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag 'data','none', class:"todo-deletedata-hidden"  %>
+      <%= f.submit "submit", class:"todo-delete-submit d-none" %>
+    <% end %>
 
 
   <%# <div class="activity_container"> %>

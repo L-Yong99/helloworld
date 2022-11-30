@@ -234,7 +234,10 @@ class ItinerariesController < ApplicationController
     @total_require_bookings_count = @activities.joins(:place).where("places.booking = ? ", true).count
     @activities_with_booking = @activities.joins(:place).where("places.booking = ? ", true)
     @activities_with_booking_pending = Activity.where(booking: "pending")
-# raise
+
+    # Get to do
+    @todolist = List.where(itinerary: @itinerary)
+    @todolist_count = @todolist.count
   end
 
   def filter
@@ -287,8 +290,51 @@ class ItinerariesController < ApplicationController
         format.json # Follow the classic Rails flow and look for a create.json view
       end
     end
+  end
 
-    # debugger
+  def addlist
+    content = params[:todo]
+    @itinerary = Itinerary.find(params[:id])
+    new_list = List.new(content: content, status: "pending")
+    new_list.itinerary = @itinerary
+    respond_to do |format|
+      if new_list.save
+        @todolist = List.where(itinerary: @itinerary)
+        @todolist_count = @todolist.count
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
+    end
+  end
+
+  def addlistcheck
+    @itinerary = Itinerary.find(params[:id])
+    todo_data = JSON.parse(params[:data])
+    list = List.find(todo_data[0])
+    if todo_data[1] == true
+      list.update(status: 'updated')
+    else
+      list.update(status: 'pending')
+    end
+    respond_to do |format|
+      if list.save
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
+    end
+  end
+
+  def listdelete
+    @itinerary = Itinerary.find(params[:id])
+    todo_data = params[:data].to_i
+    mylist = List.find(todo_data)
+    respond_to do |format|
+      if mylist.destroy
+        @todolist = List.where(itinerary: @itinerary)
+        @todolist_count = @todolist.count
+        # debugger
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
+    end
+
   end
 
 

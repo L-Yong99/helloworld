@@ -94,3 +94,17 @@
   <option class="day" data-date="<%= date %>" value="<%= i + 1 %>" >Day <%=i + 1%> (<%= date%>)</option>
 <% end %>
 </select>
+
+
+<% @todolist.each do |todo| %>
+  <li class="prepare-checklist-checkbox">
+  <% if todo.status == 'pending' %>
+   <input value=<%= activity.id %> class="prepare-checkbox-input" type="checkbox" id="check1"/>
+  <% else %>
+   <input value=<%= activity.id %> checked class="prepare-checkbox-input" type="checkbox" id="check1"/>
+  <% end %>
+    <label class="prepare-checkbox-input"for="check1">
+      <h6><%= todo.content %></h6>
+    </label>
+  </li>
+<% end %>
