@@ -214,6 +214,7 @@ class ItinerariesController < ApplicationController
     @currentUser = current_user.id
     @myitineraries = Itinerary.where(user: current_user)
     @inplan = @myitineraries.where(phase: "in plan")
+    @ongoing = @myitineraries.where(phase: "ongoing")
     @review = @myitineraries.where(phase: "require review")
     @completed = @myitineraries.where(phase: "completed")
     # raise

@@ -20,12 +20,12 @@
 
       <div class="container_buttons d-flex justify-content-start">
         <div class="pe-1">
-          <form class="form_button" action=<%="/itineraries/#{current_user.id}/plan"%>>
+          <form class="form_button" action=<%="/itineraries/#{itinerary.id}/plan"%>>
             <button class="btn button-74" type="submit">edit</button>
           </form>
         </div>
         <div class="">
-          <form action=<%="/itineraries/#{current_user.id}/summary"%>>
+          <form action=<%="/itineraries/#{itinerary.id}/summary"%>>
             <button class="btn button-75" type="submit">detail</button>
           </form>
         </div>
