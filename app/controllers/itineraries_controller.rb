@@ -14,6 +14,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @navbar = true
+    @itinerary = Itinerary.find(params[:id])
   end
 
   def new
