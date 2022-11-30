@@ -4,7 +4,6 @@
     <% day_index = @dates_all.index(date) %>
     <h3 class="summary-day-date">Day <%= day_index+1 %>: <%= date.strftime("%A, %B %d") %></h3>
     <% @activities_day.each_with_index do |activity,j| %>
-      <% if activity.status == "updated"%>
         <% reviews = activity.reviews.where(user: current_user) %>
         <div class="activity_container">
           <div class="daily_activity">
@@ -31,6 +30,5 @@
             </div>
           </div>
         </div>
-        <% end %>
     <% end %>
   <% end %>

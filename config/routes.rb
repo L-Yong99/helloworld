@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post :sort, to: 'itineraries#sort'
       get :summary
       post :summary, to: 'itineraries#filter'
+      post :bookingcheck, to: 'itineraries#bookingcheck'
       get :review
     end
 
