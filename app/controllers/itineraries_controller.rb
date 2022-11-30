@@ -11,6 +11,7 @@ class ItinerariesController < ApplicationController
   def index
     @navbar = "others"
     @itineraries = Itinerary.all
+    @allcompleted = @itineraries.where(phase: "completed")
   end
 
   def show
@@ -137,7 +138,7 @@ class ItinerariesController < ApplicationController
     case params[:phase]
     when "ongoing"
       @itinerary.update!(phase: params[:phase])
-      redirect_to plan_itinerary_path(@itinerary)
+      redirect_to itinerary_activity_path(@itinerary, 1)
     when "require review"
       @itinerary.update!(phase: params[:phase])
       redirect_to summary_itinerary_path(@itinerary)

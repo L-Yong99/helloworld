@@ -21,10 +21,10 @@
       </div> </button>
       </form>
       <% @ongoing.each do |itinerary| %>
-          <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+          <%= render partial: "shared/itinerarycard", locals: {itinerary: itinerary} %>
       <% end %>
       <% @inplan.each do |itinerary| %>
-          <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+          <%= render partial: "shared/itinerarycard", locals: {itinerary: itinerary} %>
       <% end %>
     </div>
   </div>
@@ -33,10 +33,10 @@
     <h1>Completed</h1>
     <div class="dashboard-page-grid-container">
       <% @review.each do |itinerary| %>
-          <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+          <%= render partial: "shared/itinerarycard", locals: {itinerary: itinerary} %>
       <% end %>
       <% @completed.each do |itinerary| %>
-          <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+          <%= render partial: "shared/itinerarycard", locals: {itinerary: itinerary} %>
       <% end %>
     </div>
   </div>

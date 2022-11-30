@@ -3,11 +3,29 @@
    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
    crossorigin="anonymous"
   />
-<div class="container_card">
-   <div class="container__info">
-    <span><i class="fas fa-thumbs-up"></i>2350</span>
-   </div>
+<%# working copy %>
+<% if itinerary.phase == "completed" %>
+  <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
+      <div class="carousel-content">
+          <span><i class="fas fa-thumbs-up"></i><p><%= itinerary.vote %></p></span>
+      </div>
+      <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
+      <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
+    </div>
+<% else %>
+  <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="background-image:url('https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80')"></div>
+      <div class="carousel-content">
+          <span><i class="fas fa-thumbs-up"></i><p>0</p></span>
+      </div>
+    </div>
+<% end %>
+
   <div class="container__profile">
+    <p class="phase"><%= itinerary.phase %></p>
     <img
      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
      alt="country or city of travel"
@@ -19,32 +37,21 @@
 
       <div class="container_buttons d-flex justify-content-start">
         <div class="pe-1">
-          <form action="/itineraries/1/plan">
+          <form class="form_button" action=<%="/itineraries/#{itinerary.id}/plan"%>>
             <button class="btn button-74" type="submit">edit</button>
           </form>
         </div>
-        <div class="pe-1">
-
-          <%= link_to "show", itinerary_path(itinerary), class:"btn button-75" %>
-          <%# <form action="/itineraries/1/show">
-
-            <button class="btn button-75" type="submit">show</button>
-          </form> %>
-        </div class="">
-        <div>
+        <div class="">
+          <form action=<%="/itineraries/#{itinerary.id}/summary"%>>
+            <button class="btn button-75" type="submit">detail</button>
+          </form>
+        </div>
+        <%# <div>
           <form action="/itineraries/1/delete">
             <button class="btn button-75" type="submit">delete</button>
           </form>
-        </div>
+        </div> %>
       </div>
     </div>
   </div>
 </div>
-
-
-
-        <%# <%= link to "edit", "/itineraries/plan",  class: "btn button-74"
-        <%# <button type="button" class="btn button-74">edit</button> %>
-        <%# <button class="btn btn-complete" type="submit"> complete </button>
-        <button type="button" class="btn button-75">show</button>
-        <button type="button" class="btn button-75">delete</button> %>
