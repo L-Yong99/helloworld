@@ -30,6 +30,15 @@ user2 = User.create!(
   password: "123456"
 )
 
+user3 = User.create!(
+  email: "janlosthisphone@gmail.com",
+  first_name: "jan",
+  last_name: "ross",
+  gender: "male",
+  country: "america",
+  password: "123456"
+)
+
 puts "seeding itinieraries..."
 
 
@@ -78,7 +87,7 @@ itinerary1 = Itinerary.create!(
   image: get_photo_address_all("japan"),
   user: user1,
   rating: 5,
-  vote:5500,
+  vote:3500,
   address: "japan"
 )
 
@@ -153,7 +162,7 @@ itinerary7 = Itinerary.create!(
   image: get_photo_address_all("spain"),
   user: user1,
   rating: 5,
-  vote:4000,
+  vote:2727,
   address: "spain"
 )
 
@@ -183,6 +192,57 @@ itinerary9 = Itinerary.create!(
   vote:8000,
 )
 
+itinerary10 = Itinerary.create!(
+  title: "2 amazing America days",
+  start_date: Date.new(2022,12,10),
+  end_date: Date.new(2022,12,12),
+  travel_days: 2,
+  phase: "completed",
+  image: get_photo_address_all("america"),
+  user: user2,
+  rating: 5,
+  vote:3200,
+  address: "america"
+)
+
+itinerary11 = Itinerary.create!(
+  title: "Fun days in Singapore",
+  start_date: Date.new(2022,10,1),
+  end_date: Date.new(2022,10,5),
+  travel_days: 5,
+  phase: "completed",
+  image: get_photo_address_all("singapore"),
+  user: user2,
+  rating: 5,
+  vote:5500,
+  address: "singapore"
+)
+
+itinerary12 = Itinerary.create!(
+  title: "2 amazing America days",
+  start_date: Date.new(2022,8,4),
+  end_date: Date.new(2022,8,7),
+  travel_days: 3,
+  phase: "completed",
+  image: get_photo_address_all("indonesia"),
+  user: user3,
+  rating: 5,
+  vote:9500,
+  address: "indonesia"
+)
+
+itinerary13 = Itinerary.create!(
+  title: "thai trip with the boys",
+  start_date: Date.new(2022,9,12),
+  end_date: Date.new(2022,9,18),
+  travel_days: 6,
+  phase: "completed",
+  image: get_photo_address_all("thailand"),
+  user: user3,
+  rating: 5,
+  vote:500,
+  address: "thailand"
+)
 
 # sg_food_detail_sym = get_food_detail
 # p sg_food_detail_sym[0]

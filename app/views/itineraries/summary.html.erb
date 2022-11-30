@@ -21,7 +21,7 @@
   <% end %>
 
   <% if @itinerary.phase == "ongoing" %>
-    <%= button_to "view", plan_itinerary_path(@itinerary), method: :get, class:"summary_btn" %>
+    <%= button_to "view",  itinerary_activity_path(@itinerary, 1), method: :get, class:"summary_btn" %>
     <%= button_to "end", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'require review'}%>
   <% end %>
 
