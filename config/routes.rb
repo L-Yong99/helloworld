@@ -12,8 +12,8 @@ Rails.application.routes.draw do
       post :delete, to: 'itineraries#delete'
       post :sort, to: 'itineraries#sort'
       get :summary
+      post :summary, to: 'itineraries#filter'
       get :review
-
     end
 
     collection do

@@ -34,6 +34,8 @@ application.register("star-rating", StarRatingController)
 import SummaryController from "./summary_controller"
 application.register("summary", SummaryController)
 
+import SummarypageController from "./summarypage_controller"
+application.register("summarypage", SummarypageController)
 
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)
