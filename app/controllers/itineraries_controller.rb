@@ -224,7 +224,9 @@ class ItinerariesController < ApplicationController
     @activities = Activity.where(itinerary: @itinerary)
     @activities_completed = @activities.where(status: "updated").limit(5)
 
-    # debugger
+    ## Get bookings
+    activity_bookings = Activity.joins(:place).where("places.booking = ?", true)
+    # raise
   end
 
   def filter
@@ -262,6 +264,10 @@ class ItinerariesController < ApplicationController
   end
 
   def review
+  end
+
+  def bookingcheck
+    raise
   end
 
 

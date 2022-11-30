@@ -130,20 +130,23 @@
     </div>
   </div>
 
-  <div class="summary-right">
+  <div class="summary-right" data-controller="checklist" >
     <div class="booking-checklist-container">
-    <div class="booking-checklist-title"><h5>Booking Checklist</h5></div>
-    <ul>
-      <li class="checkbox">
-        <input class="checkbox-spin" type="checkbox" id="check4"/>
-        <label for="check4"><span></span>Spin Me</label>
-      </li>
-    </ul>
+      <div class="booking-checklist-title"><h5>Booking Checklist</h5></div>
+      <%= form_with url: "/itineraries/#{@itinerary.id}/bookingcheck", method: :post, class:"booking-form" do |f| %>
+        <ul>
+          <% @activity_bookings.each do |activity| %>
+            <li class="booking-checklist-checkbox">
+              <input value=<%= activity.id %> class="booking-checkbox-input" type="checkbox" id="check1"/>
+              <label class="booking-checkbox-input"for="check1"><%= activity.place.name %>/label>
+            </li>
+          <% end %>
+       </ul>
+       <%= f.submit "submit", class:"booking-submit" %>
+      <% end %>
     </div>
     <div class="prepare-checklist-container"></div>
   </div>
-
-
 </div>
 
 
