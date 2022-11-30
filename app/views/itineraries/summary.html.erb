@@ -23,7 +23,7 @@
   <% end %>
 
   <% if @itinerary.phase == "require review" %>
-    <%= button_to "trip review", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'completed'}%>
+    <%= button_to "review trip", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'completed'}%>
   <% end %>
 
   <% if @itinerary.phase == "completed" %>
