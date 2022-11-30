@@ -106,6 +106,12 @@ class ItinerariesController < ApplicationController
       @activity.status = "pending"
       @activity.place = place
       @activity.itinerary = itinerary
+      if place.booking == true
+        @activity.booking = "pending"
+      else
+        @activity.booking = "none"
+      end
+
       @activity.save
       @activities = Activity.where(itinerary_id: @itinerary_id)
       @dates = (itinerary.start_date..itinerary.end_date).to_a
@@ -225,8 +231,10 @@ class ItinerariesController < ApplicationController
     @activities_completed = @activities.where(status: "updated").limit(5)
 
     ## Get bookings
-    activity_bookings = Activity.joins(:place).where("places.booking = ?", true)
-    # raise
+    @total_require_bookings_count = @activities.joins(:place).where("places.booking = ? ", true).count
+    @activities_with_booking = @activities.joins(:place).where("places.booking = ? ", true)
+    @activities_with_booking_pending = Activity.where(booking: "pending")
+# raise
   end
 
   def filter
@@ -267,7 +275,20 @@ class ItinerariesController < ApplicationController
   end
 
   def bookingcheck
-    raise
+    booking_data = JSON.parse(params[:data])
+    activity = Activity.find(booking_data[0])
+    if booking_data[1] == true
+      activity.update(booking: 'updated')
+    else
+      activity.update(booking: 'pending')
+    end
+    respond_to do |format|
+      if activity.save
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
+    end
+
+    # debugger
   end
 
 

@@ -133,23 +133,34 @@
   <div class="summary-right" data-controller="checklist" >
     <div class="booking-checklist-container">
       <div class="booking-checklist-title"><h5>Booking Checklist</h5></div>
-      <%= form_with url: "/itineraries/#{@itinerary.id}/bookingcheck", method: :post, class:"booking-form" do |f| %>
+      <div class="booking-checklist-content">
         <ul>
-          <% @activity_bookings.each do |activity| %>
+          <% @activities_with_booking.each do |activity| %>
             <li class="booking-checklist-checkbox">
-              <input value=<%= activity.id %> class="booking-checkbox-input" type="checkbox" id="check1"/>
-              <label class="booking-checkbox-input"for="check1"><%= activity.place.name %>/label>
+              <% if activity.booking == "pending" %>
+                <input value=<%= activity.id %> class="booking-checkbox-input" type="checkbox" id="check1"/>
+              <% else %>
+               <input value=<%= activity.id %> class="booking-checkbox-input" checked type="checkbox" id="check1"/>
+              <% end %>
+              <label class="booking-checkbox-input"for="check1">
+                <h6><%= activity.place.name %></h6>
+                <h6><%= activity.date %></h6>
+              </label>
             </li>
           <% end %>
        </ul>
-       <%= f.submit "submit", class:"booking-submit" %>
-      <% end %>
+      </div>
     </div>
     <div class="prepare-checklist-container"></div>
   </div>
 </div>
 
 
+  <%= form_with url: "/itineraries/#{@itinerary.id}/bookingcheck", method: :post, class:"booking-form" do |f| %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+     <%= hidden_field_tag 'data','none', class:"booking-data-hidden"  %>
+    <%= f.submit "submit", class:"booking-submit d-none" %>
+  <% end %>
 
 
   <%# <div class="activity_container"> %>
