@@ -1,6 +1,7 @@
 class ItinerariesController < ApplicationController
   skip_before_action :verify_authenticity_token
   skip_before_action :authenticate_user!, only: [:index, :show, :home]
+  before_action :set_itinerary, only: %i[review]
 
   def home
     @navbar = "home"
@@ -14,6 +15,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @navbar = "others"
+    @itinerary = Itinerary.find(params[:id])
   end
 
   def new
@@ -120,15 +122,26 @@ class ItinerariesController < ApplicationController
 
   def update
     @itinerary = Itinerary.find(params[:id])
-    @itinerary.update!(phase: params[:phase])
+
+    unless params[:phase]
+      @itinerary.update!(itinerary_params)
+      redirect_to summary_itinerary_path(@itinerary)
+    end
+
     case params[:phase]
     when "ongoing"
+      @itinerary.update!(phase: params[:phase])
       redirect_to plan_itinerary_path(@itinerary)
     when "require review"
+      @itinerary.update!(phase: params[:phase])
       redirect_to summary_itinerary_path(@itinerary)
     when "completed"
+      @itinerary.update!(phase: params[:phase])
       redirect_to review_itinerary_path(@itinerary)
     end
+
+    # @itinerary.update!(review: params[:review], recommend: params[:recommend], pros: params[:pros], cons: params[:cons])
+    #   redirect_to summary_itinerary_path(@itinerary)
   end
 
   def delete
@@ -197,9 +210,6 @@ class ItinerariesController < ApplicationController
     end
   end
 
-
-
-
   def complete
   end
 
@@ -252,11 +262,18 @@ class ItinerariesController < ApplicationController
   end
 
   def review
-    @itinerary = Itinerary.find(params[:id])
   end
 
 
   private
+
+  def itinerary_params
+    params.require(:itinerary).permit(:review, :recommend, :pros, :cons)
+  end
+
+  def set_itinerary
+    @itinerary = Itinerary.find(params[:id])
+  end
 
   def get_photo_ref(country)
     require "uri"

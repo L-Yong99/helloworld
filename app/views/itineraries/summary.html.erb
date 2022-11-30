@@ -26,7 +26,7 @@
   <% end %>
 
   <% if @itinerary.phase == "require review" %>
-    <%= button_to "trip review", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'completed'}%>
+    <%= button_to "review trip", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'completed'}%>
   <% end %>
 
   <% if @itinerary.phase == "completed" %>
@@ -149,7 +149,19 @@
     </div>
   </div>
 
+
   <div class="summary-activity-container-main" data-controller="summarypage">
     <%= render "itineraries/summary_activities", locals: {activities: @activities,dates: @dates} %>
   </div>
+
+  <div>
+    <%= @itinerary.phase %>
+    <%= @itinerary.review %>
+    <%= @itinerary.recommend %>
+    <%= @itinerary.pros %>
+    <%= @itinerary.cons %>
+  </div>
+
+<br><br><br>
+
 </div>
