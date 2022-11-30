@@ -136,6 +136,7 @@ class ItinerariesController < ApplicationController
       @itinerary.update!(phase: params[:phase])
       redirect_to summary_itinerary_path(@itinerary)
     when "completed"
+      @itinerary.update!(phase: params[:phase])
       redirect_to review_itinerary_path(@itinerary)
     end
 
@@ -208,9 +209,6 @@ class ItinerariesController < ApplicationController
      format.json # Follow the classic Rails flow and look for a create.json view
     end
   end
-
-
-
 
   def complete
   end
