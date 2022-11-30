@@ -20,7 +20,9 @@
         </div>
       </div> </button>
       </form>
-
+      <% @ongoing.each do |itinerary| %>
+          <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
+      <% end %>
       <% @inplan.each do |itinerary| %>
           <%= render partial: "shared/itinerarydashboardcard", locals: {itinerary: itinerary} %>
       <% end %>
