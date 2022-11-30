@@ -86,6 +86,10 @@
 // }
 .dates-sidebar-container{
   margin-top:50px;
+  display:flex;
+  flex-direction: column;
+// border:2px solid red;
+// height:80%;
 }
 
 .link-block{
@@ -111,4 +115,13 @@ color:black;
 
 .dropdown-label{
   cursor: pointer;
+}
+
+.dashboard{
+position:fixed;
+bottom:0;
+padding:20px;
+background-color: grey;
+color:white;
+// text-align: center;
 }

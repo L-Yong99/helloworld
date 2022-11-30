@@ -3,7 +3,7 @@ class ItinerariesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :home]
 
   def home
-    @navbar = true
+    @navbar = "home"
     @itineraries = Itinerary.order(vote: :desc).limit(6)
   end
 
@@ -17,7 +17,7 @@ class ItinerariesController < ApplicationController
   end
 
   def new
-    @navbar = true
+    @navbar = "others"
     @itinerary = Itinerary.new
   end
 
@@ -204,13 +204,13 @@ class ItinerariesController < ApplicationController
   end
 
   def summary
-    @navbar = true
+    @navbar = "others"
     @itinerary = Itinerary.find(params[:id])
 
   end
 
   def dashboard
-    @navbar = true
+    @navbar = "others"
     @currentUser = current_user.id
     @myitineraries = Itinerary.where(user: current_user)
     @inplan = @myitineraries.where(phase: "in plan")

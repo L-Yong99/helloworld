@@ -1,8 +1,12 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon-others">
   <div class="container-fluid">
-    <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+
+   <div class="d-flex nav-left">
+      <a class="navbar-brand" href="/">
+        <%= image_tag "logo.jpeg" %>
+      </a>
+      <%= render "shared/searchbar" %>
+    </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,6 +17,9 @@
         <% if user_signed_in? %>
           <li class="nav-item active">
             <%= link_to "Home", "/", class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "My Itineraries", dashboard_itineraries_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Messages", "#", class: "nav-link" %>
