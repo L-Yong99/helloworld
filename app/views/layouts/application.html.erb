@@ -21,13 +21,22 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
-  <% if @navbar == true %>
+  <% if @navbar == "home" %>
     <% if user_signed_in? %>
-      <%= render "shared/usernavbar" %>
+      <%= render "shared/homenavbar" %>
     <% else %>
       <%= render "shared/homenavbar" %>
     <% end %>
   <% end %>
+
+  <% if @navbar == "others" %>
+    <% if user_signed_in? %>
+      <%= render "shared/navbar" %>
+    <% else %>
+      <%= render "shared/navbar" %>
+    <% end %>
+  <% end %>
+
     <%= yield %>
     <%= render "shared/flashes" %>
      <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

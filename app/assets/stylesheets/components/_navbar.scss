@@ -12,12 +12,19 @@
   display: none;
 }
 
+.navbar-lewagon .navbar-brand img.active {
+  width: 40px;
+  display: inline;
+}
+
 .navbarsearch {
   width: 30%;
 }
 
 .nav-left{
   gap:20px;
+  align-items: center;
+
 }
 
 .search-form{
@@ -96,12 +103,15 @@
   position:fixed;
   top:0;
   width:100%;
-  z-index: 9;
+  z-index: 1000000;
+  padding:10px;
+  padding-left:20px;
+  padding-right:20px;
 }
 
 .navbar-lewagon-white {
   background-color: white;
-  z-index:1000;
+  z-index:1000000;
 }
 
 .nav-link.inverse{
@@ -110,4 +120,36 @@
 
 .nav-link{
    color:rgb(226, 226, 226);
+}
+
+.navbar-lewagon-others {
+  justify-content: space-between;
+  background: white;
+  padding:10px;
+  padding-left:20px;
+  padding-right:20px;
+}
+
+.navbar-lewagon-others .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon-others .navbar-brand img {
+  width: 40px;
+}
+
+.navbar-lewagon-others .nav-left{
+  align-items: center;
+}
+
+.navbar-lewagon-others .search-icon{
+  color:black;
+}
+
+.navbar-lewagon-others .navbar-nav a{
+  color:black;
+}
+
+.navbar-lewagon-others .navbar-nav a:hover{
+  color:rgb(73, 71, 71);
 }

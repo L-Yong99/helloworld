@@ -110,7 +110,7 @@ transition: all 0.3s ease-in-out;
   width: calc(var(--swiper-navigation-size) / 44 * 27) ;
   height: var(--swiper-navigation-size);
   margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
-  z-index: 100000000;
+  // z-index: 100000000;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -123,7 +123,7 @@ transition: all 0.3s ease-in-out;
   top:1200px;
   left: 70px;
   // right: auto;
-  z-index: 10000;
+  z-index: 10;
 }
 
 .swiper-button-prev:after,
