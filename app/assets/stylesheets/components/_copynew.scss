@@ -1,0 +1,51 @@
+.copy-container{
+  width:500px;
+  height:600px;
+  position:relative;
+  text-align: center;
+}
+
+.copy-modal-overlay{
+    position:fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+.copy-modal-overlay.active {
+  opacity: 1;
+  visibility:visible;
+}
+
+.copy-modal-close-botton {
+  position:absolute;
+  top:50px;
+  right:70px;
+  cursor: pointer;
+}
+
+.copy-modal-close-botton > i {
+  color:white;
+  font-size:3rem;
+}
+
+.copy-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.copy-form-container{
+  background-color: white;
+  border-radius: 15px;
+  padding-top:30px;
+  width:480px;
+}
