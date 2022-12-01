@@ -18,6 +18,7 @@
         <%# <button class="btn btn-next">Next Day</button> %>
         <%= link_to "Next Day", "/itineraries/#{@itinerary.id}/activities/#{@day + 1}", class:"btn btn-next" %>
       <% else %>
+        <%= link_to "Next Day", "/itineraries/#{@itinerary.id}/summary/", class:"btn btn-next" %>
         <button class="btn btn-next">Complete Trip</button>
       <% end %>
     </div>
