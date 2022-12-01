@@ -11,9 +11,15 @@ $bright-color: #fff;
   box-sizing: border-box;
 }
 
+.try{
+// background-color: black;
+border: dashed 4px rgb(184, 184, 184);
+
+}
+
 .container_card_dashed {
-  width: 300px;
-  height: 420px;
+  // min-width: 800px;
+  // height: 420px;
   position: relative;
   // box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
   border: dashed 4px rgb(184, 184, 184);
@@ -155,7 +161,7 @@ $bright-color: #fff;
 }
 
 .form_button {
-  padding-left: 65px !important;
+  padding-left: 35px !important;
 }
 
 .button-75 {
@@ -175,6 +181,8 @@ $bright-color: #fff;
   // -webkit-user-select: none;
   // touch-action: manipulation;
   // justify-content: space-evenly;
+
+// max-width: 100%;
 }
 
 .button-75:hover {
@@ -182,6 +190,10 @@ $bright-color: #fff;
 }
 
 .container_buttons {
+  border: 1px solid red;
+  margin-left:0;
+  max-width: 100%;
+  // position:absolute;
   // justify-content: space-between;
   // width: 300px;
 }
@@ -219,4 +231,18 @@ $bright-color: #fff;
 
 .completed_container h1 {
   padding-bottom: 50px;
+}
+
+.itinerary-delete{
+//  position:absolute;
+ color:white;
+//  top:0;
+}
+
+.itinerary-delete-link{
+  margin:0;
+  padding:0;
+  position:absolute;
+  top:0;
+  right:0;
 }

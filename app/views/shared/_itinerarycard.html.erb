@@ -10,6 +10,9 @@
       <div class="carousel-item active" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
       <div class="carousel-content">
           <span><i class="fas fa-thumbs-up"></i><p><%= itinerary.vote %></p></span>
+          <%= link_to "/itineraries/#{itinerary.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"itinerary-delete-link" do %>
+            <i class="fa-solid fa-trash-can itinerary-delete"></i>
+          <% end %>
       </div>
       <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
       <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
@@ -19,6 +22,9 @@
     <div class="carousel-inner">
       <div class="carousel-item active" style="background-image:url('https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80')"></div>
       <div class="carousel-content">
+          <%= link_to "/itineraries/#{itinerary.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"itinerary-delete-link" do %>
+            <i class="fa-solid fa-trash-can itinerary-delete"></i>
+          <% end %>
           <span><i class="fas fa-thumbs-up"></i><p>0</p></span>
       </div>
     </div>
@@ -46,11 +52,6 @@
             <button class="btn button-75" type="submit">detail</button>
           </form>
         </div>
-        <%# <div>
-          <form action="/itineraries/1/delete">
-            <button class="btn button-75" type="submit">delete</button>
-          </form>
-        </div> %>
       </div>
     </div>
   </div>
