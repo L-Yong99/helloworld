@@ -105,18 +105,20 @@ export default class extends Controller {
     this.#fitMapToMarker();
     this.#sidebar()
 
-    // const sideBarEl = document.querySelector(".sidebar");
-    // const closeBtnEl = document.querySelector(".close");
-    // console.log(closeBtnEl);
-    // closeBtnEl.addEventListener("click", () => {
-    //   sideBarEl.classList.toggle("active");
-    // });
+    this.map.doubleClickZoom.disable();
 
-    // this.map.doubleClickZoom.disable();
+    const sideBarEl = document.querySelector(".sidebar");
+    const closeBtnEl = document.querySelector(".close");
+    console.log(closeBtnEl);
+    closeBtnEl.addEventListener("click", () => {
+      sideBarEl.classList.toggle("active");
+    });
+
+
 
     // // Lets initialize an array to store all markers for users
-    // this.userMarkers = [];
-    // this.#loadUserMarkers();
+    this.userMarkers = [];
+    this.#loadUserMarkers();
 
     // //Dates side bar
     // const ddLabel = document.querySelector(".dropdown-label")
