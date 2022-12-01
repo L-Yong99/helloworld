@@ -12,14 +12,14 @@
   <%# </div> %>
   <div class="in_plan_container">
     <h1>Ongoing</h1>
-    <div class="dashboard-page-grid-container">
-      <form action="/itineraries/new">
-            <button class="no_border" type="submit"> <div class ="container_card_dashed">
+      <div class="dashboard-page-grid-container">
+      <%= link_to new_itinerary_path do %>
+      <div class ="container_card_dashed">
         <div class="plus_button">
           <i class="fa-solid fa-circle-plus"></i>
         </div>
-      </div> </button>
-      </form>
+      </div>
+    <% end %>
       <% @ongoing.each do |itinerary| %>
           <%= render partial: "shared/itinerarycard", locals: {itinerary: itinerary} %>
       <% end %>
