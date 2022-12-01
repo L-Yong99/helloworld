@@ -25,6 +25,9 @@ application.register("map", MapController)
 import MapdayController from "./mapday_controller"
 application.register("mapday", MapdayController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 

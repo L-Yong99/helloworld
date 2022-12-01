@@ -108,3 +108,24 @@
     </label>
   </li>
 <% end %>
+
+
+<div class="background_index" style="background-image:url('https://pbs.twimg.com/media/FgR3lN1XoAE7HhY?format=jpg&name=4096x4096')">
+  <div class="backdrop_cover">
+    <div class="index_container-dashbox-page">
+      <div class="index_completed_container">
+        <h1 class="index_h1">All Itineraries</h1>
+        <div class="container">
+          <div class="gallery-grid">
+            <% @reviews.each do |review| %>
+              <%= cl_image_tag review.photo.key, class:"gallery-image"%>
+            <% end %>
+          </div>
+        </div>
+        <%# <form action="">
+          <button class="testha" type="submit"> complete </button>
+        </form> %>
+      </div>
+    </div>
+  </div>
+</div>
