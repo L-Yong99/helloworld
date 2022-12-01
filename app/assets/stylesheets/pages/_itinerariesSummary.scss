@@ -3,3 +3,17 @@
   padding: 5px;
   background-color: rgb(76, 76, 76);
 }
+
+.gallery-link{
+color:white !important;
+}
+
+.btn-gallery{
+  border-radius:100vh;
+  border:1px solid black;
+  background-color: none;
+  }
+
+  .btn-gallery:hover{
+    background-color: $hw-gray-3-hover;
+  }
