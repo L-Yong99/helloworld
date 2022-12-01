@@ -152,20 +152,6 @@ $bright-color: #fff;
 
 .button-74:hover {
   background-color: $hw-gray-3-hover;
-  border: 1.5px solid rgba(143, 143, 143, 0.4) !important;
-  border-radius: 30px;
-  cursor: pointer;
-  // display: inline-block;
-  font-weight: 40;
-  font-size: 14px;
-  padding: 0 15px;
-  line-height: 20px;
-  text-align: center;
-  // text-decoration: none;
-  // user-select: none;
-  // -webkit-user-select: none;
-  // touch-action: manipulation;
-  justify-content: space-evenly;
 }
 
 .form_button {
@@ -189,6 +175,10 @@ $bright-color: #fff;
   // -webkit-user-select: none;
   // touch-action: manipulation;
   // justify-content: space-evenly;
+}
+
+.button-75:hover {
+  background-color: $hw-gray-3-hover;
 }
 
 .container_buttons {
