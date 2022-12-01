@@ -1,12 +1,23 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="summarypage"
 export default class extends Controller {
   connect() {
-    console.log("i am summary controller")
+    console.log("i am summary controller");
 
-    this.#selectDateEventPopUp()
+    this.#selectDateEventPopUp();
 
+    const imageAddContainerEl = document.querySelector(
+      ".add_image_container_card_dashed"
+    );
+    imageAddContainerEl.addEventListener("click", (e) => {
+      const addImageEl = document.querySelector(".summary-add-image");
+
+      addImageEl.addEventListener("change", (e) => {
+        document.querySelector(".add-image-submit").click();
+      });
+      addImageEl.click();
+    });
   }
 
   #selectDateEventPopUp() {
@@ -17,7 +28,7 @@ export default class extends Controller {
     dateEl.addEventListener("change", (e) => {
       // const daysEl = document.querySelectorAll(".summary-day");
       const day = e.target.value;
-      console.log(day)
+      console.log(day);
 
       const summaryDateFormEl = document.querySelector(".summary-date-form");
 
@@ -33,14 +44,10 @@ export default class extends Controller {
           .then((data) => {
             // console.log(data);
             if (data.inserted_item) {
-              console.log(data.inserted_item)
+              console.log(data.inserted_item);
               // const daysContainerEl = document.querySelector(".days-container");
               this.element.innerHTML = "";
-              this.element.insertAdjacentHTML(
-                "beforeend",
-                data.inserted_item
-              );
-
+              this.element.insertAdjacentHTML("beforeend", data.inserted_item);
             }
             this.formTarget.outerHTML = data.form;
           });

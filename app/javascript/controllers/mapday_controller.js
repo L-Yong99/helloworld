@@ -173,6 +173,8 @@ export default class extends Controller {
     const ddLabel = document.querySelector(".dropdown-label");
     ddLabel.addEventListener("click", (e) => {
       document.querySelector(".dates-dropdown").classList.toggle("d-none");
+      document.querySelector(".cr").classList.toggle("d-none");
+      document.querySelector(".cd").classList.toggle("d-none");
     });
 
     const closeEl = document.querySelector(".dates-sidebar .close");

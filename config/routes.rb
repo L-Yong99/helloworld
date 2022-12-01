@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       post :addlist, to: 'itineraries#addlist'
       post :addlistcheck, to: 'itineraries#addlistcheck'
       post :listdelete, to: 'itineraries#listdelete'
+      post :addimage, to: 'itineraries#addimage'
+      get :gallery, to: 'itineraries#gallery'
       get :review
     end
 
@@ -32,5 +34,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:edit, :update]
+
+  # post 'new_activity/:itinerary_id/:place_id', to: 'activities#create', as: :new_activity
 
 end

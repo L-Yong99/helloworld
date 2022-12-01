@@ -102,13 +102,17 @@
       <figure>
         <%# <img src="https://assets.codepen.io/12005/dog-balloon.jpg" alt="a hot air balloon shaped like a dog" /> %>
           <%# <button class="add_image_no_border" type="submit"> %>
-          <%=  link_to "/itineraries/new" do %>
+          <%# <%=  link_to "/itineraries/new" do %>
+          <%= form_with url: "/itineraries/#{@itinerary.id}/addimage", method: :post, class:"hidden-form-2" do |f| %>
+            <%= f.file_field :photo, class:"summary-add-image d-none" %>
             <div class ="add_image_container_card_dashed">
               <div class="plus_button">
                 <i class="fa-solid fa-circle-plus"></i>
               </div>
             </div>
-            <% end %>
+               <%= f.submit "Submit", class:"add-image-submit d-none" %>
+          <% end %>
+            <%# <% end %>
         <%# </form> %>
       </figure>
     </div>

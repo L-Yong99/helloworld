@@ -67,7 +67,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    # result = Cloudinary::Uploader.upload(params[:photo])
+    result = Cloudinary::Uploader.upload(params[:photo])
     activity = Activity.find((params[:data]))
     activity.update(status: "updated")
     activity.save
@@ -78,6 +78,23 @@ class ActivitiesController < ApplicationController
     if review.save
       redirect_to "/itineraries/#{params[:itinerary_id]}/activities/#{params[:id]}"
     end
+
+    # @itinerary = Itinerary.find(params[:itinerary_id])
+    # @place = Place.find(params[:place_id])
+
+    # @activity = Activity.new(
+    #   itinerary: @itinerary
+    #   place: @place
+    #   day: params[:day]
+    #   data: params[:data]
+    # )
+
+    # @acitivity.save
+
+    # respond_to do |format|
+    #   # format.json { render json: { hello: 'world' } }
+    #   format.json
+    # end
 
   end
 

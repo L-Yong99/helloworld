@@ -5,19 +5,26 @@
     <div class="row row-1">
       <section>
         <i class="icon fas fa-2xl number"><strong><%= i+1 %></strong></i>
-        <div class="details">
+        <div class="details mb-2">
           <span class="title"><%= activity.place.name %></span>
         </div>
         <% activity.reviews.each_with_index do |review,i|%>
           <% unless review.photo.key.nil? %>
             <%= cl_image_tag review.photo.key, class:"review-image"%>
           <% end %>
+          <% emptystar = 5 - review.rating %>
+          <% review.rating.times do |i|%>
+            <i class="fa-solid fa-star review-rating"></i>
+          <% end %>
+           <% emptystar.times do |i|%>
+            <i class="fa-regular fa-star review-rating-empty"></i>
+          <% end %>
           <p><%= review.comment %></p>
           <p class="user-name"><em>by <%= review.user.first_name %></em></p>
         <% end %>
-        <div class="bottom">
+        <%# <div class="bottom">
           <a href="#">View Review</a>
-        </div>
+        </div> %>
       </section>
     </div>
     <% index = index + 1%>

@@ -9,6 +9,9 @@ export default class extends Controller {
     activitiesId: Array,
   };
 
+  /**
+   *
+   */
   connect() {
     mapboxgl.accessToken = this.apiKeyValue;
     this.placesGeoJson = JSON.parse(this.geojsonValue);
@@ -100,38 +103,103 @@ export default class extends Controller {
     this.#deleteActivity();
     this.#addMarkerToMap();
     this.#fitMapToMarker();
+    this.#sidebar()
 
-    const sideBarEl = document.querySelector(".sidebar");
-    const closeBtnEl = document.querySelector(".close");
-    console.log(closeBtnEl);
-    closeBtnEl.addEventListener("click", () => {
-      sideBarEl.classList.toggle("active");
-    });
+    // const sideBarEl = document.querySelector(".sidebar");
+    // const closeBtnEl = document.querySelector(".close");
+    // console.log(closeBtnEl);
+    // closeBtnEl.addEventListener("click", () => {
+    //   sideBarEl.classList.toggle("active");
+    // });
 
-    this.map.doubleClickZoom.disable();
+    // this.map.doubleClickZoom.disable();
 
-    // Lets initialize an array to store all markers for users
-    this.userMarkers = [];
-    this.#loadUserMarkers();
+    // // Lets initialize an array to store all markers for users
+    // this.userMarkers = [];
+    // this.#loadUserMarkers();
 
-    //Dates side bar
-    const ddLabel = document.querySelector(".dropdown-label")
-    ddLabel.addEventListener("click", (e) => {
-      document.querySelector(".dates-dropdown").classList.toggle("d-none")
-    })
+    // //Dates side bar
+    // const ddLabel = document.querySelector(".dropdown-label")
+    // ddLabel.addEventListener("click", (e) => {
+    //   document.querySelector(".dates-dropdown").classList.toggle("d-none")
+    // })
 
-    const closeEl = document.querySelector(".dates-sidebar .close")
-    closeEl.addEventListener("click", (e) => {
-      document.querySelector(".dates-sidebar").classList.remove("active")
-    })
+    // const closeEl = document.querySelector(".dates-sidebar .close")
+    // closeEl.addEventListener("click", (e) => {
+    //   document.querySelector(".dates-sidebar").classList.remove("active")
+    // })
 
-    const openEl = document.querySelector(".toggle-sidebar")
-    openEl.addEventListener("click", (e) => {
-      document.querySelector(".dates-sidebar").classList.add("active")
-    })
+    // const openEl = document.querySelector(".toggle-sidebar")
+    // openEl.addEventListener("click", (e) => {
+    //   document.querySelector(".dates-sidebar").classList.add("active")
+    // })
 
     // =================== end ===============================//
   }
+
+  /**
+   * triggered by data-action="change"
+   */
+  // addToItinerary(e) {
+
+  //   const daysEl = document.querySelectorAll(".day");
+  //   const day = e.target.value;
+  //   // console.log("day", day);
+  //   const placeId = e.target.dataset.placeid;
+  //   // console.log("Place ID", placeId);
+  //   const selectedDate = daysEl[day - 1].dataset.date;
+  //   // console.log(selectedDate);
+  //   const itineraryId = e.target.dataset.itineraryid;
+  //   // console.log("itineraryId", itineraryId);
+  //   const dates = e.target.dataset.dates;
+  //   // console.log("dates", dates);
+
+  //   const dataout = {
+  //     // itinerary_id: itineraryId,
+  //     // place_id: placeId,
+  //     date: selectedDate,
+  //     day: day,
+  //   };
+
+  //   fetch(`new_activity/${itineraryId}/${placeId}`, {
+  //     method: 'post',
+  //     headers: {
+  //       Accept: 'application/json'
+  //     },
+  //     body: dataout
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => log)
+
+
+
+
+
+  // }
+
+  /**
+   *
+   */
+
+   #sidebar() {
+    const ddLabel = document.querySelector(".dropdown-label");
+    ddLabel.addEventListener("click", (e) => {
+      document.querySelector(".dates-dropdown").classList.toggle("d-none");
+      document.querySelector(".cr").classList.toggle("d-none");
+      document.querySelector(".cd").classList.toggle("d-none");
+    });
+
+    const closeEl = document.querySelector(".dates-sidebar .close");
+    closeEl.addEventListener("click", (e) => {
+      document.querySelector(".dates-sidebar").classList.remove("active");
+    });
+
+    const openEl = document.querySelector(".toggle-sidebar");
+    openEl.addEventListener("click", (e) => {
+      document.querySelector(".dates-sidebar").classList.add("active");
+    });
+  }
+
 
   #FilterLayer(layerId, defaultSize) {
     const filterEl = document.querySelector(".filter-container");
@@ -158,6 +226,9 @@ export default class extends Controller {
     });
   }
 
+  /**
+   *
+   */
   #addMultipleLayers(source) {
     // this.layersIdStore = []
     this.placesGeoJson.features.forEach((feature) => {
@@ -581,7 +652,7 @@ export default class extends Controller {
   #selectDateEventPopUp(layerID, coordinates, placeId) {
     // Pop up date event listener (AJAX) - Add activities
     const dateEl = document.querySelector(".date");
-    // console.log("date", dateEl);
+    console.log("date", dateEl);
 
     dateEl.addEventListener("change", (e) => {
       const daysEl = document.querySelectorAll(".day");
