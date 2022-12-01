@@ -37,7 +37,10 @@
   <div class="summary-left">
     <div class="album_heading">
       <h2>Your memories</h2>
-      <button class="btn button-74">View Gallery</button>
+      <%# <%= link_to "View Gallery", gallery_itinerary_path(@itinerary), class:"btn button-74" %>
+      <%= link_to gallery_itinerary_path(@itinerary),  class:"gallery-link" do %>
+        <button class="btn btn-74 btn-gallery">View Gallery</button>
+      <% end %>
     </div>
     <div class="summary_images_container">
       <figure>

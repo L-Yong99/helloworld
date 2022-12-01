@@ -104,6 +104,10 @@ export default class extends Controller {
     this.#addMarkerToMap();
     this.#fitMapToMarker();
     this.#sidebar()
+    this.userMarkers = [];
+    this.#loadUserMarkers();
+
+
 
     this.map.doubleClickZoom.disable();
 
@@ -115,10 +119,10 @@ export default class extends Controller {
     });
 
 
-
     // // Lets initialize an array to store all markers for users
     this.userMarkers = [];
     this.#loadUserMarkers();
+
 
     // //Dates side bar
     // const ddLabel = document.querySelector(".dropdown-label")

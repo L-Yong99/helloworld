@@ -344,6 +344,15 @@ class ItinerariesController < ApplicationController
     redirect_to summary_itinerary_path(itinerary)
   end
 
+  def gallery
+    @navbar = "others"
+    @itinerary = Itinerary.find(params[:id])
+    @reviews = Review.joins(:activity).where("activities.itinerary_id = ? ", @itinerary.id)
+
+    # @activities.joins(:place).where("places.booking = ? ", true).count
+# raise
+  end
+
 
   private
 
