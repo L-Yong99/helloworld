@@ -617,7 +617,7 @@ export default class extends Controller {
 
   #something(layerId) {
     this.map.on("dblclick", layerId, () => {
-      console.log("hahaah");
+      console.log("search me");
       const activityEl = document.querySelector(".activity");
       console.log("test2", activityEl);
       // console.log("to see e", e)
@@ -629,6 +629,7 @@ export default class extends Controller {
       console.log(placeId);
       // console.log(placesGeoJson[0].properties.placeId)
       console.log("feature", features[0].properties.placeId);
+      // const a = e.features[0].properties.placeId
       const a = features.find((element) => {
         return +element.properties.placeId === +placeId;
       });

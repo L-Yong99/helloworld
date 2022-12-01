@@ -13,19 +13,29 @@
   }
 }
 .summary_header {
+  text-align: center;
   background-color: rgb(249, 248, 248);
-  border-radius: 20px;
-  bottom: -10%;
+  border-radius: 30px;
+  bottom: -12%;
   left: 50%;
   transform: translateX(-50%);
-  padding: 16px 16px 16px 24px;
-  width: 500px;
+  padding: 14px 110px 14px 110px;
+  // width: 500px;
   position: absolute;
-  box-shadow: 0px 0px 30px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.47);
   h1 {
-    font-weight: 700;
+    font-weight: 530;
   }
 }
+
+.host_image {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding-right: 11px;
+
+}
+
 .bannertitle {
   position: relative;
   font-size: small;
@@ -249,7 +259,7 @@ cursor: pointer;
 }
 
 .booking-checklist-title {
-  background-color: rgb(175, 173, 173);
+  background-color: $hw-gray-4;
   color: white;
   // border-bottom:black 2px solid;
   border-top-left-radius: 20px;
@@ -300,7 +310,7 @@ cursor: pointer;
 }
 
 .prepare-checklist-title {
-  background-color: rgb(175, 173, 173);
+  background-color: $hw-gray-4;
   color: white;
   // border-bottom:black 2px solid;
   border-top-left-radius: 20px;
