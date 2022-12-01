@@ -46,3 +46,20 @@ left:20px;
 //   width:40px;
 //   transition:all 0.4s ease-in-out;
 // }
+
+.info-image{
+  border-radius:5px;
+
+}
+
+.mapboxgl-popup-content {
+border-radius: 10px;
+width:300px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.mapboxgl-popup-close-button{
+  font-size:1.8rem;
+  top:5px;
+  right:5px;
+}

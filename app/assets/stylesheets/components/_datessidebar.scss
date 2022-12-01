@@ -121,7 +121,16 @@ color:black;
 position:fixed;
 bottom:0;
 padding:20px;
-background-color: grey;
+background-color: $hw-gray-5;
 color:white;
 // text-align: center;
+}
+
+.cd{
+  position:relative;
+  top:-5px;
+}
+
+.cr-date{
+  position:absolute;
 }

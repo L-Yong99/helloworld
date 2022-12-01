@@ -335,7 +335,13 @@ class ItinerariesController < ApplicationController
         format.json # Follow the classic Rails flow and look for a create.json view
       end
     end
+  end
 
+  def addimage
+    # raise
+    itinerary = Itinerary.find(params[:id])
+    itinerary.photos.attach(params[:photo])
+    redirect_to summary_itinerary_path(itinerary)
   end
 
 

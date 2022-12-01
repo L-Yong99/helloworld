@@ -80,8 +80,8 @@
       <button class="btn close"><i class="fa-solid fa-xmark fa-xl"></i></button>
       <%= link_to "Edit Itinerary", plan_itinerary_path(@itinerary), class:"link-block side-link"%>
       <%= link_to "Itinerary Summary", summary_itinerary_path(@itinerary), class:"link-block side-link" %>
-      <div class="link-block side-link dropdown-label">Itinerary <i class="fa-solid fa-caret-right"></i></div>
-      <div class="dates-dropdown">
+    <div class="link-block side-link dropdown-label">Itinerary <i class="fa-solid fa-caret-right cr"></i><i class="fa-solid fa-sort-down cd d-none"></i></div>
+      <div class="dates-dropdown d-none">
         <% @dates.each_with_index do |date,i| %>
           <%= link_to "Day #{i+1}", "/itineraries/#{@itinerary.id}/activities/#{i+1}", class:"link-block side-link" %>
         <% end %>

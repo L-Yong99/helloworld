@@ -4,16 +4,17 @@
 <div class="text-box">
   <%= place.description %>
 </div>
+<div class="d-flex align-items-center">
 <button class="detail" data-placeId=<%= "#{place.id}"%> data-itineraryId=<%= "#{itineraryId}"%> data-dates=<%= dates.to_json %>>Details</button>
 
 
-<select data-placeId=<%= "#{place.id}"%> data-itineraryId=<%= "#{itineraryId}"%> data-dates=<%= dates.to_json %> name="date" class="date">
+<select data-action="change->map#addToItinerary" data-placeId=<%= "#{place.id}"%> data-itineraryId=<%= "#{itineraryId}"%> data-dates=<%= dates.to_json %> name="date" class="date date-plan">
   <option value="">--Select Date--</option>
   <%= dates.each_with_index do |date,i| %>
     <option class="day" data-date="<%= date %>" value="<%= i + 1 %>" >Day <%=i + 1%> (<%= date%>)</option>
   <% end %>
 </select>
-
+</div>
 
 <%= form_with url: "/itineraries/#{itineraryId}/plan", method: :post, class:"hidden-form-1" do |f| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
