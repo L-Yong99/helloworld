@@ -17,6 +17,14 @@ class ItinerariesController < ApplicationController
   def show
     @navbar = "others"
     @itinerary = Itinerary.find(params[:id])
+    start_date = @itinerary.start_date
+    end_date = @itinerary.end_date
+    date_arr = (start_date..end_date).to_a
+    @dates_all = date_arr
+    @dates = date_arr
+    @activities = Activity.where(itinerary: @itinerary)
+    @activities_completed = @activities.where(status: "updated").limit(5)
+
   end
 
   def new

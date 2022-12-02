@@ -26,10 +26,10 @@
 
   <div class="container__profile">
     <%# <p class="phase"><%= itinerary.phase %></p>
-      <% if current_user.image.key.nil? %>
+      <% if itinerary.user.image.key.nil? %>
       <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
     <% else %>
-      <%= cl_image_tag current_user.image.key  %>
+      <%= cl_image_tag itinerary.user.image.key  %>
     <% end %>
     <div class="container__profile__text">
      <h2><%= itinerary.address %></h2>
