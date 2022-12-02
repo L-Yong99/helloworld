@@ -411,3 +411,9 @@ cursor: pointer;
 .prepare-checkbox-input:checked + label {
   text-decoration: line-through;
 }
+
+.review-name{
+  float:right;
+  font-style: italic;
+  color:$hw-gray-4;
+}

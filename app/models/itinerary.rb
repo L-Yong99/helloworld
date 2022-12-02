@@ -7,4 +7,6 @@ class Itinerary < ApplicationRecord
   has_many :activities
   has_many :places, through: :activities
   has_many_attached :photos
+
+  validates :start_date, :end_date, :title, presence: true
 end
