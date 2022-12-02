@@ -62,9 +62,9 @@
 
 
 .scroll {
-  width: 200px;
+  // width: 200px;
   height: 300px;
-  overflow: scroll;
+  overflow: auto;
 }
 .scroll::-webkit-scrollbar {
    width: 6px;
@@ -79,6 +79,10 @@
    border-radius: 10px;
    background: rgb(195, 195, 195);
    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.scroll.text-box{
+  height:100px;
 }
 
 

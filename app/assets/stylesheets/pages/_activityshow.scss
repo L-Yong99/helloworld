@@ -50,9 +50,11 @@
   // padding-left:30px;
 }
 
+
+
 .activity-side-bar-review {
-  padding: 20px;
-  padding-left: 30px;
+  // padding: 20px;
+  // padding-left: 30px;
 }
 
 .day-activities-container {
@@ -113,9 +115,10 @@ body {
   padding: 0 15px;
   position: relative;
   overflow-y: auto;
-  max-height: 85%;
+  // max-height: 85%;
   overflow-wrap: break-word;
   // height:70%;
+  height:85%;
 }
 .wrapper .center-line {
   position: absolute;
@@ -265,3 +268,19 @@ body {
   height: 200px;
   margin-bottom: 5px;
 }
+
+.activity-date-box{
+// border:1px solid red;
+width:100%;
+text-align: center;
+padding:5px;
+background-color: $hw-gray-3;
+padding-top:15px;
+padding-bottom:15px;
+margin-bottom:10px;
+}
+
+.activity-date-box *{
+ padding:0;
+ margin:0;
+  }

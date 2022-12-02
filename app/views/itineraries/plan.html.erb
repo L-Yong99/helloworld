@@ -8,7 +8,7 @@
     dffe
   </div> %>
 <div class="side-bar">
-  <div class="days-container">
+  <div class="days-container scroll">
     <%= render "itineraries/sidebar_activity", locals: {activities: @activities,dates: @dates} %>
   </div>
   <div class="side-bar-bottom">
@@ -17,12 +17,12 @@
     <%# <button class="btn btn-complete" onclick="window.location.href='';">Complete</button> %>
     <% if @itinerary.phase == "in plan" %>
       <form action="/itineraries/dashboard">
-        <button class="btn btn-complete" type="submit"> complete </button>
+        <button class="btn btn-complete" type="submit">Complete </button>
       </form>
     <% end %>
     <% if @itinerary.phase == "ongoing" %>
       <form action=<%="/itineraries/#{@itinerary.id}/summary"%>>
-        <button class="btn btn-complete" type="submit"> complete </button>
+        <button class="btn btn-complete" type="submit">Complete </button>
       </form>
     <% end %>
 
@@ -81,7 +81,7 @@
       <%= link_to "Edit Itinerary", plan_itinerary_path(@itinerary), class:"link-block side-link"%>
       <%= link_to "Itinerary Summary", summary_itinerary_path(@itinerary), class:"link-block side-link" %>
     <div class="link-block side-link dropdown-label">Itinerary <i class="fa-solid fa-caret-right cr"></i><i class="fa-solid fa-sort-down cd d-none"></i></div>
-      <div class="dates-dropdown d-none">
+      <div class="dates-dropdown d-none scroll">
         <% @dates.each_with_index do |date,i| %>
           <%= link_to "Day #{i+1}", "/itineraries/#{@itinerary.id}/activities/#{i+1}", class:"link-block side-link" %>
         <% end %>

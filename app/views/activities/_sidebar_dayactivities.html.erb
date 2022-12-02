@@ -1,5 +1,7 @@
-<h4 class="activity-day-date"><strong><%= @date_day.strftime("%A, %B %d") %></strong></h4>
-<div class="wrapper">
+<div class="activity-date-box">
+  <h4 class="activity-day-date"><strong><%= @date_day.strftime("%A, %B %d") %></strong></h4>
+</div>
+<div class="wrapper scroll">
   <% index = 0%>
   <% @activities_done.each_with_index do |activity,i|%>
     <div class="row row-1">
@@ -29,7 +31,7 @@
     </div>
     <% index = index + 1%>
   <% end %>
-  <div class="center-line" style=<%="height:#{(index-1)*50}%;"%>>
+  <%# <div class="center-line" style=<%="height:#{(index-1)*50}%;"%>
     <%# <a href="#" class="scroll-icon"></a> %>
-  </div>
+  <%# </div> %>
 </div>
