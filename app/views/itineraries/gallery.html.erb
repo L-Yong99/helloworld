@@ -7,9 +7,11 @@
   <div class="container">
     <div class="gallery-grid">
       <% @reviews.each do |review| %>
-        <div class="gallery-card-container">
-          <%= cl_image_tag review.photo.key, class:"gallery-image"%>
-        </div>
+        <% unless review.photo.key.nil? %>
+          <div class="gallery-card-container">
+            <%= cl_image_tag review.photo.key, class:"gallery-image"%>
+          </div>
+        <% end %>
       <% end %>
       <% @itinerary.photos.each do |photo| %>
         <div class="gallery-card-container">

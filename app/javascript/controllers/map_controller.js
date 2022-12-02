@@ -104,8 +104,8 @@ export default class extends Controller {
     this.#addMarkerToMap();
     this.#fitMapToMarker();
     this.#sidebar()
-    this.userMarkers = [];
-    this.#loadUserMarkers();
+    // this.userMarkers = [];
+    // this.#loadUserMarkers();
 
 
 
