@@ -42,132 +42,132 @@
   </div>
 
 
-<div class="main-summary-container">
-  <div class="summary-left">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Activities</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Gallery</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Reviews</button>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-     <div class="daily_activity_text mb-3">
-    <h2>All Activities</h2>
-    <div>
-      <h4 class="d-inline">Day : </h4>
-      <%= form_with url: "/itineraries/#{@itinerary.id}/summary", method: :post, class:"summary-date-form d-inline" do |f| %>
-        <select name="date" class="summary-date">
-              <option value="">--All Days--</option>
-              <%= @dates.each_with_index do |date,i| %>
-                <option class="summary-day" data-date="<%= date %>" value="<%= i + 1 %>" >Day <%=i + 1%> (<%= date%>)</option>
-              <% end %>
-          </select>
-        <%= f.submit "submit", class:"summary-date-submit d-none" %>
-      <% end %>
+<div class="show-main-summary-container">
+  <div class="show-summary-left">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Activities</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Gallery</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Reviews</button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="daily_activity_text mb-3">
+          <h2>All Activities</h2>
+          <div>
+            <h4 class="d-inline">Day : </h4>
+            <%= form_with url: "/itineraries/#{@itinerary.id}/summary", method: :post, class:"summary-date-form d-inline" do |f| %>
+              <select name="date" class="summary-date">
+                    <option value="">--All Days--</option>
+                    <%= @dates.each_with_index do |date,i| %>
+                      <option class="summary-day" data-date="<%= date %>" value="<%= i + 1 %>" >Day <%=i + 1%> (<%= date%>)</option>
+                    <% end %>
+                </select>
+              <%= f.submit "submit", class:"summary-date-submit d-none" %>
+            <% end %>
+          </div>
+      </div>
+
+    <div class="summary-activity-container-main" data-controller="summarypage">
+      <%= render "itineraries/summary_activities", locals: {activities: @activities,dates: @dates, itinerary:@itinerary} %>
     </div>
-  </div>
 
-  <div class="summary-activity-container-main" data-controller="summarypage">
-    <%= render "itineraries/summary_activities", locals: {activities: @activities,dates: @dates,itinerary:@itinerary} %>
-  </div>
-
-  </div>
-
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="album_heading">
-      <h2>Your memories</h2>
-      <%# <%= link_to "View Gallery", gallery_itinerary_path(@itinerary), class:"btn button-74" %>
-      <%= link_to gallery_itinerary_path(@itinerary),  class:"gallery-link" do %>
-        <button class="btn btn-74 btn-gallery">View Gallery</button>
-      <% end %>
     </div>
-    <div class="summary_images_container">
-      <figure>
-        <% if @activities_completed[0].nil? %>
-          <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">
-        <% else %>
-          <% if @activities_completed[0].reviews[0].photo.key.nil? %>
-          <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">
+
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div class="album_heading">
+        <h2>Your memories</h2>
+        <%# <%= link_to "View Gallery", gallery_itinerary_path(@itinerary), class:"btn button-74" %>
+        <%= link_to gallery_itinerary_path(@itinerary),  class:"gallery-link" do %>
+          <button class="btn btn-74 btn-gallery">View Gallery</button>
+        <% end %>
+      </div>
+      <div class="summary_images_container">
+        <figure>
+          <% if @activities_completed[0].nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">
           <% else %>
-          <%= cl_image_tag @activities_completed[0].reviews[0].photo.key, class:"review-image" %>
+            <% if @activities_completed[0].reviews[0].photo.key.nil? %>
+            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">
+            <% else %>
+            <%= cl_image_tag @activities_completed[0].reviews[0].photo.key, class:"review-image" %>
+            <% end %>
           <% end %>
-        <% end %>
 
 
 
 
-        <%# <img src="https://assets.codepen.io/12005/windmill.jpg" alt="A windmill" /> %>
-        <%# <form action="/itineraries/new">
-          <button class="add_image_no_border" type="submit"> <div class ="container_card_dashed">
-            <div class="plus_button">
-              <i class="fa-solid fa-circle-plus"></i>
-            </div>
-          </button>
-        </form> %>
-      </figure>
-      <figure class="landscape">
-        <% if @activities_completed[1].nil? %>
-            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
-          <% if @activities_completed[1].reviews[0].photo.key.nil? %>
-            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
-          <%= cl_image_tag @activities_completed[1].reviews[0].photo.key, class:"review-image" %>
-          <% end %>
-        <% end %>
-      </figure>
-      <figure>
-         <% if @activities_completed[2].nil? %>
-            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
-          <% if @activities_completed[2].reviews[0].photo.key.nil? %>
-            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
-          <%= cl_image_tag @activities_completed[2].reviews[0].photo.key, class:"review-image" %>
-          <% end %>
-        <% end %>
-      </figure>
-      <figure>
-       <% if @activities_completed[3].nil? %>
-            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
-          <% if @activities_completed[3].reviews[0].photo.key.nil? %>
-            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
-          <%= cl_image_tag @activities_completed[3].reviews[0].photo.key, class:"review-image" %>
-          <% end %>
-        <% end %>
-      </figure>
-      <figure class="landscape">
-        <% if @activities_completed[4].nil? %>
-            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
-          <% if @activities_completed[4].reviews[0].photo.key.nil? %>
-            <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
-          <%= cl_image_tag @activities_completed[4].reviews[0].photo.key, class:"review-image" %>
-          <% end %>
-        <% end %>
-      </figure>
-      <figure>
-        <%# <img src="https://assets.codepen.io/12005/dog-balloon.jpg" alt="a hot air balloon shaped like a dog" /> %>
-          <%# <button class="add_image_no_border" type="submit"> %>
-          <%# <%=  link_to "/itineraries/new" do %>
-          <%= form_with url: "/itineraries/#{@itinerary.id}/addimage", method: :post, class:"hidden-form-2" do |f| %>
-            <%= f.file_field :photo, class:"summary-add-image d-none" %>
-            <div class ="add_image_container_card_dashed">
+          <%# <img src="https://assets.codepen.io/12005/windmill.jpg" alt="A windmill" /> %>
+          <%# <form action="/itineraries/new">
+            <button class="add_image_no_border" type="submit"> <div class ="container_card_dashed">
               <div class="plus_button">
                 <i class="fa-solid fa-circle-plus"></i>
               </div>
-            </div>
-               <%= f.submit "Submit", class:"add-image-submit d-none" %>
+            </button>
+          </form> %>
+        </figure>
+        <figure class="landscape">
+          <% if @activities_completed[1].nil? %>
+              <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
+            <% if @activities_completed[1].reviews[0].photo.key.nil? %>
+              <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
+            <%= cl_image_tag @activities_completed[1].reviews[0].photo.key, class:"review-image" %>
+            <% end %>
           <% end %>
-            <%# <% end %>
-        <%# </form> %>
-      </figure>
-    </div>
+        </figure>
+        <figure>
+          <% if @activities_completed[2].nil? %>
+              <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
+            <% if @activities_completed[2].reviews[0].photo.key.nil? %>
+              <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
+            <%= cl_image_tag @activities_completed[2].reviews[0].photo.key, class:"review-image" %>
+            <% end %>
+          <% end %>
+        </figure>
+        <figure>
+        <% if @activities_completed[3].nil? %>
+              <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
+            <% if @activities_completed[3].reviews[0].photo.key.nil? %>
+              <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
+            <%= cl_image_tag @activities_completed[3].reviews[0].photo.key, class:"review-image" %>
+            <% end %>
+          <% end %>
+        </figure>
+        <figure class="landscape">
+          <% if @activities_completed[4].nil? %>
+              <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">        <% else %>
+            <% if @activities_completed[4].reviews[0].photo.key.nil? %>
+              <img src="https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" alt="thumbnail">          <% else %>
+            <%= cl_image_tag @activities_completed[4].reviews[0].photo.key, class:"review-image" %>
+            <% end %>
+          <% end %>
+        </figure>
+        <figure>
+          <%# <img src="https://assets.codepen.io/12005/dog-balloon.jpg" alt="a hot air balloon shaped like a dog" /> %>
+            <%# <button class="add_image_no_border" type="submit"> %>
+            <%# <%=  link_to "/itineraries/new" do %>
+            <%= form_with url: "/itineraries/#{@itinerary.id}/addimage", method: :post, class:"hidden-form-2" do |f| %>
+              <%= f.file_field :photo, class:"summary-add-image d-none" %>
+              <div class ="add_image_container_card_dashed">
+                <div class="plus_button">
+                  <i class="fa-solid fa-circle-plus"></i>
+                </div>
+              </div>
+                <%= f.submit "Submit", class:"add-image-submit d-none" %>
+            <% end %>
+              <%# <% end %>
+          <%# </form> %>
+        </figure>
+      </div>
   </div>
 
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
     <div class="summary_body">
       <div class="user_notes">
         <h3>Your trip review</h3>
@@ -183,53 +183,22 @@
       </div>
     </div>
   </div>
-</div>
+    </div>
   </div>
 
-  <div class="summary-right show-summary-right text-right" data-controller="checklist" >
-<%# HERE %>
-
+  <div class="show-summary-right">
     <div class="phase_buttons show text-right">
       <% if user_signed_in? %>
         <button data-action="click->modal#openModal" class="summary_btn">Copy itinerary</button>
       <% end %>
     </div>
 
-    <div class="advert">
-
-
+    <div data-controller="showmap" class="show-map" id="show-map"
+    data-showmap-activities-value="<%= @activities_coord.to_json %>"
+    data-showmap-center-value="<%= @country.to_json %>"
+    data-showmap-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
-
-
-  <%# booking AJAX form %>
-  <%= form_with url: "/itineraries/#{@itinerary.id}/bookingcheck", method: :post, class:"booking-form" do |f| %>
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-     <%= hidden_field_tag 'data','none', class:"booking-data-hidden"  %>
-    <%= f.submit "submit", class:"booking-submit d-none" %>
-  <% end %>
-
-    <%# to-do AJAX Form %>
-    <%= form_with url: "/itineraries/#{@itinerary.id}/addlistcheck", method: :post, class:"todo-form" do |f| %>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <%= hidden_field_tag 'data','none', class:"todo-data-hidden"  %>
-      <%= f.submit "submit", class:"todo-submit d-none" %>
-    <% end %>
-
-       <%# to-do delete AJAX Form %>
-    <%= form_with url: "/itineraries/#{@itinerary.id}/listdelete", method: :post, class:"todo-delete-form" do |f| %>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <%= hidden_field_tag 'data','none', class:"todo-deletedata-hidden"  %>
-      <%= f.submit "submit", class:"todo-delete-submit d-none" %>
-    <% end %>
-
-
-  <%# <div class="activity_container"> %>
-
-
-  </a>
 </div>
-
-<br><br><br>
 
 </div>

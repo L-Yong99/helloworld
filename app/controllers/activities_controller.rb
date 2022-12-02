@@ -67,12 +67,15 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    result = Cloudinary::Uploader.upload(params[:photo])
+
     activity = Activity.find((params[:data]))
     activity.update(status: "updated")
     activity.save
     review = Review.new(comment: params[:text], rating: params[:rating])
-    review.photo.attach(params[:photo])
+    unless params[:photo].nil?
+      result = Cloudinary::Uploader.upload(params[:photo])
+      review.photo.attach(params[:photo])
+    end
     review.user = current_user
     review.activity = activity
     if review.save
