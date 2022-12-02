@@ -26,7 +26,7 @@
   border-radius: 10px;
   z-index: 2;
   margin-top: 170px;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
   margin-left: auto;
   margin-right: auto;
 
@@ -58,12 +58,13 @@
 
 .index_h1{
   padding-bottom: 30px;
-
-
+  font-size:3.7rem;
+  position:relative;
+  // transform: translateY(-50%);
 }
 
 
 
 .index_form_button {
-  padding-left: 132px !important;
+  padding-left: 100px !important;
 }

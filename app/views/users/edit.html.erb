@@ -1,0 +1,24 @@
+<div class="container profile-container ">
+  <h1>Edit profile</h1>
+  <% if current_user.image.key.nil? %>
+    <div class="text-center"><img class="avatar_profile" src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="avatarupload"></div>
+    <% else %>
+    <div class="myavatar text-center"> <%= cl_image_tag current_user.image.key, class:"avatar-large"%></div>
+  <% end %>
+  <%= simple_form_for(@user) do |f| %>
+    <div class="form-inputs">
+      <%# <div class="row"> %>
+      <%= f.input :image, as: :file, label: "Upload Profile Photo", class:"image-upload"%>
+
+      <div class="form-group mb-5">
+        <%= f.input :first_name, class:"form-control mb-1"  %>
+        <%= f.input :last_name, class:"form-control mb-4"  %>
+        <%= f.input :email, class:"form-control mb-4" %>
+        <br>
+        <div class="form-action">
+          <%= f.button :submit, "Update Profile", class: 'btn btn-banner cool-btn'  %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
