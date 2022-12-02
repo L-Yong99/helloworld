@@ -47,7 +47,7 @@
   margin-top: 50px;
   // width: 70%;
 }
-.tips_tricks {
+.recommendation{
   margin-top: 30px;
 }
 .user_notes {
@@ -56,6 +56,11 @@
 .proscons {
   margin-top: 30px;
 }
+
+.color_pc {
+ margin-top: 15px;
+}
+
 .place_thumbnail {
   img {
     border-radius: 4px;
@@ -236,7 +241,7 @@ cursor: pointer;
 
 .summary-day-date {
   margin-bottom: 15px;
-  text-decoration: underline;
+  // text-decoration: underline;
   font-weight: bold;
 }
 
