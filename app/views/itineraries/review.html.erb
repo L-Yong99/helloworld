@@ -1,10 +1,17 @@
-<div class="container profile-container">
-<h1>Post your review</h1>
-<%= simple_form_for(@itinerary) do |f| %>
-  <%= f.input :review , as: :text , :input_html => {maxlength: 700}, label: 'Your review' %>
-  <%= f.input :recommend, as: :text, :input_html => {maxlength: 500} %>
-  <%= f.input :pros, as: :text, :input_html => {maxlength: 500} %>
-  <%= f.input :cons, as: :text, :input_html => {maxlength: 500} %>
-  <%= f.button :submit, "Submit", class: 'btn' %>
-<% end %>
+<div class="i-review-container">
+  <div class="i-form-container">
+    <div class="i-form-container-2">
+      <div class="review-title-container" >
+        <h1>Post your review</h1>
+        <div></div>
+      </div>
+      <%= simple_form_for(@itinerary) do |f| %>
+        <%= f.input :review , as: :text , :input_html => {maxlength: 700}, label: 'Your review' %>
+        <%= f.input :recommend, as: :text, :input_html => {maxlength: 500} %>
+        <%= f.input :pros, as: :text, :input_html => {maxlength: 500} %>
+        <%= f.input :cons, as: :text, :input_html => {maxlength: 500} %>
+        <%= f.button :submit, "Submit", class: 'btn itinerary-review-btn'  %>
+      <% end %>
+    </div>
+  </div>
 </div>

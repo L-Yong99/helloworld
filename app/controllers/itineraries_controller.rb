@@ -158,6 +158,7 @@ end
   end
 
   def update
+
     @itinerary = Itinerary.find(params[:id])
 
     unless params[:phase]
@@ -306,6 +307,7 @@ end
   end
 
   def review
+    @navbar = "others"
   end
 
   def bookingcheck
