@@ -14,12 +14,11 @@
       <% else %>
         <button class="btn btn-prev" disabled></button>
       <% end %>
-      <% if @day + 1 <= @days_count %>
+      <% if @day + 1 > @days_count %>
+        <%= link_to "Summary", "/itineraries/#{@itinerary.id}/summary/", class:"btn btn-next" %>
+      <% else%>
         <%# <button class="btn btn-next">Next Day</button> %>
         <%= link_to "Next Day", "/itineraries/#{@itinerary.id}/activities/#{@day + 1}", class:"btn btn-next" %>
-      <% else %>
-        <%= link_to "Next Day", "/itineraries/#{@itinerary.id}/summary/", class:"btn btn-next" %>
-        <button class="btn btn-next">Complete Trip</button>
       <% end %>
     </div>
   </div>
@@ -46,7 +45,7 @@
     <%= link_to "Edit Itinerary", plan_itinerary_path(@itinerary), class:"link-block side-link"%>
     <%= link_to "Itinerary Summary", summary_itinerary_path(@itinerary), class:"link-block side-link" %>
     <div class="link-block side-link dropdown-label">Itinerary <i class="fa-solid fa-caret-right cr"></i><i class="fa-solid fa-sort-down cd d-none"></i></div>
-    <div class="dates-dropdown d-none">
+    <div class="dates-dropdown d-none scroll">
       <% @dates.each_with_index do |date,i| %>
         <div class="d-flex align-items-center">
           <% if date == @dates[@day-1] %>

@@ -125,7 +125,7 @@
 
 .side-bar {
   // border: 3px solid green;
-  padding: 20px;
+  // padding: 20px;
   height: 100vh;
   width: 25vw;
 }
@@ -137,10 +137,10 @@
 }
 
 .days-container {
-  height: 85%;
-  overflow-y: scroll;
-  padding-right: 20px;
-  padding-left: 20px;
+  height: 90%;
+  overflow-y: auto;
+  // padding-right: 20px;
+  // padding-left: 20px;
 }
 
 .day-container {
@@ -157,6 +157,8 @@
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  margin-top:10px;
+  margin-left:50px;
 }
 
 .activity-col-1 {
@@ -184,8 +186,26 @@
   // left:-10px;
 }
 
+
+
 .date-title {
-  border-bottom: 1px solid #f0f1f3;
+  // border-bottom: 1px solid #f0f1f3;
+}
+
+.date-box{
+  // border:1px solid red;
+  width:100%;
+  text-align: center;
+  padding:5px;
+  background-color: $hw-gray-3;
+  padding-top:10px;
+  padding-bottom:10px;
+  margin-bottom:10px;
+}
+
+.date-box *{
+  margin:0;
+  padding:0;
 }
 
 .delete-activity {
@@ -200,19 +220,21 @@
 
 .btn-complete {
   position: fixed;
+  // background-color: rgb(83, 83, 199);
   background-color: rgb(97, 97, 97);
   // border-radius: 7px;
   color: rgb(216, 216, 216);
-  height: 5em;
+  height: 3em;
   width: 8em;
   // margin-left:10px;
   bottom: 0;
   right: 0;
   width: 25vw;
-
+  font-size:1.5rem;
 }
 
 .btn-complete:hover {
+  // background-color: rgb(97, 97, 97);
   background-color: rgb(83, 83, 199);
   opacity: 0.7;
   color: white;

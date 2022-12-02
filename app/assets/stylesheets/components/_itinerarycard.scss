@@ -207,11 +207,28 @@ border: dashed 4px rgb(184, 184, 184);
 .container-dashbox-page{
   width:80vw;
   height: 80vw;
-  margin-top: 150px;
+  margin-top: 40px;
   margin-bottom: 100px;
   margin-left: auto;
   margin-right: auto;
   // border:2px red solid;
+}
+
+.dash-board-header-container{
+  margin-bottom:25px;
+}
+
+.dash-board-h1 {
+  font-size:4rem;
+  margin-bottom:10px;
+  color:$hw-gray-5;
+}
+
+.dash-board-h1 + div{
+  width:90px;
+  // height:2px;
+  border-top:3px solid $hw-gray-5;
+  margin:0 auto;
 }
 
 .no_border {
@@ -219,7 +236,9 @@ border: dashed 4px rgb(184, 184, 184);
 }
 
 .in_plan_container h1 {
-  padding-bottom: 50px;
+  padding-bottom: 25px;
+  font-size:2rem;
+  color:$hw-gray-5;
 }
 
 .completed_container {
@@ -230,7 +249,9 @@ border: dashed 4px rgb(184, 184, 184);
 }
 
 .completed_container h1 {
-  padding-bottom: 50px;
+  padding-bottom: 25px;
+  font-size:2rem;
+  color:$hw-gray-5;
 }
 
 .itinerary-delete{
@@ -244,5 +265,5 @@ border: dashed 4px rgb(184, 184, 184);
   padding:0;
   position:absolute;
   top:0;
-  right:0;
+  right:-10px;
 }
