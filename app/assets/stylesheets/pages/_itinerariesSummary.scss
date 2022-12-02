@@ -1,26 +1,28 @@
 .phase_buttons{
 margin-bottom: 30px;
+width: 100%;
+// border: 2px solid red;
+text-align: right;
 }
 
 .summary_btn {
-  margin-top: 10px;
-  margin-right: 0px;
-  padding: 5px 15px;
+  margin-top: 20px;
+  padding: 8px 30px;
   color: $hw-gray-1;
-  background-color: rgb(116, 83, 199);
+  background-color: rgb(127, 73, 203);
   // border: 1px solid rgb(76, 76, 76);
-  border-radius: 15px;
+  border: none !important;
+  border-radius: 13px;
   font-size: 1.4rem;
 }
 
-.summary_btn {
-  color: $hw-gray-1;
-  background-color: rgb(116, 83, 199);
-
+.summary_btn:hover {
+  background-color: rgb(101, 41, 186);
 }
 
+
 .gallery-link{
-color:white !important;
+  color:white !important;
 }
 
 .btn-gallery{
@@ -30,5 +32,5 @@ color:white !important;
   }
 
   .btn-gallery:hover{
-    background-color: $hw-gray-3-hover;
+  background-color: $hw-gray-3-hover;
   }
