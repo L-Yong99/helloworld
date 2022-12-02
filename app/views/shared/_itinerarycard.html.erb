@@ -7,15 +7,16 @@
 <% if itinerary.phase == "completed" %>
   <div id="carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
+      <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
       <div class="carousel-content">
           <span><i class="fas fa-thumbs-up"></i><p><%= itinerary.vote %></p></span>
           <%= link_to "/itineraries/#{itinerary.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"itinerary-delete-link" do %>
             <i class="fa-solid fa-trash-can itinerary-delete"></i>
           <% end %>
       </div>
-      <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
-      <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
+       <div class="carousel-item active" style=<%= "background-image:url('#{itinerary.image}')" %>></div>
+      <%# <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div>
+      <div class="carousel-item" style="background-image:url('https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg')"></div> %>
     </div>
 <% else %>
   <div id="carousel" class="carousel slide" data-bs-ride="carousel">
