@@ -5,36 +5,37 @@
 
 .summary_img_banner {
   img {
-    height: 300px;
+    height: 290px;
     width: 100%;
     object-fit: cover;
     object-position: 50% 70%;
-    border-radius: 20px;
+    border-radius: 15px;
   }
 }
 .summary_header {
-  text-align: center;
+  font-family: $lato-headers-font;
   background-color: rgb(249, 248, 248);
-  border-radius: 30px;
-  bottom: -12%;
+  border-radius: 15px;
+  bottom: -10%;
   left: 50%;
   transform: translateX(-50%);
-  padding: 14px 110px 14px 110px;
-  // width: 500px;
+  padding: 16px 15px 15px 40px;
+  width: 490px;
   position: absolute;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.47);
+  box-shadow: 0px 0px 30px;
   h1 {
-    font-weight: 530;
+    font-family: $lato-headers-font !important;
+    font-weight: 400 !important;
   }
 }
 
-.host_image {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  padding-right: 11px;
+// .host_image {
+//   display: flex;
+//   justify-content: center;
+//   margin: 0 auto;
+//   padding-right: 11px;
 
-}
+// }
 
 .bannertitle {
   position: relative;
@@ -157,6 +158,7 @@ figure {
   // width: 70%;
   // margin-top: 100px;
   font-weight: 200;
+  margin-top: 50px;
 }
 
 .add_image_no_border {

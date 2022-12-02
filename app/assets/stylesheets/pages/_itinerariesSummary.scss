@@ -1,7 +1,22 @@
+.phase_buttons{
+margin-bottom: 30px;
+}
+
 .summary_btn {
   margin-top: 10px;
-  padding: 5px;
-  background-color: rgb(76, 76, 76);
+  margin-right: 0px;
+  padding: 5px 15px;
+  color: $hw-gray-1;
+  background-color: rgb(116, 83, 199);
+  // border: 1px solid rgb(76, 76, 76);
+  border-radius: 15px;
+  font-size: 1.4rem;
+}
+
+.summary_btn {
+  color: $hw-gray-1;
+  background-color: rgb(116, 83, 199);
+
 }
 
 .gallery-link{
