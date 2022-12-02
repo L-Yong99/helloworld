@@ -4,7 +4,7 @@
     <% day_index = @dates_all.index(date) %>
     <h3 class="summary-day-date">Day <%= day_index+1 %>: <%= date.strftime("%A, %B %d") %></h3>
     <% @activities_day.each_with_index do |activity,j| %>
-        <% reviews = activity.reviews.where(user: current_user) %>
+        <% reviews = activity.reviews.where(user: @itinerary.user) %>
         <div class="activity_container">
           <div class="daily_activity">
             <div class="place_thumbnail">
