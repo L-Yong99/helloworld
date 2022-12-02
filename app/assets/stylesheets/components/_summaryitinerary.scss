@@ -209,6 +209,7 @@ cursor: pointer;
 }
 
 .summary-left {
+  margin-top: 30px;
   width: 70%;
 }
 
@@ -251,11 +252,13 @@ cursor: pointer;
   top: 20px;
 }
 
+
 .booking-checklist-container {
-  width: 100%;
+  margin-left: auto;
+  width: 95%;
   background-color: white;
   height: 500px;
-  border-radius: 20px;
+  border-radius: 17px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   margin-bottom: 50px;
 }
@@ -264,8 +267,8 @@ cursor: pointer;
   background-color: $hw-gray-4;
   color: white;
   // border-bottom:black 2px solid;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 17px;
+  border-top-right-radius: 17px;
   height: 3.5rem;
   display: flex;
   justify-content: center;
@@ -304,10 +307,11 @@ cursor: pointer;
 }
 
 .prepare-checklist-container {
-  width: 100%;
+  margin-left: auto;
+  width: 95%;
   background-color: white;
   height: 500px;
-  border-radius: 20px;
+  border-radius: 17px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -315,8 +319,8 @@ cursor: pointer;
   background-color: $hw-gray-4;
   color: white;
   // border-bottom:black 2px solid;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 17px;
+  border-top-right-radius: 17px;
   height: 3.5rem;
   display: flex;
   justify-content: center;

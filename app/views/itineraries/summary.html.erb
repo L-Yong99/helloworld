@@ -145,7 +145,7 @@
 
     <div class="summary_body">
       <div class="user_notes">
-        <h3>Creator Notes</h3>
+        <h3>Your trip review</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis hendrerit dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam non dolor lectus. Aliquam convallis finibus fringilla. Sed malesuada augue eu eleifend volutpat. Vestibulum ut rhoncus diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam ac nisi in quam pretium egestas quis ornare enim. Integer nec elit arcu. Aenean volutpat neque quam, at elementum tellus commodo vel.</p>
       </div>
       <div class="tips_tricks">
@@ -164,7 +164,7 @@
   </div>
 
   <div class="summary-right" data-controller="checklist" >
-
+<%# HERE %>
     <div class="phase_buttons">
       <% if @itinerary.phase == "in plan" %>
         <%= button_to "start trip", itinerary_path(@itinerary),  method: :patch, class:"summary_btn", params: {phase: 'ongoing'} %>
