@@ -1,23 +1,25 @@
 .phase_buttons{
-margin-bottom: 30px;
+margin-bottom: 60px;
 width: 100%;
 // border: 2px solid red;
 text-align: right;
 }
 
 .summary_btn {
-  margin-top: 20px;
+  margin-top: 2px;
   padding: 8px 30px;
   color: $hw-gray-1;
-  background-color: rgb(127, 73, 203);
+  background-color: rgb(199, 33, 78);
   // border: 1px solid rgb(76, 76, 76);
   border: none !important;
-  border-radius: 13px;
+  // box-shadow: 5px 10px 9px rgba(99,99,99,0.35);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
   font-size: 1.4rem;
 }
 
 .summary_btn:hover {
-  background-color: rgb(101, 41, 186);
+  background-color: rgb(211, 58, 99);
 }
 
 
@@ -34,3 +36,49 @@ text-align: right;
   .btn-gallery:hover{
   background-color: $hw-gray-3-hover;
   }
+
+
+
+
+
+  // --------- for tabs ----------
+  // .nav-tabs .nav-item .nav-link {
+  //   // background-color: #cfcfcf;
+  //   color: #FFF;
+  // }
+   .nav-item .nav-link {
+    // background-color: #cfcfcf;
+    color: rgb(174, 174, 174);
+    border-radius: 500px;
+
+  }
+
+  .nav-tabs .nav-item .nav-link.active {
+    color: #525252;
+    background-color: $hw-gray-3;
+    border-radius: 70px;
+    transform: translatex(-12%);
+    // animation: slide 0.1s ease-in 0.1s 1 forwards;
+    animation: slide 0.1s ease-in 0.1s 1 forwards;
+    opacity: 0.6;
+  }
+
+  @keyframes slide {
+    100% {
+      transform: translatex(0);
+      opacity: 1;
+    }
+  }
+
+  // .tab-content {
+  //   border: 1px solid #dee2e6;
+  //   border-top: transparent;
+  //   padding: 15px;
+  // }
+
+  // .tab-content .tab-pane {
+  //   background-color: #FFF;
+  //   color: #0080FF;
+  //   min-height: 200px;
+  //   height: auto;
+  // }
