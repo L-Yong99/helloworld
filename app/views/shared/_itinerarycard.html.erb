@@ -7,6 +7,7 @@
 <% if itinerary.phase == "completed" %>
   <div id="carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
+
       <% reviews = Review.joins(:activity).where("activities.itinerary_id = ? ", itinerary.id) %>
 
       <%# case when: no reviews and no itinerary images for looping%>
@@ -31,7 +32,7 @@
           <% end  %>
         <% end  %>
       <% end %>
-
+      
     </div>
 
 <%# style="background-image: url('<img src=" http:="" res.cloudinary.com="" dhsjrqv5w="" image="" upload="" v1="" development="" 1n1p4r493c45qhq2r6spdy08pv9m"="">');"&gt; %>

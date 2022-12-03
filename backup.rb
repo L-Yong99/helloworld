@@ -129,3 +129,14 @@
     </div>
   </div>
 </div>
+
+
+<% if reviews.count == 0 %>
+<img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+<% else %>
+<% if reviews[0].photo.key.nil? %>
+  <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+<% else %>
+  <%= cl_image_tag reviews[0].photo.key, class:"review-image"
+<% end %>
+<% end %>

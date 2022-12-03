@@ -17,6 +17,18 @@ class ItinerariesController < ApplicationController
   def show
     @navbar = "others"
     @itinerary = Itinerary.find(params[:id])
+    activities_sequence = Activity.where(itinerary: @itinerary).order(:day).order(:event_sequence)
+    @activities_coord = activities_sequence.map do |activity|
+      {name: activity.place.name, lat: activity.place.lat, lng:activity.place.lng}
+    end
+    @country = {coord: @itinerary.geocode, name: @itinerary.address}
+    start_date = @itinerary.start_date
+    end_date = @itinerary.end_date
+    date_arr = (start_date..end_date).to_a
+    @dates_all = date_arr
+    @dates = date_arr
+    @activities = Activity.where(itinerary: @itinerary)
+    @activities_completed = @activities.where(status: "updated").limit(5)
   end
 
   def new

@@ -1,0 +1,136 @@
+<div data-controller = "modal">
+<div class="copy-modal-overlay" data-modal-target="modal"  >
+  <div class="copy-modal-close-botton" data-action="click->modal#closeModal"><i class="fa-solid fa-xmark fa-2xl" ></i></div>
+  <div class="copy-container">
+    <%= form_with url: '/itineraries', method: :post, class:"copy-form-container", data:{ controller:"datepicker" } do |f| %>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <%= hidden_field_tag 'data', @itinerary.id , class:"data-hidden-2"  %>
+      <%= f.label :address, "Trip Title" , class:"title-label"%>
+      <%= f.text_field :title,placeholder: "Enter trip title", class:"title-input" %>
+      <div>
+        <%= f.label :date, "Select Date", class:"date-label"%>
+        <div class="date-input">
+          <i class="fa-regular fa-calendar-days date-icon"></i>
+          <%= f.date_field :date, placeholder: "Select Date", data:{ datepicker_target:"datePicker"}, class:"date-form" %>
+        </div>
+      </div>
+      <div class="submit_button">
+          <%= f.submit "Copy itinerary", class:"form-submit" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="bannertitle">
+    <div class="summary_header" >
+      <h1><%= @itinerary.address %></h1>
+      <h5><%= @itinerary.title %></h5>
+      <h6><p>By <%= @itinerary.user.first_name %></p></h6>
+    </div>
+    <div class="summary_img_banner">
+      <img
+        src=<%= @itinerary.image %>
+        alt="User Trip Photo"
+      />
+    </div>
+  </div>
+
+  <div class="album_heading">
+    <h2>Trip snippets</h2>
+    <button class="btn button-74" data-action="click->modal#openModal" >Copy itinerary</button>
+
+  </div>
+  <div class="summary_images_container">
+    <figure>
+      <img src="https://assets.codepen.io/12005/windmill.jpg" alt="A windmill" />
+      <%# <form action="/itineraries/new">
+        <button class="add_image_no_border" type="submit"> <div class ="container_card_dashed">
+          <div class="plus_button">
+            <i class="fa-solid fa-circle-plus"></i>
+          </div>
+        </button>
+      </form> %>
+    </figure>
+    <figure class="landscape">
+      <img src="https://assets.codepen.io/12005/suspension-bridge.jpg" alt="The Clifton Suspension Bridge" />
+    </figure>
+    <figure>
+      <img src="https://assets.codepen.io/12005/sunset.jpg" alt="Sunset and boats" />
+    </figure>
+    <figure>
+      <img src="https://assets.codepen.io/12005/snowy.jpg" alt="a river in the snow" />
+    </figure>
+    <figure class="landscape">
+      <img src="https://assets.codepen.io/12005/bristol-balloons1.jpg" alt="a single checked balloon" />
+    </figure>
+    <figure>
+      <img src="https://assets.codepen.io/12005/dog-balloon.jpg" alt="a hot air balloon shaped like a dog" />
+    </figure>
+  </div>
+
+  <div class="summary_body">
+    <div class="user_notes">
+      <h3>Creator Notes</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis hendrerit dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam non dolor lectus. Aliquam convallis finibus fringilla. Sed malesuada augue eu eleifend volutpat. Vestibulum ut rhoncus diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam ac nisi in quam pretium egestas quis ornare enim. Integer nec elit arcu. Aenean volutpat neque quam, at elementum tellus commodo vel.</p>
+    </div>
+    <div class="tips_tricks">
+      <h3>Tips and Tricks</h3>
+      <p>Lots of driving involved, would suggest this for people who love driving. Highly suggest yall book your ski lift pass before the seasons to save some money!</p>
+    </div>
+    <div class="proscons">
+      <h3>Pros and Cons</h3>
+      <p>Extremely scenic but not child friendly. Very few things for kids to do. </p>
+    </div>
+  </div>
+
+
+  <%# <div class="activity_container"> %>
+  <div class="daily_activity_text">
+    <h3>Daily Activities</h3>
+     <p>Day 1</p>
+  </div>
+  <div class="activity_container">
+    <div class="daily_activity">
+      <div class="place_thumbnail">
+        <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+      </div>
+      <div class="place_summary">
+        <h4>Description</h4>
+        <h6 id>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis hendrerit dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam non dolor lectus. Aliquam convallis finibus fringilla. Sed malesuada augue eu eleifend volutpat.</h6>
+      </div>
+    </div>
+  </div>
+
+<br><br>
+
+  <div class="activity_container">
+    <div class="daily_activity">
+      <div class="place_thumbnail">
+        <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+      </div>
+      <div class="place_summary">
+        <h4>Description</h4>
+        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis hendrerit dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam non dolor lectus. Aliquam convallis finibus fringilla. Sed malesuada augue eu eleifend volutpat.</h6>
+      </div>
+    </div>
+  </div>
+
+<br><br>
+
+  <div class="activity_container">
+    <div class="daily_activity">
+      <div class="place_thumbnail">
+        <img src="https://www.newshub.co.nz/home/lifestyle/2019/01/tips-for-safe-and-exciting-new-zealand-camping-over-the-summer-break/_jcr_content/par/image.dynimg.full.q75.jpg/v1546993217423/Freedom_Camping_1200.jpg" alt="thumbnail">
+      </div>
+      <div class="place_summary">
+        <h4>Description</h4>
+        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis hendrerit dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam non dolor lectus. Aliquam convallis finibus fringilla. Sed malesuada augue eu eleifend volutpat.</h6>
+      </div>
+    </div>
+  </div>
+
+<br><br><br>
+</div>
+</div>

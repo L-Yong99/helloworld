@@ -30,6 +30,8 @@
     <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Reviews</button>
   </li>
 </ul>
+
+<%# Tab 1 %>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
      <div class="daily_activity_text mb-3">
@@ -49,11 +51,12 @@
   </div>
 
   <div class="summary-activity-container-main" data-controller="summarypage">
-    <%= render "itineraries/summary_activities", locals: {activities: @activities,dates: @dates} %>
+    <%= render "itineraries/summary_activities", locals: {activities: @activities,dates: @dates, itinerary: @itinerary} %>
   </div>
 
   </div>
 
+<%# Tab 2 %>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <div class="album_heading">
       <h2>Your memories</h2>
@@ -127,7 +130,7 @@
           <%# <button class="add_image_no_border" type="submit"> %>
           <%# <%=  link_to "/itineraries/new" do %>
           <%= form_with url: "/itineraries/#{@itinerary.id}/addimage", method: :post, class:"hidden-form-2" do |f| %>
-            <%= f.file_field :photo, class:"summary-add-image d-none" %>
+            <%= f.file_field :photo, multiple: true, class:"summary-add-image d-none" %>
             <div class ="add_image_container_card_dashed">
               <div class="plus_button">
                 <i class="fa-solid fa-circle-plus"></i>
@@ -141,8 +144,8 @@
     </div>
   </div>
 
+<%# Tab 3 %>
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
     <div class="summary_body">
       <div class="user_notes">
         <h2>Your trip review</h2>
