@@ -301,6 +301,7 @@ end
     @review = @myitineraries.where(phase: "require review")
     @completed = @myitineraries.where(phase: "completed")
     # raise
+
   end
 
   def search
