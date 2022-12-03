@@ -13,11 +13,23 @@
       <%# case when: no reviews and no itinerary images for looping%>
       <% if reviews.with_attached_photo.empty? == true && itinerary.photos.attached? == false  %>
         <div class="carousel-item active" style=<%= "background-image:url(#{itinerary.image})"%> ></div>
+          <div class="carousel-content">
+            <%= link_to "/itineraries/#{itinerary.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"itinerary-delete-link" do %>
+              <i class="fa-solid fa-trash-can itinerary-delete"></i>
+            <% end %>
+            <span><i class="fas fa-thumbs-up"></i><p>0</p></span>
+          </div>
 
       <%# case when: no reviews but have itinerary images for looping%>
       <% elsif reviews.with_attached_photo.empty? == true %>
         <% itinerary.photos.each_with_index do |photo, index| %>
           <div class="carousel-item <%= "active" if index.zero? %>" style="background-image: url(<%= cl_image_path(photo.key) %>)"></div>
+            <div class="carousel-content">
+              <%= link_to "/itineraries/#{itinerary.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"itinerary-delete-link" do %>
+                <i class="fa-solid fa-trash-can itinerary-delete"></i>
+              <% end %>
+              <span><i class="fas fa-thumbs-up"></i><p>0</p></span>
+            </div>
         <% end  %>
 
 
@@ -25,6 +37,12 @@
       <% else %>
         <% reviews.each_with_index do |review, index| %>
           <div class="carousel-item <%= "active" if index.zero? %>" style="background-image: url(<%= cl_image_path(review.photo.key) %>)"></div>
+            <div class="carousel-content">
+              <%= link_to "/itineraries/#{itinerary.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"itinerary-delete-link" do %>
+                <i class="fa-solid fa-trash-can itinerary-delete"></i>
+              <% end %>
+              <span><i class="fas fa-thumbs-up"></i><p>0</p></span>
+            </div>
           <% if index == reviews.size - 1 %>
             <% itinerary.photos.each_with_index do |photo, index| %>
               <div class="carousel-item" style="background-image: url(<%= cl_image_path(photo.key) %>)"></div>
@@ -32,7 +50,7 @@
           <% end  %>
         <% end  %>
       <% end %>
-      
+
     </div>
 
 <%# style="background-image: url('<img src=" http:="" res.cloudinary.com="" dhsjrqv5w="" image="" upload="" v1="" development="" 1n1p4r493c45qhq2r6spdy08pv9m"="">');"&gt; %>
