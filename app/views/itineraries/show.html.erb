@@ -141,16 +141,16 @@
       </div>
       <div class="proscons">
         <h2>Pros and Cons</h2>
-        <h6 class="color_pc">Pros:</h6>
         <% if @itinerary.pros.nil? %>
           <p></p>
         <% else %>
+          <h6 class="color_pc">Pros:</h6>
           <p>- <%= @itinerary.pros %></p>
         <% end %>
-        <h6 class="color_pc">Cons:</h6>
         <% if @itinerary.cons.nil? %>
           <p></p>
         <% else %>
+          <h6 class="color_pc">Cons:</h6>
           <p>- <%= @itinerary.cons %></p>
         <% end %>
       </div>

@@ -32,7 +32,7 @@ user2 = User.create!(
 
 user3 = User.create!(
   email: "janlosthisphone@gmail.com",
-  first_name: "jan",
+  first_name: "Jan",
   last_name: "ross",
   gender: "male",
   country: "america",
