@@ -35,7 +35,7 @@
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
      <div class="daily_activity_text mb-3">
-    <h2>All Activities</h2>
+    <h2>Your Activities</h2>
     <div>
       <h4 class="d-inline h4_no_underline">Day : </h4>
       <%= form_with url: "/itineraries/#{@itinerary.id}/summary", method: :post, class:"summary-date-form d-inline h4_no_underline" do |f| %>
@@ -125,16 +125,16 @@
       </div>
       <div class="proscons">
         <h2>Pros and Cons</h2>
-        <h6 class="color_pc">Pros:</h6>
         <% if @itinerary.pros.nil? %>
           <p></p>
         <% else %>
+          <h6 class="color_pc">Pros:</h6>
           <p>- <%= @itinerary.pros %></p>
         <% end %>
-        <h6 class="color_pc">Cons:</h6>
         <% if @itinerary.cons.nil? %>
           <p></p>
         <% else %>
+          <h6 class="color_pc">Cons:</h6>
           <p>- <%= @itinerary.cons %></p>
         <% end %>
       </div>
@@ -154,7 +154,7 @@
 
       <% if @itinerary.phase == "ongoing" %>
         <%= button_to "view",  itinerary_activity_path(@itinerary, 1), method: :get, class:"summary_btn" %>
-        <%= button_to "end", itinerary_path(@itinerary), method: :patch, class:"summary_btn", params: {phase: 'require review'}%>
+        <%= button_to "end", itinerary_path(@itinerary), method: :patch, class:"summary_btn btn_end", params: {phase: 'require review'}%>
       <% end %>
 
       <% if @itinerary.phase == "require review" %>
