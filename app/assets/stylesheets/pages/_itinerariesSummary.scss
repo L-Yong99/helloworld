@@ -38,25 +38,35 @@ text-align: right;
 
 
 
+  // .nav-link2.inverse{
+  //   color:#51514f;
+  // }
 
+  // .nav-link2{
+  //    color:rgb(226, 226, 226);
+  // }
 
   // --------- for tabs ----------
   // .nav-tabs .nav-item .nav-link {
   //   // background-color: #cfcfcf;
   //   color: #FFF;
   // }
-   .nav-item .nav-link {
+   .nav-item .nav-link2 {
     // background-color: #cfcfcf;
     color: rgb(174, 174, 174);
     border-radius: 500px;
+    border: none;
+    padding: 5px 12px;
 
   }
 
-  .nav-tabs .nav-item .nav-link.active {
+  .nav-tabs .nav-item .nav-link2.active {
     color: #525252;
+    padding: 5px 12px;
     background-color: $hw-gray-3;
     border-radius: 70px;
     transform: translatex(-12%);
+    border: none;
     // animation: slide 0.1s ease-in 0.1s 1 forwards;
     animation: slide 0.1s ease-in 0.1s 1 forwards;
     opacity: 0.6;

@@ -8,7 +8,7 @@ export default class extends Controller {
     this.#selectDateEventPopUp();
 
     const imageAddContainerEl = document.querySelector(
-      ".add_image_container_card_dashed"
+      ".to_add_photo"
     );
     imageAddContainerEl.addEventListener("click", (e) => {
       const addImageEl = document.querySelector(".summary-add-image");

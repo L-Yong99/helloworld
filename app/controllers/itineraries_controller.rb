@@ -17,6 +17,7 @@ class ItinerariesController < ApplicationController
   def show
     @navbar = "others"
     @itinerary = Itinerary.find(params[:id])
+    @reviews = Review.joins(:activity).where("activities.itinerary_id = ? ", @itinerary.id)
     activities_sequence = Activity.where(itinerary: @itinerary).order(:day).order(:event_sequence)
     @activities_coord = activities_sequence.map do |activity|
       {name: activity.place.name, lat: activity.place.lat, lng:activity.place.lng}
@@ -266,6 +267,7 @@ end
   def summary
     @navbar = "others"
     @itinerary = Itinerary.find(params[:id])
+    @reviews = Review.joins(:activity).where("activities.itinerary_id = ? ", @itinerary.id)
     start_date = @itinerary.start_date
     end_date = @itinerary.end_date
     date_arr = (start_date..end_date).to_a
