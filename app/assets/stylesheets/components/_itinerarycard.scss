@@ -42,6 +42,7 @@ border: dashed 4px rgb(184, 184, 184);
 
 }
 
+
 .carousel,
 .carousel-item,
 .carousel-item.active,
@@ -267,4 +268,15 @@ border: dashed 4px rgb(184, 184, 184);
   position:absolute;
   top:0;
   right:-10px;
+}
+
+
+
+// -------for index and summary page -------
+.plus_button_index_summary {
+  text-align: center;
+  padding: 110px 0;
+  color: rgb(184, 184, 184);
+  font-size: 47px;
+
 }

@@ -1,0 +1,41 @@
+
+
+.summary_gallery-grid{
+  display: grid;
+  grid-gap: 19px;
+  grid-template-columns: repeat(4, 213px);
+  // grid-auto-flow: row dense;
+  // grid-template-columns: repeat(4, 300px);
+  // // grid-template-rows: masonry;
+  grid-auto-rows: 313px;
+  // grid-template-rows: 400px;
+}
+
+.summary_gallery-grid img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  border-radius:20px;
+  transition:all 0.4s ease-in-out;
+}
+.summary_gallery-container{
+  margin:0 auto;
+  width:85%;
+  padding-top:50px;
+}
+
+.summary_gallery-grid img:hover {
+transform:scale(1.2);
+transition:all 0.4s ease-in-out;
+}
+
+.summary_gallery-card-container{
+  overflow: hidden;
+  border-radius:20px;
+}
+
+.summary_gallery_h1{
+  padding-bottom: 0px;
+  font-size:4.2rem;
+  margin-bottom:20px;
+}

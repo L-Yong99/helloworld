@@ -46,19 +46,35 @@
   // display: flex;
   margin-top: 50px;
   // width: 70%;
-}
-.recommendation{
-  margin-top: 30px;
+  background-color: rgb(252, 252, 252);
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
+  padding-top: 30px;
+  padding-left: 35px;
+  padding-bottom: 30px;
+  h2 {
+    font-family: $vazir-font;
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: $hw-gray-5;
+  }
+  p{
+    color: $hw-gray-4;
+  }
 }
 .user_notes {
   margin-top: 10px;
+
+}
+.recommendation{
+  margin-top: 50px;
 }
 .proscons {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .color_pc {
- margin-top: 15px;
+ margin-top: 30px;
 }
 
 .place_thumbnail {
@@ -75,13 +91,13 @@
   // margin: auto;
   // width: 50%;
   // padding: 10px;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(250, 250, 250);
   // margin-left: 40px;
   border-radius: 20px;
   padding: 5px;
   width: 800px;
   // box-shadow: 5px 5px 12px 3px rgba(0, 0, 0, 0.2), -5px -5px 12px 3px rgba(0, 0, 0, 0.2);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
   margin-bottom: 30px;
 }
 .daily_activity_text {
@@ -94,12 +110,13 @@
 
 .daily_activity_text > h2 {
   margin-bottom: 20px;
+  color: $hw-gray-5;
 }
 
 .daily_activity {
   display: flex;
   // width: 700px;
-  padding: 15px;
+  padding: 11px 11px;
   // margin-top: 10px;
 
   // position: absolute;
@@ -118,7 +135,7 @@
   padding: 0px;
 }
 .place_summary {
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(250, 250, 250);
   margin-left: 14px;
   width: 100%;
   padding: 0px;
@@ -164,6 +181,7 @@ figure {
   // margin-top: 100px;
   font-weight: 200;
   margin-top: 50px;
+  color: $hw-gray-5;
 }
 
 .add_image_no_border {
@@ -240,9 +258,9 @@ cursor: pointer;
 }
 
 .summary-day-date {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   // text-decoration: underline;
-  font-weight: bold;
+  font-weight:400;
 }
 
 .plus-button-summary {
@@ -450,5 +468,8 @@ cursor: pointer;
 
 .red_text {
   margin-top: 9px;
-  color: $hw-gray-6;
+  color: $hw-gray-4;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
 }
