@@ -45,6 +45,7 @@
 .summary_body {
   // display: flex;
   margin-top: 50px;
+  margin-bottom: 50px;
   // width: 70%;
   background-color: rgb(252, 252, 252);
   border-radius: 15px;
@@ -55,7 +56,7 @@
   h2 {
     font-family: $vazir-font;
     font-weight: 500;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: $hw-gray-5;
   }
   p{
@@ -63,7 +64,7 @@
   }
 }
 .user_notes {
-  margin-top: 10px;
+  // margin-top: 10px;
 
 }
 .recommendation{
@@ -110,7 +111,7 @@
 
 .daily_activity_text > h2 {
   margin-bottom: 20px;
-  color: $hw-gray-5;
+  color: $hw-gray-5-hover;
 }
 
 .daily_activity {
@@ -146,7 +147,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-flow: dense;
-  gap: 10px;
+  // gap: 10px;
   // width: 70%;
 
   img {
@@ -233,11 +234,11 @@ cursor: pointer;
 
 .summary-left {
   margin-top: 30px;
-  width: 70%;
+  width: 72%;
 }
 
 .summary-right {
-  width: 30%;
+  width: 28%;
   // height:500px;
   // border:2px solid red;
 }
@@ -260,6 +261,7 @@ cursor: pointer;
 .summary-day-date {
   margin-bottom: 20px;
   // text-decoration: underline;
+  color: $hw-gray-5;
   font-weight:400;
 }
 
@@ -470,6 +472,6 @@ cursor: pointer;
   margin-top: 9px;
   color: $hw-gray-4;
   font-family: "Poppins", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.03rem;
   font-weight: 400;
 }
