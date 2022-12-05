@@ -168,11 +168,12 @@
         <button data-action="click->modal#openModal" class="summary_btn">Copy itinerary</button>
       <% end %>
     </div>
-
-    <div data-controller="showmap" class="show-map" id="show-map"
-    data-showmap-activities-value="<%= @activities_coord.to_json %>"
-    data-showmap-center-value="<%= @country.to_json %>"
-    data-showmap-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="show-map-container">
+        <div data-controller="showmap" class="show-map" id="show-map"
+        data-showmap-activities-value="<%= @activities_coord.to_json %>"
+        data-showmap-center-value="<%= @country.to_json %>"
+        data-showmap-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
     </div>
   </div>
 </div>
