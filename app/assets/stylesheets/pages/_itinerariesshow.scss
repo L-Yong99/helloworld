@@ -26,3 +26,9 @@
   margin-bottom: 50px;
   // border: 1px solid white;
 }
+.show-map-container{
+  display: flex;
+  position:sticky;
+  top:0;
+  align-self: flex-start;
+}
