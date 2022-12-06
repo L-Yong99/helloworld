@@ -14,7 +14,7 @@
       <% else %>
         <button class="btn btn-prev" disabled></button>
       <% end %>
-      <% if @day + 1 > @days_count %>
+      <% if @day + 1 > @dates.count %>
         <%= link_to "Summary", "/itineraries/#{@itinerary.id}/summary/", class:"btn btn-next" %>
       <% else%>
         <%# <button class="btn btn-next">Next Day</button> %>
@@ -73,7 +73,7 @@
         </div>
       </div>
       <div class="media-container review-content-container">
-        <%= form_with url: "/itineraries/#{@itinerary.id}/activities", method: :post, class:"hidden-form-2" do |f| %>
+        <%= form_with url: "/itineraries/#{@itinerary.id}/activities/#{@day}/reviews", method: :post, class:"hidden-form-2" do |f| %>
           <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
           <%= hidden_field_tag 'data','none', class:"review-form-hidden"  %>
           <div class="photo-container-main">

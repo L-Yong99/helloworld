@@ -90,7 +90,7 @@
     <%= link_to "Back to Dashboard", dashboard_itineraries_path, class:"link-block side-link dashboard" %>
   </div>
 </div>
-<%= form_with url: "/itineraries/#{@itinerary_id}/delete", method: :post, class:"hidden-form-2" do |f| %>
+<%= form_with url: "/itineraries/#{@itinerary.id}/activities/delete", method: :post, class:"hidden-form-2" do |f| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag 'data','none', class:"data-hidden-2"  %>
   <%= f.submit "submit", class:"submit-hidden-2 d-none" %>

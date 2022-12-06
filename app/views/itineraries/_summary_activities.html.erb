@@ -1,7 +1,7 @@
 <% index = 1 %>
 <% @dates.each_with_index do |date,i| %>
   <% @activities_day = @activities.where(date: date).order(:event_sequence)%>
-  <% day_index = @dates_all.index(date) %>
+  <% day_index = @dates.index(date) %>
   <h3 class="summary-day-date">Day <%= day_index+1 %>: <%= date.strftime("%A, %B %d") %></h3>
 
   <% @activities_day.each_with_index do |activity,j| %>

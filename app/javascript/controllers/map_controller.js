@@ -15,7 +15,7 @@ export default class extends Controller {
   connect() {
     mapboxgl.accessToken = this.apiKeyValue;
     this.placesGeoJson = JSON.parse(this.geojsonValue);
-    console.log(this.placesGeoJson);
+    console.log("geojson",this.placesGeoJson);
     console.log(this.activitiesIdValue);
     this.map = new mapboxgl.Map({
       container: this.element,

@@ -23,7 +23,7 @@
     </div>
   <% end %>
 </div>
-<%= form_with url: "/itineraries/#{@itinerary_id}/sort", method: :post, class:"hidden-form-3" do |f| %>
+<%= form_with url: "/itineraries/#{@itinerary.id}/activities/sort", method: :post, class:"hidden-form-3" do |f| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag 'data','none', class:"data-hidden-3"  %>
   <%= f.submit "submit", class:"submit-hidden-3 d-none" %>
