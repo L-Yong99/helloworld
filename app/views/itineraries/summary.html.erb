@@ -41,7 +41,7 @@
     <h2>Your Activities</h2>
     <div>
       <h4 class="d-inline h4_no_underline">Day : </h4>
-      <%= form_with url: "/itineraries/#{@itinerary.id}/summary", method: :post, class:"summary-date-form d-inline h4_no_underline" do |f| %>
+      <%= form_with url: "/itineraries/#{@itinerary.id}/activities/summary", method: :post, class:"summary-date-form d-inline h4_no_underline" do |f| %>
         <select name="date" class="summary-date">
               <option value="">--All Days--</option>
               <%= @dates.each_with_index do |date,i| %>
@@ -193,7 +193,8 @@
     <div class="prepare-checklist-container">
       <div class="prepare-checklist-title"><h5>To-do List</h5></div>
       <div class="add-bar-container">
-        <%= form_with url: "/itineraries/#{@itinerary.id}/addlist", method: :get, class: "add-form" do |f|%>
+        <%= form_with url: "/itineraries/#{@itinerary.id}/lists", method: :get, class: "add-form" do |f|%>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
           <%= f.text_field :todo, placeholder:"Add to do", class:"add-list" %>
           <%= button_tag type: 'submit', class: "add-submit" do %>
             <i class="fa-solid fa-plus add-icon"></i>
@@ -218,14 +219,14 @@
   <% end %>
 
     <%# to-do AJAX Form %>
-    <%= form_with url: "/itineraries/#{@itinerary.id}/addlistcheck", method: :post, class:"todo-form" do |f| %>
+    <%= form_with url: "/itineraries/#{@itinerary.id}/lists/check", method: :post, class:"todo-form" do |f| %>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= hidden_field_tag 'data','none', class:"todo-data-hidden"  %>
       <%= f.submit "submit", class:"todo-submit d-none" %>
     <% end %>
 
        <%# to-do delete AJAX Form %>
-    <%= form_with url: "/itineraries/#{@itinerary.id}/listdelete", method: :post, class:"todo-delete-form" do |f| %>
+    <%= form_with url: "/itineraries/#{@itinerary.id}/lists/delete", method: :post, class:"todo-delete-form" do |f| %>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <%= hidden_field_tag 'data','none', class:"todo-deletedata-hidden"  %>
       <%= f.submit "submit", class:"todo-delete-submit d-none" %>

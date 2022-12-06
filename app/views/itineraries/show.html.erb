@@ -66,7 +66,7 @@
           <h2><%= @itinerary.user.first_name %>'s Activities</h2>
           <div>
             <h4 class="d-inline">Day : </h4>
-            <%= form_with url: "/itineraries/#{@itinerary.id}/summary", method: :post, class:"summary-date-form d-inline" do |f| %>
+            <%= form_with url: "/itineraries/#{@itinerary.id}/activities/summary", method: :post, class:"summary-date-form d-inline" do |f| %>
               <select name="date" class="summary-date">
                     <option value="">--All Days--</option>
                     <%= @dates.each_with_index do |date,i| %>

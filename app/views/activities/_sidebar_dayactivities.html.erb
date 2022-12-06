@@ -11,6 +11,9 @@
           <span class="title"><%= activity.place.name %></span>
         </div>
         <% activity.reviews.each_with_index do |review,i|%>
+          <%= link_to "/itineraries/#{activity.itinerary.id}/activities/#{activity.day}/reviews/#{activity.reviews[0].id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"review-delete-link" do %>
+            <i class="fa-solid fa-xmark"></i>
+          <% end %>
           <% unless review.photo.key.nil? %>
             <%= cl_image_tag review.photo.key, class:"review-image"%>
           <% end %>

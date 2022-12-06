@@ -10,4 +10,12 @@ class Itinerary < ApplicationRecord
   has_many_attached :photos
 
   validates :start_date, :end_date, :title, presence: true
+
+
+  def get_dates_array(id)
+    itinerary = Itinerary.find(id)
+    start_date = itinerary.start_date
+    end_date = itinerary.end_date
+    date_arr = (start_date..end_date).to_a
+  end
 end

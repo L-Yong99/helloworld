@@ -16,7 +16,7 @@
 </select>
 </div>
 
-<%= form_with url: "/itineraries/#{itineraryId}/plan", method: :post, class:"hidden-form-1" do |f| %>
+<%= form_with url: "/itineraries/#{itineraryId}/activities/plan", method: :post, class:"hidden-form-1" do |f| %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag 'data','none', class:"data-hidden-1"  %>
   <%= f.submit "Start Planning", class:"submit-hidden-1 d-none" %>
