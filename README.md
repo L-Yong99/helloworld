@@ -1,3 +1,3 @@
-# Foobar
+# Hello World, Le Wagon Bootcamp Project
 
-Foobar is a Python library for dealing with word pluralization.
+Website simplify pre-trip planning and reminicse post-trip itineraries.
