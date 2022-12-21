@@ -52,3 +52,18 @@ Upon MVP approval, work on next important features
   
 </details>
 
+
+### #4: Clean up CSS
+
+Focus on finalising CSS styling and animations
+
+
+### #5: Review and patch codes 
+
+Check for bugs 
+
+
+### #6: presentation
+
+focus on preparing for presentation
+
