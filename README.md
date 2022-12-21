@@ -2,28 +2,53 @@
 
 A Website simplifying pre-trip planning, records user on-trip journey and reminicse post-trip itineraries.
 
-### #1: MVP 
+### #1: Backend MVP 
 
-Website simplify pre-trip planning and reminicse post-trip itineraries.
+Ensure that the minimum viable product proof is done first
+
 <details>
-  <summary>Click me</summary>
+  <summary>Read more</summary>
   
-  ### Heading
-  1. Foo
-  2. Bar
-     * Baz
-     * Qux
-
-  ### Some Code
-  ```js
-  function logSomething(something) {
-    console.log('Something', something);
-  }
-  ```
+  #### MVP List (Proof of work)
+  1. Plan user journey
+  2. Plan Schema
+  3. Setup Rails framework
+  4. Setup test and production server host
+  5. Create routes based on Schema
+  6. Setup login feature
+  7. user can create itinerary
+  8. user can access map and add places of interest into their itinerary
+  9. user itineraries can be saved and viewed
+  10. user can browse other people itineraries
+  11. User can copy other people itineraries as their own
+  
 </details>
 
-### #1: MVP 
 
-Website simplify pre-trip planning and reminicse post-trip itineraries.
+### #2: Basic CSS 
 
+Use figma for UI/UX design and apply css styling for 1st interim presentation
+
+
+### #3: Additional features
+
+Upon MVP approval, work on next important features 
+
+<details>
+  <summary>Read more</summary>
+  
+  #### CSS MV
+  1. Plan user journey
+  2. Plan Schema
+  3. Setup Rails framework
+  4. Setup test and production server host
+  5. Create routes based on Schema
+  6. Setup login feature
+  7. user can create itinerary
+  8. user can access map and add places of interest into their itinerary
+  9. user itineraries can be saved and viewed
+  10. user can browse other people itineraries
+  11. User can copy other people itineraries as their own
+  
+</details>
 
