@@ -1,10 +1,10 @@
-# Hello World 
+# Hello World Project
 
 A Website simplifying pre-trip planning, records user on-trip journey and reminicse post-trip itineraries.
 
-### #1: Backend MVP 
+## #1: Backend MVP 
 
-Ensure that the minimum viable product proof is done first
+**Ensure that the minimum viable product proof is done first**
 
 <details>
   <summary>Read more</summary>
@@ -25,14 +25,14 @@ Ensure that the minimum viable product proof is done first
 </details>
 
 
-### #2: Basic CSS 
+## #2: Basic CSS 
 
-Use figma for UI/UX design and apply css styling for 1st interim presentation
+**Use figma for UI/UX design and apply css styling for 1st interim presentation**
 
 
-### #3: Additional features
+## #3: Additional features
 
-Upon MVP approval, work on next important features 
+**Upon MVP approval, work on next important features**
 
 <details>
   <summary>Read more</summary>
@@ -52,17 +52,17 @@ Upon MVP approval, work on next important features
 </details>
 
 
-### #4: Clean up CSS
+## #4: Clean up CSS
 
-Focus on finalising CSS styling and animations
-
-
-### #5: Review and patch codes 
-
-Check for bugs 
+**Focus on finalising CSS styling and animations**
 
 
-### #6: presentation
+## #5: Review and patch codes 
 
-focus on preparing for presentation
+**Check for bugs**
+
+
+## #6: Presentation
+
+**focus on preparing for presentation**
 
