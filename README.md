@@ -1,6 +1,6 @@
 # Hello World Project
 
-A Website simplifying pre-trip planning, records user on-trip journey and reminicse post-trip itineraries.
+A Website simplifying pre-trip planning, records user on-trip journey and reminisce post-trip itineraries.
 
 ## #1: Backend MVP 
 
