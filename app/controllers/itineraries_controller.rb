@@ -13,7 +13,7 @@ class ItinerariesController < ApplicationController
   def index
     @navbar = "others"
     @itineraries = Itinerary.all
-    @allcompleted = @itineraries.where(phase: "completed")
+    @completed_itineraries = @itineraries.where(phase: "completed")
   end
 
   def show
@@ -32,19 +32,7 @@ class ItinerariesController < ApplicationController
   end
 
   def create
-    if params[:data].nil?
-      itinerary = Itinerary.new(get_create_itinerary_detail(params))
-      itinerary.user = current_user
-      itinerary.save
-      redirect_to plan_itinerary_path(itinerary)
-   else
-      copy_itinerary = Itinerary.find(params[:data].to_i)
-      itinerary = Itinerary.new(copy_itinerary_details(params, copy_itinerary))
-      itinerary.user = current_user
-      itinerary.save
-      copy_activities_details(params, copy_itinerary, itinerary)
-      redirect_to plan_itinerary_path(itinerary)
-    end
+    self.Create_or_copy_itinerary
   end
 
   def destroy
@@ -102,10 +90,10 @@ class ItinerariesController < ApplicationController
   def dashboard
     @navbar = "others"
     @myitineraries = Itinerary.where(user: current_user)
-    @inplan = @myitineraries.where(phase: "in plan")
-    @ongoing = @myitineraries.where(phase: "ongoing")
-    @review = @myitineraries.where(phase: "require review")
-    @completed = @myitineraries.where(phase: "completed")
+    @inplan_itineraries = @myitineraries.where(phase: "in plan")
+    @ongoing_itineraries = @myitineraries.where(phase: "ongoing")
+    @review_itineraries = @myitineraries.where(phase: "require review")
+    @completed_itineraries = @myitineraries.where(phase: "completed")
   end
 
   def search
@@ -130,6 +118,10 @@ class ItinerariesController < ApplicationController
     @itinerary.photos.attach(params[:photo])
     redirect_to summary_itinerary_path(@itinerary)
   end
+
+
+
+
 
   private
 
@@ -172,6 +164,23 @@ class ItinerariesController < ApplicationController
     end
     geodata[:features] = features
     return geodata
+  end
+
+  # For creating new itinerary or creating new copied itinerary
+  def Create_or_copy_itinerary
+    if params[:data].nil?
+      itinerary = Itinerary.new(get_create_itinerary_detail(params))
+      itinerary.user = current_user
+      itinerary.save
+      redirect_to plan_itinerary_path(itinerary)
+    else
+      copy_itinerary = Itinerary.find(params[:data].to_i)
+      itinerary = Itinerary.new(copy_itinerary_details(params, copy_itinerary))
+      itinerary.user = current_user
+      itinerary.save
+      copy_activities_details(params, copy_itinerary, itinerary)
+      redirect_to plan_itinerary_path(itinerary)
+    end
   end
 
   def copy_activities_details(params, copy_itinerary, itinerary)
