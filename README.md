@@ -66,9 +66,4 @@ A Website simplifying pre-trip planning, records user on-trip journey and remini
 
 **focus on preparing for presentation**
 
- 
-
-# check tables using pandas
-devices_table = pd.read_sql('SELECT * FROM devices', con)
-display(devices_table)
 
